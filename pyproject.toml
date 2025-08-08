@@ -1,0 +1,50 @@
+[project]
+name = "config-recommendation-ml"
+version = "0.1.0"
+description = "This repository contains the code and experiments from my Master's thesis titled "Effectiveness Analysis of Selected Machine Learning Models in Recommending Configuration Files Based on the Structure of Software Projects", conducted as part of the Computer Science program at the University of Silesia in Katowice."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Analiza danych
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "seaborn",
+
+    # Machine Learning
+    "scikit-learn",
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "tensorflow",
+
+    # Jupyter / Notebook
+    "jupyterlab",
+    "ipywidgets",
+    "notebook"
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+extend-select = ["I"] 
+show-fixes = true
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "I"]
+ignore = []
+# E - PEP8 błędy formatowania
+# F - flake8 (błędy Python)
+# B - bugbear (dodatkowe potencjalne błędy)
+# I - importy (isort)
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.ruff.isort]
+known-first-party = ["config-recommendation-ml"]
+combine-as-imports = true
+force-single-line = false
+
