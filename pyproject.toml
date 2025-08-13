@@ -1,7 +1,7 @@
 [project]
 name = "config-recommendation-ml"
+author = "Maciej Czechowski <maciej.czechowski090@gmail.com>"
 version = "0.1.0"
-description = "This repository contains the code and experiments from my Master's thesis titled "Effectiveness Analysis of Selected Machine Learning Models in Recommending Configuration Files Based on the Structure of Software Projects", conducted as part of the Computer Science program at the University of Silesia in Katowice."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
