@@ -4,25 +4,6 @@ author = "Maciej Czechowski <maciej.czechowski090@gmail.com>"
 version = "0.1.0"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = [
-    # Analiza danych
-    "numpy",
-    "pandas",
-    "matplotlib",
-    "seaborn",
-
-    # Machine Learning
-    "scikit-learn",
-    "torch",
-    "torchvision",
-    "torchaudio",
-    "tensorflow",
-
-    # Jupyter / Notebook
-    "jupyterlab",
-    "ipywidgets",
-    "notebook"
-]
 
 [tool.ruff]
 line-length = 88

@@ -1,0 +1,17 @@
+name: config-recommendation-ml
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - pytorch
+  - torchvision
+  - torchaudio
+  - tensorflow
+  - jupyterlab
+  - ipywidgets
+  - mamba

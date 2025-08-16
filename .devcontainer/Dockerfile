@@ -1,16 +1,19 @@
-FROM python:3.11-slim
+FROM continuumio/miniconda3:main
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    git \
-    wget \
-    vim \
-    && rm -rf /var/lib/apt/lists/*
+COPY environment.yaml .
 
-WORKDIR /workspaces
-RUN useradd -m vscode
-USER vscode
+RUN conda env create -f environment.yaml
+
+SHELL ["/bin/bash", "-c"]
+
+RUN conda install -n config-recommendation-ml -c conda-forge ipykernel && \
+    conda clean -afy
+
+ENV PATH=/opt/conda/envs/config-recommendation-ml/bin:$PATH
+ENV CONDA_DEFAULT_ENV=config-recommendation-ml
+
+EXPOSE 8888
+
+CMD ["bash"]
