@@ -1,5 +1,5 @@
 {
-  "name": "config-recomendation-ml",
+  "name": "config-recommendation-ml",
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".."

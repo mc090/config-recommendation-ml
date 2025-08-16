@@ -28,4 +28,3 @@ skip-magic-trailing-comma = false
 known-first-party = ["config-recommendation-ml"]
 combine-as-imports = true
 force-single-line = false
-

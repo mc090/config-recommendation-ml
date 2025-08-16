@@ -1,5 +1,7 @@
 name: config-recommendation-ml
 channels:
+  - pytorch
+  - nvidia
   - conda-forge
 dependencies:
   - python=3.11
@@ -11,7 +13,6 @@ dependencies:
   - pytorch
   - torchvision
   - torchaudio
-  - tensorflow
   - jupyterlab
   - ipywidgets
-  - mamba
+  - pytorch-cuda=12.4
