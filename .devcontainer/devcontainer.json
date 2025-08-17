@@ -13,7 +13,8 @@
         "charliermarsh.ruff",
         "ms-toolsai.jupyter",
         "ms-azuretools.vscode-docker",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "tamasfe.even-better-toml"
       ]
     }
   },

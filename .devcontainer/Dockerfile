@@ -1,18 +1,12 @@
-FROM continuumio/miniconda3:main
+FROM pytorch/pytorch:2.8.0-cuda12.9-cudnn9-runtime
 
 WORKDIR /app
 
-COPY environment.yaml .
+RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
 
-RUN conda env create -f environment.yaml
+COPY environment-base.yaml .
 
-SHELL ["/bin/bash", "-c"]
-
-RUN conda install -n config-recommendation-ml -c conda-forge ipykernel && \
-    conda clean -afy
-
-ENV PATH=/opt/conda/envs/config-recommendation-ml/bin:$PATH
-ENV CONDA_DEFAULT_ENV=config-recommendation-ml
+RUN conda env update -n base --file environment-base.yaml && conda clean -afy
 
 EXPOSE 8888
 

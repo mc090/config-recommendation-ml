@@ -1,6 +1,8 @@
 [project]
 name = "config-recommendation-ml"
-author = "Maciej Czechowski <maciej.czechowski090@gmail.com>"
+authors = [
+	{ name = "Maciej Czechowski", email = "maciej.czechowski090@gmail.com" }
+]
 version = "0.1.0"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -14,10 +16,6 @@ show-fixes = true
 [tool.ruff.lint]
 select = ["E", "F", "B", "I"]
 ignore = []
-# E - PEP8 błędy formatowania
-# F - flake8 (błędy Python)
-# B - bugbear (dodatkowe potencjalne błędy)
-# I - importy (isort)
 
 [tool.ruff.format]
 quote-style = "double"

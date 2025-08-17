@@ -15,11 +15,14 @@ Everything runs inside a reproducible **Dev Container** with **Conda** for depen
 ## Project Structure
 ```bash
 .
-├── .devcontainer/      # Devcontainer setup
-├── data/               # Custom dataset (or scripts to download/build it)
-├── notebooks/          # Jupyter notebooks for exploration
-├── src/                # Application logic
-├── environment.yml     # Conda environment definition
+├── .devcontainer/              # Devcontainer setup with Dockerfile
+├── data/                       # Custom dataset
+├── notebooks/                  # Jupyter notebooks for exploration
+├── src/                        # Application logic
+├── .pre-commit-config.yaml     # Pre-commit confguration file
+├── environment-base.yaml       # Conda environment definition with basic packages
+├── environment-torch.yaml      # Conda environment definition with torch related packages
+├── pyproject.toml              # Project metadata and ruff configuration
 └── README.md
 ```
 
@@ -28,7 +31,7 @@ Everything runs inside a reproducible **Dev Container** with **Conda** for depen
 ### Prerequisites
 - [Docker](https://www.docker.com/)
 - [VS Code](https://code.visualstudio.com/) with [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-
+- [Conda](https://anaconda.org/anaconda/conda) (for local development outside of container)
 
 
 ### Installation
@@ -42,6 +45,16 @@ cd config-recommendation-ml
 Open the repo in VS Code.
 When prompted, "Reopen in Container".
 The devcontainer will automatically install Conda and create the project environment from environment.yml.
+
+### Install locally
+To install locally you need to have conda installed.
+```bash
+# Create virtual environment
+conda env create --name config-recommendation-ml --file environment-base.yaml --file environment-torch.yaml
+
+# Activate virtual environment
+conda activate config-recommendation-ml
+```
 
 ## 📄 License
 Distributed under the MIT License. See LICENSE for details.
