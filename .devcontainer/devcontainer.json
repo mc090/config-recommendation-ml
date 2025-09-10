@@ -4,7 +4,9 @@
     "dockerfile": "Dockerfile",
     "context": ".."
   },
-  "forwardPorts": [8888],
+  "forwardPorts": [
+    8888
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -18,5 +20,8 @@
       ]
     }
   },
-  "runArgs": ["--gpus", "all"]
+  "runArgs": [
+    "--gpus",
+    "all"
+  ]
 }
