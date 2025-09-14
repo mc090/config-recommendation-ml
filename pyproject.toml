@@ -1,7 +1,7 @@
 [project]
 name = "config-recommendation-ml"
 authors = [
-	{ name = "Maciej Czechowski", email = "maciej.czechowski090@gmail.com" }
+	{ name = "Maciej Czechowski", email = "maciej.czechowski090@gmail.com" },
 ]
 version = "0.1.0"
 readme = "README.md"
@@ -10,11 +10,11 @@ requires-python = ">=3.11"
 [tool.ruff]
 line-length = 88
 target-version = "py311"
-extend-select = ["I"] 
 show-fixes = true
 
 [tool.ruff.lint]
 select = ["E", "F", "B", "I"]
+extend-select = ["I"]
 ignore = []
 
 [tool.ruff.format]
@@ -22,7 +22,7 @@ quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["config-recommendation-ml"]
 combine-as-imports = true
 force-single-line = false

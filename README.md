@@ -15,15 +15,19 @@ Everything runs inside a reproducible **Dev Container** with **Conda** for depen
 ## Project Structure
 ```bash
 .
-├── .devcontainer/              # Devcontainer setup with Dockerfile
-├── data/                       # Custom dataset
+├── .devcontainer/              # Development container setup (with Dockerfile)
+├── data/                       # Dataset storage
+│   ├── README.md               # Dataset documentation
+│   ├── dataset_schema.json     # Schema definition
+│   ├── raw/                    # Unprocessed data (e.g. dumps from GitHub)
+│   └── processed/              # Cleaned dataset
 ├── notebooks/                  # Jupyter notebooks for exploration
-├── src/                        # Application logic
-├── .pre-commit-config.yaml     # Pre-commit confguration file
-├── environment-base.yaml       # Conda environment definition with basic packages
-├── environment-torch.yaml      # Conda environment definition with torch related packages
-├── pyproject.toml              # Project metadata and ruff configuration
-└── README.md
+├── src/                        # Source code
+├── .pre-commit-config.yaml     # Pre-commit confguration
+├── environment-base.yaml       # Conda environment with core dependencies
+├── environment-torch.yaml      # Conda environment with PyTorch dependencies
+├── pyproject.toml              # Project metadata and configuration
+└── README.md                   # Project documentation (this file)
 ```
 
 ## 🚀 Getting Started
@@ -77,7 +81,7 @@ conda activate config-recommendation-ml
 
 #### 2.1 Dataset schema
 
-* ◻️ Define attributes of dataset
+* 🟩 Define attributes of dataset
 
 #### 2.1 Data Acquisition
 
