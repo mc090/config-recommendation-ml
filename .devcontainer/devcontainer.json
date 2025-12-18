@@ -20,6 +20,7 @@
       ]
     }
   },
+  "postCreateCommand": "pip install -e . --root-user-action=ignore && pre-commit install",
   "runArgs": [
     "--gpus",
     "all"

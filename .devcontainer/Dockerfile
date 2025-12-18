@@ -8,6 +8,8 @@ COPY environment/environment-base.yaml .
 
 RUN conda env update -n base --file environment-base.yaml && conda clean -afy
 
+RUN pip install --no-cache-dir pre-commit
+
 EXPOSE 8888
 
 CMD ["bash"]

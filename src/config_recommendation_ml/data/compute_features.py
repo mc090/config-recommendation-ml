@@ -1,19 +1,17 @@
 import json
 import random
-from pathlib import Path
 
-from src.utils.config import load_config
+from config_recommendation_ml.utils.config import load_config
+from config_recommendation_ml.utils.paths import INTERIM_DATA_DIR
 
 
 def compute_features():
-    data_cfg = load_config("data")
     features_cfg = load_config("features")
     seeds_cfg = load_config("seeds")
     random.seed(seeds_cfg["sampling_seed"])
 
-    input_file = Path(data_cfg["interim_dir"]) / "structure.json"
-    output_dir = Path(data_cfg["interim_dir"])
-    output_dir.mkdir(parents=True, exist_ok=True)
+    input_file = INTERIM_DATA_DIR / "structure.json"
+    output_dir = INTERIM_DATA_DIR
 
     with open(input_file) as f:
         structure = json.load(f)

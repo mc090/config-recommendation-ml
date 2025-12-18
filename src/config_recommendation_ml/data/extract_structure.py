@@ -1,18 +1,16 @@
 import json
 import random
-from pathlib import Path
 
-from src.utils.config import load_config
+from config_recommendation_ml.utils.config import load_config
+from config_recommendation_ml.utils.paths import INTERIM_DATA_DIR, RAW_DATA_DIR
 
 
 def extract_structure():
-    data_cfg = load_config("data")
     seeds_cfg = load_config("seeds")
     random.seed(seeds_cfg["sampling_seed"])
 
-    input_file = Path(data_cfg["raw_dir"]) / "raw_metadata.json"
-    output_dir = Path(data_cfg["interim_dir"])
-    output_dir.mkdir(parents=True, exist_ok=True)
+    input_file = RAW_DATA_DIR / "raw_metadata.json"
+    output_dir = INTERIM_DATA_DIR
 
     with open(input_file) as f:
         raw_metadata = json.load(f)

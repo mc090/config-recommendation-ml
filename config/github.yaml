@@ -1,6 +1,8 @@
-input_repos:
-  - "https://github.com/user/repo1"
-  - "https://github.com/user/repo2"
+sample_repos:
+  - repo_url: "https://github.com/user/repo1"
+    stars: 23
+  - repo_url: "https://github.com/user/repo2"
+    stars: 17
 
 api:
   use_auth: false

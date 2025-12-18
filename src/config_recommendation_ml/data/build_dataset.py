@@ -1,16 +1,15 @@
 import json
-from pathlib import Path
 
 import pandas as pd
 
-from src.utils.config import load_config
+from config_recommendation_ml.utils.config import load_config
+from config_recommendation_ml.utils.paths import INTERIM_DATA_DIR, PROCESSED_DATA_DIR
 
 
 def build_dataset():
     data_cfg = load_config("data")
-    input_file = Path(data_cfg["interim_dir"]) / "features.json"
-    output_file = Path(data_cfg["processed_dir"]) / data_cfg["dataset_filename"]
-    Path(data_cfg["processed_dir"]).mkdir(parents=True, exist_ok=True)
+    input_file = INTERIM_DATA_DIR / "features.json"
+    output_file = PROCESSED_DATA_DIR / data_cfg["dataset_filename"]
 
     with open(input_file) as f:
         features = json.load(f)
