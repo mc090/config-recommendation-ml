@@ -1,68 +1,52 @@
 # GitHub Python Repository Structure Dataset
 
 ## Overview
-This dataset contains information about the structure of Python projects that was collected from popular public repositories on GitHub.  
-Its purpose is to help develop machine learning models that can suggest which configuration files (e.g., `Dockerfile`, `pyproject.toml`, `.pre-commit-config.yaml`) should be added to a project based on its existing structure.
+This dataset contains information about the structure of Python projects collected from public GitHub repositories. It is intended to help develop ML models that recommend configuration files (e.g., `Dockerfile`, `pyproject.toml`, `.pre-commit-config.yaml`) based on repository structure.
 
-The base version of this dataset is intentionally redundant - later preprocessing steps (feature engineering, dimensionality reduction, attribute selection) will refine it.
-
----
+The base snapshot is intentionally redundant; later preprocessing (feature engineering, attribute selection) will refine the dataset.
 
 ## Data Sources
-- GitHub public repositories retrieved using the GitHub API.  
-- Repository selection criteria:
+- GitHub public repositories retrieved using the GitHub API.
+- Repository selection criteria: TBA
 
-⚠️ **Disclaimer**: This dataset only contains file structure metadata. It does not redistribute source code content.
+⚠️ **Disclaimer**: This dataset contains file-structure metadata only and does not redistribute source code content.
 
----
+## Dataset schema
+See the full schema and field explanations in the [Dataset Card](../docs/dataset_card.md).
 
-## Dataset Schema
-Each entry in the dataset corresponds to one GitHub repository and follows this schema:
+## Versioning and Manifest
+Processed dataset snapshots are saved in `data/processed/vX.Y.Z/`.
+Each snapshot MUST include a `manifest.json` containing at minimum: `version`, `created_at` (ISO8601), `script`, `git_commit`, `preprocessing`, `rows`, `checksum`.
 
+Refer to [Dataset Card](../docs/dataset_card.md) for the manifest template and versioning policy.
+
+## Example Row
 ```json
 {
-  // Attributes
-  "repo_url": "string",             // Link to the GitHub repository
-  "stars": "int",                   // Number of stars in GitHub repository
-  "forks": "int",                   // Number of forks in GitHub repository
-  "created_at": "Date",             // Date of creation (format: dd-MM-YYYY)
-  "last_updated": "Date",           // Date of last update (format: dd-MM-YYYY)
-  "num_files": "int",               // Total number of files
-  "num_py_files": "int",            // Number of Python files
-  "num_js_files": "int",            // Number of JavaScript files
-  "num_ts_files": "int",            // Number of TypeScript files
-  "num_html_files": "int",          // Number of HTML files
-  "num_css_files": "int",           // Number of CSS files
-  "num_json_files": "int",          // Number of JSON files
-  "num_sh_files": "int",            // Number of Shell files
-  "num_test_files": "int",          // Number of test files
-  "num_docs_files": "int",          // Number of documentation files (.md or .rst)
-  "num_notebooks": "int",           // Number of Jupyter Notebook files
-  "other_extensions_count": "int",  // Number of files with other extentions than specified above    
-  "has_tests_dir": "bool",          // Checks for /tests directory
-  "num_dirs": "int",                // Total number of directories
-  "top_level_dirs": ["string"],     // List of top-level directories 
-  "avg_files_per_dir": "int",       // Average number of files per directory
-  "avg_py_file_len": "int",         // Average length of Python file
-  "avg_nb_file_len": "int",         // Average length of Jupyter Notebook file
-  "avg_docs_file_len": "int",       // Average length of documentation file
-  "num_dependencies": "int",        // Number of dependencies
-  "repo_age_days": "int",           // Days passed from repository creation
-  "recent_activity_days": "int",    // Days passed from latest change in repository
-
-  // Labels
-  "has_requirements_txt": "bool",   // Checks for requirements.txt
-  "has_conda_env": "bool",          // Checks for environment*.yaml
-  "has_pyproject_toml": "bool",     // Checks for pyproject.toml
-  "has_pyproject_lock": "bool",     // Checks for pyproject.lock
-  "has_github_actions": "bool",     // Checks for .github/workflows/
-  "has_dockerfile": "bool",         // Checks for Dockerfile
-  "has_docker_compose": "bool",     // Checks for docker-compose.yaml
-  "has_precommit_config": "bool"    // Checks for .pre-commit-config.yaml
+  "repo_url": "https://github.com/user/repo",
+  "stars": 1234,
+  "forks": 56,
+  "created_at": "2020-01-01T00:00:00Z",
+  "last_updated": "2025-11-01T12:00:00Z",
+  "num_files": 42,
+  "num_py_files": 12,
+  "num_js_files": 2,
+  "num_test_files": 5,
+  "has_dockerfile": false,
+  "has_pyproject_toml": true,
+  "top_level_dirs": ["src", "tests", "docs"]
 }
 ```
 
----
+## License
+See `LICENSE` for terms of use. This dataset is distributed under the same license as the repository.
 
-## Files structure
- ([see main project README](../README.md)).
+## Files Structure
+- `raw/` — Unprocessed, downloaded data
+- `interim/` — Intermediate files
+- `processed/` — Final dataset snapshots (with manifest)
+
+See the [main project README](../README.md) for more details.
+
+## Related Documentation
+- [Dataset card](../docs/dataset_card.md)

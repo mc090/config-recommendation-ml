@@ -3,166 +3,115 @@
 > 🚧 Work in Progress
 
 ## 📖 About
-This project is the practical part of my Master's thesis for the Computer Science program at the University of Silesia in Katowice.
+This project serves as the practical component of my Master's thesis in the Computer Science program at the University of Silesia in Katowice.
 
-My goal is to explore **machine learning from scratch** by:
-- Creating and managing **my own dataset**.
-- Training and comparing different ML models.
-- Experimenting with preprocessing and evaluation techniques.
+The primary aim is to delve into **machine learning from the ground up** by:
+- Developing and managing **a custom dataset**.
+- Training and evaluating various ML models.
+- Experimenting with preprocessing techniques and evaluation methods.
 
-Everything runs inside a reproducible **Dev Container** with **Conda** for dependency management.
+The entire workflow operates within a reproducible **Dev Container** environment, utilizing **Conda** for dependency management.
 
-## Project Structure
+## Quick Start
+These commands assume a local bash shell or opening the repository in the VS Code Dev Container.
+
+1) Open in VS Code Dev Container
+- Use the VS Code command palette: `Remote-Containers: Reopen in Container` (Dev Container will install Conda and set up the environment).
+
+2) Local setup
 ```bash
-.
-├── .devcontainer/              # Development container setup (with Dockerfile)
-├── data/                       # Dataset storage
-│   ├── README.md               # Dataset documentation
-│   ├── dataset_schema.json     # Schema definition
-│   ├── raw/                    # Unprocessed data (e.g. dumps from GitHub)
-│   └── processed/              # Cleaned dataset
-├── notebooks/                  # Jupyter notebooks for exploration
-├── src/                        # Source code
-├── .pre-commit-config.yaml     # Pre-commit confguration
-├── environment-base.yaml       # Conda environment with core dependencies
-├── environment-torch.yaml      # Conda environment with PyTorch dependencies
-├── pyproject.toml              # Project metadata and configuration
-└── README.md                   # Project documentation (this file)
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-- [Docker](https://www.docker.com/)
-- [VS Code](https://code.visualstudio.com/) with [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-- [Conda](https://anaconda.org/anaconda/conda) (for local development outside of container)
-
-
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/mc090/config-recommendation-ml.git
-cd config-recommendation-ml
-```
-
-### Opening in Devcontainer
-Open the repo in VS Code.
-When prompted, "Reopen in Container".
-The devcontainer will automatically install Conda and create the project environment from environment.yml.
-
-### Install locally
-To install locally you need to have conda installed.
-```bash
-# Create virtual environment
-conda env create --name config-recommendation-ml --file environment-base.yaml --file environment-torch.yaml
-
-# Activate virtual environment
+conda env create --name config-recommendation-ml --file environment/environment-base.yaml --file environment/environment-torch.yaml
 conda activate config-recommendation-ml
 ```
 
-## 📍 Project Roadmap
+3) Run a minimal data pipeline (example)
+```bash
+# fetch raw metadata from GitHub according to config
+python src/data/fetch_raw.py --config config/data.yaml
+# build processed dataset snapshot
+python src/data/build_dataset.py --config config/data.yaml
+# compute features used by experiments
+python src/data/compute_features.py --config config/features.yaml
+```
 
-### Phase 1: Setup & Foundation
+4) Quick exploration
+```bash
+# open notebook for exploration
+code notebooks/01_explore_dataset.ipynb
+# or print manifest (example path)
+python -c "import json; print(json.load(open('data/processed/latest/manifest.json')))"
+```
 
-#### 1.1 Repo & Environment
+## Common Workflows (one-liners)
+- Collect raw metadata: `python src/data/fetch_raw.py --config config/data.yaml`
+- Build processed snapshot: `python src/data/build_dataset.py --config config/data.yaml`
+- Compute features: `python src/data/compute_features.py --config config/features.yaml`
+- Explore dataset: open `notebooks/01_explore_dataset.ipynb` ([here](./notebooks/01_explore_dataset.ipynb))
+- Run experiments: see [Experiment plan](docs/experiment_plan.md) for mapping to notebooks/scripts and [Training config](config/training.yaml) for parameters
 
-* 🟩 Initialize Git repository
-* 🟩 Configure Dev Container (Dockerfile + devcontainer.json)
-* 🟩 Add Conda environment (`environment.yml`)
+## Project Structure (key folders)
+```
+.devcontainer/        # DevContainer + Dockerfile
+data/                 # raw, interim, processed dataset snapshots
+docs/                 # dataset_card, experiment_plan, model_card, reproducibility checklist
+notebooks/            # EDA and experiment notebooks
+src/                  # data collection and preprocessing scripts
+config/               # YAML configs for data, features, training, evaluation
+environment/          # Conda environment YAMLs
+```
 
-#### 1.2 Code Quality & Standards
+## Reproducibility snapshot (how to reference an experiment)
+- Git commit: `git rev-parse HEAD`
+- Dataset manifest: `data/processed/vX.Y.Z/manifest.json` (each processed snapshot MUST include a manifest)
+- Environment: `environment/environment-base.yaml` ([here](./environment/environment-base.yaml)) and `environment/environment-torch.yaml` ([here](./environment/environment-torch.yaml))
+- Configs: the exact YAML files used from `config/` (include path and any overrides)
 
-* 🟩 Set up pre-commit with ruff (linting, formatting)
-* 🟩 Decide project folder structure
+Example reproducibility citation you should save with experiments:
+```
+commit: <git-hash>
+dataset_manifest: data/processed/v1.2.0/manifest.json
+configs:
+	- config/data.yaml
+	- config/features.yaml
+	- config/training.yaml
+environment:
+	- environment/environment-base.yaml
+	- environment/environment-torch.yaml
+```
 
----
+## Documentation & Links
+- [Dataset card](./docs/dataset_card.md) — schema, collection process, manifest template, and ethical considerations.
+- [Experiment plan](./docs/experiment_plan.md) — experiments, baselines, cross-validation strategy, and timelines.
+- [Model card](./docs/model_card.md) — model details, intended use, limitations, and deployment notes.
+- [Reproducibility checklist](./docs/reproducibility_checklist.md) — step-by-step reproduction items linked to scripts.
+- [Changelog](./CHANGELOG.md)
+- [Roadmap](./ROADMAP.md)
+- [Contributing](./CONTRIBUTING.md)
 
-### Phase 2: Dataset Creation & Management
+## Dataset
+For full dataset schema, collection details, and versioning policy, see [data README](./data/README.md) and [Dataset card](./docs/dataset_card.md).
 
-#### 2.1 Dataset schema
+## Roadmap
+See [Roadmap](./ROADMAP.md) for planned features, experiments, and milestones. Major releases and dataset snapshots will be tagged and documented.
 
-* 🟩 Define attributes of dataset
+## Changelog
+See [Changelog](./CHANGELOG.md) for a history of notable changes and releases.
 
-#### 2.1 Data Acquisition
+## Citation
+If you re-use or cite this project in your thesis or a paper, use a citation similar to:
+```bibtex
+@misc{config-recommendation-ml,
+	author = {Your Name},
+	title = {Effectiveness Analysis of Selected ML Models for Recommending Configuration Files},
+	year = {2025},
+	howpublished = {GitHub repository},
+	url = {https://github.com/mc090/config-recommendation-ml}
+}
+```
 
-* ◻️ Find way to optain data
-* ◻️ Define dataset source(s)
+## Contributing
+See [Contributing](./CONTRIBUTING.md) for guidelines on environment setup, testing, and submitting issues or pull requests. Preferred workflow: fork → branch → pull request. Include updated `manifest.json` and `config` changes for data-related PRs. Before major structural changes, open an issue to discuss. Incremental, non-breaking improvements are preferred.
 
-#### 2.2 Preprocessing Pipeline
-
-* ◻️ Implement dataset loader
-* ◻️ Add preprocessing functions (cleaning, normalization, encoding)
-* ◻️ Split into train/val/test
-* ◻️ Save processed dataset (`data/processed/`)
-
-#### 2.3 Versioning
-
-* ◻️ Decide dataset versioning method (start simple: Git, later MLflow/DVC)
-* ◻️ Store preprocessing parameters alongside dataset version
-
----
-
-### Phase 3: Baseline Models
-
-#### 3.1 Model Training
-
-* ◻️ Train baseline model (Logistic Regression)
-* ◻️ Store training script in `src/models/baseline.py`
-
-#### 3.2 Evaluation
-
-* ◻️ Define metrics (accuracy, F1, confusion matrix)
-* ◻️ Implement evaluation script
-
-#### 3.3 Logging
-
-* ◻️ Log parameters, metrics, and artifacts in MLflow
-* ◻️ Verify reproducibility (same results on re-run)
-
----
-
-### Phase 4: Model Comparison & Experimentation
-
-#### 4.1 Try Different Models
-
-* ◻️ Decision Tree
-* ◻️ Random Forest
-* ◻️ Support Vector Machine
-* ◻️ k-Nearest Neighbors
-
-#### 4.2 Hyperparameter Tuning
-
-* ◻️ Implement simple search (grid/random)
-* ◻️ Log all runs in MLflow
-* ◻️ Compare metrics visually
-
-#### 4.3 Preprocessing Experiments
-
-* ◻️ With/without scaling
-* ◻️ Feature selection
-* ◻️ Dimensionality reduction (PCA, etc.)
-
----
-
-### Phase 5: Reproducibility & Documentation
-
-#### 5.1 Reproducibility
-
-* ◻️ Ensure MLflow logs Conda environment (`mlflow conda.yaml`)
-* ◻️ Add `Makefile` or task runner (common commands: `make train`, `make eval`)
-* ◻️ Document reproducibility steps in README
-
-#### 5.2 Documentation
-
-* ◻️ Update README with roadmap, setup, and usage
-* ◻️ Write docstrings & comments
-* ◻️ Create example notebook demonstrating workflow
-
-#### 5.3 Results & Reflection
-
-* ◻️ Summarize best models + findings
-* ◻️ Write lessons learned (what worked, what didn’t)
-* ◻️ Define possible next directions (e.g., deployment, deeper ML topics)
-
-## 📄 License
-Distributed under the MIT License. See LICENSE for details.
+## License & Contact
+Distributed under the MIT License. See [License](./LICENSE).
+For questions or collaboration, open an issue or contact the repository owner via the GitHub profile.

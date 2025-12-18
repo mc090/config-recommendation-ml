@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
 
-COPY environment-base.yaml .
+COPY environment/environment-base.yaml .
 
 RUN conda env update -n base --file environment-base.yaml && conda clean -afy
 

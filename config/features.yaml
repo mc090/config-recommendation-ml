@@ -1,0 +1,16 @@
+file_extensions:
+  python: [".py"]
+  javascript: [".js"]
+  typescript: [".ts"]
+  html: [".html"]
+  css: [".css"]
+  json: [".json"]
+  shell: [".sh"]
+  notebooks: [".ipynb"]
+  docs: [".md", ".rst"]
+
+compute:
+  compute_file_lengths: true
+  compute_avg_files_per_dir: true
+  compute_average_lengths: true
+  compute_dependencies: true

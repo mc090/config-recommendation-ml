@@ -1,0 +1,13 @@
+input_repos:
+  - "https://github.com/user/repo1"
+  - "https://github.com/user/repo2"
+
+api:
+  use_auth: false
+  token_env_var: "GITHUB_TOKEN"
+  max_retries: 3
+  request_delay_seconds: 1.0
+
+download:
+  clone_depth: 1
+  temp_dir: "data/tmp/"

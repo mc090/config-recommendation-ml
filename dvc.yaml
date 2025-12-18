@@ -1,0 +1,43 @@
+stages:
+  fetch_raw:
+    cmd: python -m src.data.fetch_raw
+    deps:
+      - src/data/fetch_raw.py
+      - src/data/utils.py
+      - config/data.yaml
+      - config/seeds.yaml
+    outs:
+      - data/raw/raw_metadata.json
+
+  extract_structure:
+    cmd: python -m src.data.extract_structure
+    deps:
+      - src/data/extract_structure.py
+      - src/data/utils.py
+      - data/raw/raw_metadata.json
+      - config/data.yaml
+      - config/seeds.yaml
+    outs:
+      - data/interim/structure.json
+
+  compute_features:
+    cmd: python -m src.data.compute_features
+    deps:
+      - src/data/compute_features.py
+      - src/data/utils.py
+      - data/interim/structure.json
+      - config/data.yaml
+      - config/features.yaml
+      - config/seeds.yaml
+    outs:
+      - data/interim/features.json
+
+  build_dataset:
+    cmd: python -m src.data.build_dataset
+    deps:
+      - src/data/build_dataset.py
+      - src/data/utils.py
+      - data/interim/features.json
+      - config/data.yaml
+    outs:
+      - data/processed/dataset.csv

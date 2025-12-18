@@ -1,0 +1,10 @@
+metrics:
+  - accuracy
+  - precision
+  - recall
+  - f1
+
+cross_validation:
+  use_cv: true
+  folds: 5
+  stratified: true

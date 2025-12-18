@@ -1,0 +1,8 @@
+data_seed: 90
+sampling_seed: 90
+training_seed: 90
+evaluation_seed: 90
+
+deterministic:
+  force_hash_sorting: true
+  enforce_timestamp_free_ops: true
