@@ -51,14 +51,9 @@ TBA
 ### Labels
 | Name | Type | Description | Example |
 |---|---|---|---|
-| `has_requirements_txt` | bool | Presence of `requirements.txt` | `false` |
-| `has_conda_env` | bool | Presence of `environment*.yaml` | `true` |
 | `has_pyproject_toml` | bool | Presence of `pyproject.toml` | `false` |
-| `has_pyproject_lock` | bool | Presence of `pyproject.lock` | `false` |
-| `has_github_actions` | bool | Presence of `.github/workflows/` | `true` |
 | `has_dockerfile` | bool | Presence of `Dockerfile` | `false` |
-| `has_docker_compose` | bool | Presence of `docker-compose.yaml` | `false` |
-| `has_precommit_config` | bool | Presence of `.pre-commit-config.yaml` | `true` |
+| `has_github_actions` | bool | Presence of `.github/workflows/` | `true` |
 
 ## Collection and Preprocessing Steps
 - **Collection**: TBA

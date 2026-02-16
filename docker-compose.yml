@@ -1,0 +1,65 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  base:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: config-rec-ml:latest
+    container_name: config-rec-ml-base
+    volumes:
+      # Mount code for live development
+      - ./src:/app/src
+      - ./scripts:/app/scripts
+      - ./notebooks:/app/notebooks
+
+      # Mount data and logs
+      - ./data:/app/data
+      - ./logs:/app/logs
+
+      # Mount secrets
+      - ./.env:/app/.env
+
+    environment:
+      - PYTHONUNBUFFERED=1
+
+    # For GPU access
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
+
+    # Keep container running
+    stdin_open: true
+    tty: true
+
+    command: bash
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: config-rec-ml:latest
+    container_name: config-rec-ml-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./src:/app/src
+      - ./notebooks:/app/notebooks
+      - ./data:/app/data
+      - ./.env:/app/.env
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
+
+    command: >
+      bash -c "jupyter notebook  --ip=0.0.0.0  --port=8888  --no-browser  --allow-root  --NotebookApp.token=''  --NotebookApp.password=''"

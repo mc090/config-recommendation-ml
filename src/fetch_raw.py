@@ -1,8 +1,8 @@
 import json
 import random
 
-from config_recommendation_ml.utils.config import load_config
-from config_recommendation_ml.utils.paths import RAW_DATA_DIR
+from src.utils.config import load_config
+from src.utils.paths import RAW_DATA_DIR
 
 
 def fetch_raw():

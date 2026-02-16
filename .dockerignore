@@ -1,0 +1,46 @@
+# .dockerignore
+# Don't copy these into Docker image
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+
+# Data (too large)
+data/
+logs/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Conda
+*.conda
+.conda/
+
+# Keep only environment YAMLs
+!environment/*.yaml
