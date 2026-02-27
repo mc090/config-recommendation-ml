@@ -1,30 +1,23 @@
-# docker-compose.yml
-version: '3.8'
-
 services:
   base:
     build:
       context: .
       dockerfile: Dockerfile
-    image: config-rec-ml:latest
-    container_name: config-rec-ml-base
+    image: config-ml:latest
+    container_name: config-ml-base
     volumes:
-      # Mount code for live development
       - ./src:/app/src
       - ./scripts:/app/scripts
       - ./notebooks:/app/notebooks
 
-      # Mount data and logs
       - ./data:/app/data
       - ./logs:/app/logs
 
-      # Mount secrets
       - ./.env:/app/.env
 
     environment:
       - PYTHONUNBUFFERED=1
 
-    # For GPU access
     deploy:
       resources:
         reservations:
@@ -33,18 +26,14 @@ services:
               count: all
               capabilities: [ gpu ]
 
-    # Keep container running
-    stdin_open: true
-    tty: true
-
     command: bash
 
   jupyter:
     build:
       context: .
       dockerfile: Dockerfile
-    image: config-rec-ml:latest
-    container_name: config-rec-ml-jupyter
+    image: config-ml:latest
+    container_name: config-ml-jupyter
     ports:
       - "8888:8888"
     volumes:

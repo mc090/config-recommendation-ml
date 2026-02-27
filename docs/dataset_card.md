@@ -59,9 +59,8 @@ TBA
 - **Collection**: TBA
 - **Preprocessing**: TBA
 
-## Limitations and Ethical Considerations
-- **Limitations**: The dataset may not represent all types of software projects, as it focuses on repositories with specific characteristics that meets intended selection criteria.
-- **Ethical Considerations**: Ensure proper attribution to repository authors. Avoid using the dataset for malicious purposes, such as generating harmful configurations.
+## Limitations
+- **Limitations**: The dataset may not represent all types of software projects, as it focuses on repositories with specific characteristics that meets intended selection 
 
 ## Recommended Splits and Versioning Policy
 - **Splits**: Train (70%), Validation (15%), Test (15%).

@@ -1,11 +1,20 @@
 stages:
+  pipeline_init:
+    cmd: python -m src.pipeline_init
+    deps:
+      - src/pipeline_init.py
+      - src/config.py
+      - src/utils.py
+    outs:
+      - logs/pipeline_init.json
+
   fetch_raw:
     cmd: python -m src.data.fetch_raw
     deps:
+      - logs/pipeline_init.json
       - src/data/fetch_raw.py
       - src/data/utils.py
-      - config/data.yaml
-      - config/seeds.yaml
+      - src/config.py
     outs:
       - data/raw/raw_metadata.json
 
@@ -15,8 +24,7 @@ stages:
       - src/data/extract_structure.py
       - src/data/utils.py
       - data/raw/raw_metadata.json
-      - config/data.yaml
-      - config/seeds.yaml
+      - src/config.py
     outs:
       - data/interim/structure.json
 
@@ -26,9 +34,7 @@ stages:
       - src/data/compute_features.py
       - src/data/utils.py
       - data/interim/structure.json
-      - config/data.yaml
-      - config/features.yaml
-      - config/seeds.yaml
+      - src/config.py
     outs:
       - data/interim/features.json
 
@@ -38,6 +44,6 @@ stages:
       - src/data/build_dataset.py
       - src/data/utils.py
       - data/interim/features.json
-      - config/data.yaml
+      - src/config.py
     outs:
       - data/processed/dataset.csv

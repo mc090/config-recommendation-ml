@@ -15,7 +15,7 @@ COPY environment/environment-base.yaml ./environment/
 
 # Update base environment with your dependencies
 # NOTE: Using base environment since pytorch image already has conda base configured
-RUN conda env update -n base --file environment/environment-base.yaml && \
+RUN conda env update -n config-ml --file environment/environment-base.yaml && \
     conda clean -afy
 
 # Install development tools

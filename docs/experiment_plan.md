@@ -32,6 +32,14 @@ TBA
 ## Compute Budget
 - Experiments will be run on local machine with NVIDIA RTX 2060 GPU.
 
+## Workflow Conventions
+
+The project uses the **Dev Container** as the canonical development environment. It enforces a reproducible setup automatically (GPU passthrough, pre-commit hooks, correct dependencies) and eliminates environment drift between machines. Local Conda setup is available as a fallback only.
+
+The **data pipeline** (`fetch_raw` → `build_dataset` → `compute_features`) is driven by `dvc repro`. DVC handles stage caching and dependency tracking, ensuring that only changed stages re-run and that each processed snapshot is traceable. Manual script execution is reserved for debugging individual stages.
+
+**Notebooks** are used exclusively for exploratory analysis, visualization, and thesis figures. Final training runs are executed via CLI scripts logged with MLflow, making each run independently referenceable by commit hash, config, and dataset manifest.
+
 ## Mapping to Scripts/Notebooks
 - [Data preparation](src/data/build_dataset.py)
 - [Feature computation](src/data/compute_features.py)

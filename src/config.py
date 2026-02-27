@@ -1,7 +1,7 @@
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any
 
-from pydantic import Field, field_validator
+from pydantic import Field, ValidationInfo, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -11,6 +11,8 @@ class Settings(BaseSettings):
         description="GitHub Personal Access Token",
         min_length=1,
     )
+
+    # Github search parameters
     min_stars: int = Field(
         default=10,
         ge=0,
@@ -53,29 +55,20 @@ class Settings(BaseSettings):
         le=5000,
         description="Max GitHub API requests per minute",
     )
-    retry_attempts: int = Field(
-        default=3,
-        ge=1,
-        description="Number of retry attempts for failed API calls",
-    )
-    data_dir: Path = Field(
-        default=Path("data"),
-        description="Base directory for all data",
-    )
-    output_dir: Path = Field(
-        default=Path("data/raw"),
-        description="Directory for raw extracted data",
+
+    # Output paths
+    raw_data_path: Path = Field(
+        default=Path("data/raw/raw_metadata.json"),
+        description="Path to save raw extracted metadata",
     )
     logs_dir: Path = Field(
         default=Path("logs"),
         description="Directory for extraction logs",
     )
-    dataset_format: Literal["jsonl", "parquet", "csv"] = Field(
-        default="parquet",
-        description="Output format for dataset",
-    )
+
+    # Sampling parameters
     random_seed: int = Field(
-        default=42,
+        default=90,
         description="Random seed for reproducible sampling",
     )
 
@@ -89,16 +82,23 @@ class Settings(BaseSettings):
             )
         return v
 
-    @field_validator("output_dir", "logs_dir")
+    @field_validator("raw_data_path")
     @classmethod
-    def create_dirs(cls, v: Path) -> Path:
-        """Ensure output directories exist."""
+    def create_raw_data_parent_dir(cls, v: Path) -> Path:
+        """Ensure parent directory for the raw output file exists."""
+        v.parent.mkdir(parents=True, exist_ok=True)
+        return v
+
+    @field_validator("logs_dir")
+    @classmethod
+    def create_logs_dir(cls, v: Path) -> Path:
+        """Ensure logs directory exists."""
         v.mkdir(parents=True, exist_ok=True)
         return v
 
     @field_validator("max_size_kb")
     @classmethod
-    def validate_size_range(cls, v: int | None, info) -> int | None:
+    def validate_size_range(cls, v: int | None, info: ValidationInfo) -> int | None:
         """Ensure max_size >= min_size."""
         if v is not None and "min_size_kb" in info.data:
             min_size = info.data["min_size_kb"]

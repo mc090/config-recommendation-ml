@@ -11,7 +11,7 @@ def save_config_snapshot(run_id: str) -> Path:
     """
     from src.config import settings
 
-    snapshot_path = settings.output_dir / f"config_{run_id}.json"
+    snapshot_path = settings.logs_dir / f"config_{run_id}.json"
 
     with open(snapshot_path, "w") as f:
         json.dump(
