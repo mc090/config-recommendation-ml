@@ -30,8 +30,8 @@ conda activate config-recommendation-ml
 data/                 # raw, interim, processed dataset snapshots
 docs/                 # dataset_card, experiment_plan, model_card, reproducibility checklist
 notebooks/            # EDA and experiment notebooks
-src/                  # data collection and preprocessing scripts
-config/               # YAML configs for data, features, training, evaluation
+src/                  # pipeline scripts (pipeline_init, config, logger, utils)
+src/data/             # data pipeline stages (fetch_raw, extract_structure, compute_features, build_dataset)
 environment/          # Conda environment YAMLs
 ```
 
@@ -61,7 +61,7 @@ environment:
 - [Reproducibility checklist](./docs/reproducibility_checklist.md) — step-by-step reproduction items linked to scripts.
 
 ## Dataset
-For full dataset schema, collection details, and versioning policy, see [data README](./data/README.md) and [Dataset card](./docs/dataset_card.md).
+For full dataset schema, collection details, and versioning policy, see [Dataset card](./docs/dataset_card.md).
 
 ## License & Contact
 Distributed under the MIT License. See [License](./LICENSE).

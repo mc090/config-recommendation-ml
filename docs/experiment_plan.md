@@ -41,9 +41,12 @@ The **data pipeline** (`fetch_raw` → `build_dataset` → `compute_features`) i
 **Notebooks** are used exclusively for exploratory analysis, visualization, and thesis figures. Final training runs are executed via CLI scripts logged with MLflow, making each run independently referenceable by commit hash, config, and dataset manifest.
 
 ## Mapping to Scripts/Notebooks
-- [Data preparation](src/data/build_dataset.py)
-- [Feature computation](src/data/compute_features.py)
-- [Exploration](notebooks/01_explore_dataset.ipynb)
+- [Pipeline init](../src/pipeline_init.py)
+- [Data collection](../src/data/fetch_raw.py)
+- Structure extraction — `src/data/extract_structure.py` (TBA)
+- Feature computation — `src/data/compute_features.py` (TBA)
+- Dataset build — `src/data/build_dataset.py` (TBA)
+- [Exploration](../notebooks/01_explore_dataset.ipynb)
 - Model training/evaluation (TBA)
 
 ## Reproducibility Steps

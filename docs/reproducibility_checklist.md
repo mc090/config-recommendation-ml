@@ -15,18 +15,19 @@
      conda activate config-recommendation-ml
      ```
 3. **Prepare the dataset**
-   - Fetch raw data:
+   - Run the full pipeline (recommended):
      ```bash
-     python src/data/fetch_raw.py --config config/data.yaml
+     dvc repro
      ```
-   - Build processed dataset:
+   - Or run individual stages manually (debugging only):
      ```bash
-     python src/data/build_dataset.py --config config/data.yaml
+     python -m src.pipeline_init
+     python -m src.data.fetch_raw
+     python -m src.data.extract_structure
+     python -m src.data.compute_features
+     python -m src.data.build_dataset
      ```
-   - Compute features:
-     ```bash
-     python src/data/compute_features.py --config config/features.yaml
-     ```
+   - Pipeline configuration is driven by `.env` (see `src/config.py`).
 4. **Explore and analyze**
    - Open and run notebooks:
      - [01_explore_dataset.ipynb](../notebooks/01_explore_dataset.ipynb)
