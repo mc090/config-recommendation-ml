@@ -1,3 +1,5 @@
+"""Configuration management for the config-recommendation-ml project."""
+
 from pathlib import Path
 from typing import Any
 
@@ -6,6 +8,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    """Application settings loaded from environment variables or .env file."""
+
     github_token: str = Field(
         ...,
         description="GitHub Personal Access Token",
@@ -22,10 +26,6 @@ class Settings(BaseSettings):
         default=1000,
         gt=0,
         description="Maximum number of repositories to extract",
-    )
-    languages: list[str] = Field(
-        default=["Python", "JavaScript", "TypeScript", "Go", "Rust"],
-        description="Programming languages to filter by",
     )
     exclude_forks: bool = Field(
         default=True,
@@ -61,6 +61,10 @@ class Settings(BaseSettings):
         default=Path("data/raw/raw_metadata.json"),
         description="Path to save raw extracted metadata",
     )
+    structure_path: Path = Field(
+        default=Path("data/interim/structure.json"),
+        description="Path to save extracted structure data (Stage 2 output)",
+    )
     logs_dir: Path = Field(
         default=Path("logs"),
         description="Directory for extraction logs",
@@ -78,7 +82,8 @@ class Settings(BaseSettings):
         """Ensure token is not a placeholder."""
         if v in ("your_token_here", "ghp_placeholder", ""):
             raise ValueError(
-                "GitHub token not set. Create .env with GITHUB_TOKEN=<your_token>"
+                "GitHub token not set. Set the GITHUB_TOKEN environment variable or"
+                " provide a valid token in the .env file.",
             )
         return v
 
@@ -86,6 +91,13 @@ class Settings(BaseSettings):
     @classmethod
     def create_raw_data_parent_dir(cls, v: Path) -> Path:
         """Ensure parent directory for the raw output file exists."""
+        v.parent.mkdir(parents=True, exist_ok=True)
+        return v
+
+    @field_validator("structure_path")
+    @classmethod
+    def create_structure_parent_dir(cls, v: Path) -> Path:
+        """Ensure parent directory for the structure output file exists."""
         v.parent.mkdir(parents=True, exist_ok=True)
         return v
 

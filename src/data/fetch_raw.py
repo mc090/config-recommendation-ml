@@ -9,7 +9,6 @@ import json
 import random
 import time
 from datetime import UTC, datetime, timedelta
-from math import ceil
 from pathlib import Path
 from typing import Any
 
@@ -21,9 +20,9 @@ from src.logger import get_logger
 logger = get_logger(__name__)
 
 
-def _build_search_query(language: str, cfg: Settings) -> str:
-    """Construct a GitHub repository-search query string for one language."""
-    parts = [f"language:{language}", f"stars:>={cfg.min_stars}"]
+def _build_search_query(cfg: Settings) -> str:
+    """Construct a GitHub repository-search query string."""
+    parts = ["language:Python", f"stars:>={cfg.min_stars}"]
 
     if cfg.min_size_kb > 0 and cfg.max_size_kb is not None:
         parts.append(f"size:{cfg.min_size_kb}..{cfg.max_size_kb}")
@@ -145,20 +144,13 @@ def fetch_raw(
     rng = random.Random(cfg.random_seed)
     raw_data_path = Path(output_path) if output_path is not None else cfg.raw_data_path
 
-    n_languages = len(cfg.languages)
-    per_language = ceil(cfg.max_repos / n_languages)
-
-    all_repos: list[dict[str, Any]] = []
-    for language in cfg.languages:
-        query = _build_search_query(language, cfg)
-        logger.info(f"[{language}] query: {query!r}  target: {per_language}")
-        repos = client.search_repos(query, limit=per_language)
-        logger.info(f"[{language}] collected {len(repos)} repos")
-        all_repos.extend(repos)
+    query = _build_search_query(cfg)
+    logger.info(f"query: {query!r}  target: {cfg.max_repos}")
+    all_repos = client.search_repos(query, limit=cfg.max_repos)
+    logger.info(f"collected {len(all_repos)} repos")
 
     rng.shuffle(all_repos)
-    all_repos = all_repos[: cfg.max_repos]
-    logger.info(f"Sampled {len(all_repos)} repos total (seed={cfg.random_seed})")
+    logger.info(f"Shuffled {len(all_repos)} repos (seed={cfg.random_seed})")
 
     records: list[dict[str, Any]] = []
     for i, repo in enumerate(all_repos, 1):
