@@ -39,10 +39,11 @@ TBA
 | `num_css_files` | int | Number of CSS (`.css`) files | `0` |
 | `num_json_files` | int | Number of JSON (`.json`) files | `3` |
 | `num_sh_files` | int | Number of Shell (`.sh`) files | `1` |
+| `num_yaml_files` | int | Number of YAML (`.yml` or `.yaml`) files | `3` |
 | `num_test_files` | int | Number of Python test files matching `test_*.py` or `*_test.py` patterns anywhere in the repository tree | `5` |
 | `num_docs_files` | int | Number of documentation files (`.md` or `.rst`) | `2` |
 | `num_notebooks` | int | Number of Jupyter Notebook (`.ipynb`) files | `0` |
-| `other_extensions_count` | int | Number of files whose extension is not one of: `.py`, `.js`, `.ts`, `.html`, `.css`, `.json`, `.sh`, `.md`, `.rst`, `.ipynb` | `4` |
+| `other_extensions_count` | int | Number of files whose extension is not one of: `.py`, `.js`, `.ts`, `.html`, `.css`, `.json`, `.sh`, `.yml`, `.yaml`, `.md`, `.rst`, `.ipynb` | `4` |
 | `has_dedicated_test_dir` | bool | True if any top-level directory is named `tests`, `test`, or `__tests__` | `true` |
 | `has_license` | bool | True if a `LICENSE`, `LICENSE.md`, or `LICENSE.txt` file is present at the repository root | `true` |
 | `has_src_dir` | bool | True if a top-level directory named `src/` is present. Specifically identifies the src-layout packaging convention; projects using a named package directory are `false` | `true` |
