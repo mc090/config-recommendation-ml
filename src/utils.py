@@ -1,11 +1,12 @@
+"""Utility functions for the config-recommendation-ml project."""
+
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 
 def save_config_snapshot(run_id: str) -> Path:
-    """
-    Save reproducible config snapshot alongside dataset.
+    """Save reproducible config snapshot alongside dataset.
 
     This allows future you (or reviewers) to know EXACTLY how the dataset was created.
     """
@@ -17,7 +18,7 @@ def save_config_snapshot(run_id: str) -> Path:
         json.dump(
             {
                 "run_id": run_id,
-                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "timestamp": datetime.now(UTC).isoformat(),
                 "config": settings.to_reproducible_dict(),
             },
             f,

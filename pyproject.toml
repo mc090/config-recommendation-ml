@@ -17,9 +17,25 @@ target-version = "py311"
 show-fixes = true
 
 [tool.ruff.lint]
-select = ["E", "F", "B", "I"]
-extend-select = ["I"]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes (undefined names, unused imports)
+    "B",    # flake8-bugbear (common bugs and design issues)
+    "I",    # isort (import ordering)
+    "N",    # pep8-naming (naming conventions)
+    "UP",   # pyupgrade (enforce modern Python syntax)
+    "C4",   # flake8-comprehensions (cleaner list/dict/set expressions)
+    "SIM",  # flake8-simplify (simplifiable code patterns)
+    "RUF",  # ruff-specific rules (unused noqa, mutable defaults, etc.)
+    "PT",   # flake8-pytest-style (pytest best practices)
+    "D",    # pydocstyle (docstring presence and formatting)
+]
 ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["D"]          # docstrings not required on test functions
+"notebooks/**/*.py" = ["E402", "D"]  # notebooks allow imports after cell code
 
 [tool.ruff.format]
 quote-style = "double"
@@ -27,6 +43,9 @@ indent-style = "space"
 skip-magic-trailing-comma = false
 
 [tool.ruff.lint.isort]
-known-first-party = ["config-recommendation-ml"]
+known-first-party = ["src"]
 combine-as-imports = true
 force-single-line = false
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"  # enforces Google-style docstrings; resolves D2xx conflicts automatically

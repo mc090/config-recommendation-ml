@@ -36,9 +36,18 @@ TBA
 
 The project uses the **Dev Container** as the canonical development environment. It enforces a reproducible setup automatically (GPU passthrough, pre-commit hooks, correct dependencies) and eliminates environment drift between machines. Local Conda setup is available as a fallback only.
 
-The **data pipeline** (`fetch_raw` → `build_dataset` → `compute_features`) is driven by `dvc repro`. DVC handles stage caching and dependency tracking, ensuring that only changed stages re-run and that each processed snapshot is traceable. Manual script execution is reserved for debugging individual stages.
+The **data pipeline** (`fetch_raw` → `extract_structure` → `compute_features` → `build_dataset`) is driven by `dvc repro`. DVC handles stage caching and dependency tracking, ensuring that only changed stages re-run and that each processed snapshot is traceable. Manual script execution is reserved for debugging individual stages.
 
 **Notebooks** are used exclusively for exploratory analysis, visualization, and thesis figures. Final training runs are executed via CLI scripts logged with MLflow, making each run independently referenceable by commit hash, config, and dataset manifest.
+
+## Pipeline Stage Summary
+
+| Stage | Script | Input | Output | Responsibility |
+|---|---|---|---|---|
+| `fetch_raw` | `src/data/fetch_raw.py` | GitHub API + config | `data/raw/raw_metadata.json` | Query GitHub Search API per language; fetch full recursive git tree per repo. Each record: `{"repo": <API item>, "tree": {"tree": [{"path":…, "type":…, "size":…}]}}` |
+| `extract_structure` | `src/data/extract_structure.py` | `raw_metadata.json` | `data/interim/structure.json` | Scan the flat tree to count files by extension, list directories, detect label targets (`has_pyproject_toml`, `has_dockerfile`, `has_github_actions`), and preserve per-file sizes for averaging. No derived math yet. |
+| `compute_features` | `src/data/compute_features.py` | `structure.json` | `data/interim/features.json` | Compute all derived numeric features: `avg_files_per_dir`, `avg_py_file_len`, `avg_docs_file_len`, `repo_age_days`, `recent_activity_days`, `num_dependencies`, etc. Output is the full ML feature vector per repo, including labels. |
+| `build_dataset` | `src/data/build_dataset.py` | `features.json` | `data/processed/dataset.csv` + `manifest.json` | Stratified train/val/test split (70/15/15), serialise to CSV with a `split` column, write `manifest.json` with version, git commit, row count, and SHA-256 checksum. |
 
 ## Mapping to Scripts/Notebooks
 - [Pipeline init](../src/pipeline_init.py)

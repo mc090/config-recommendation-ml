@@ -1,5 +1,7 @@
+"""Pipeline initialization for the config-recommendation-ml project."""
+
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from src.config import settings
@@ -12,10 +14,8 @@ INIT_SNAPSHOT = Path("logs/pipeline_init.json")
 
 
 def pipeline_init() -> None:
-    """
-    Log active config and save a reproducibility snapshot before the pipeline runs.
-    """
-    run_id = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    """Initialize the pipeline by logging config and saving a snapshot."""
+    run_id = datetime.now(UTC).strftime("%Y%m%d_%H%M%S")
 
     logger.info("=" * 80)
     logger.info("Pipeline Initialisation")

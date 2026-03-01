@@ -1,44 +1,14 @@
-"""
-fetch_raw.py — Stage 1: collect raw repository metadata from the GitHub API.
+"""Fetch raw repository metadata and git trees from GitHub.
 
-Search criteria applied (all driven by config/data.yaml via Settings):
-
-  stars >= min_stars
-    Filters out abandoned or toy projects. Low-star repos rarely have meaningful
-    configuration files, which would add noise to the labels.
-
-  size in [min_size_kb, max_size_kb]
-    Removes empty shells (too small) and monorepos or data-heavy repos (too
-    large). Both extremes tend to have atypical or missing configuration files.
-
-  pushed >= (today - max_time_since_update_days)
-    Ensures the repo is still actively maintained. Stale repos may have
-    outdated or absent tooling config that does not reflect current practice.
-
-  fork:false  (when exclude_forks=True)
-    Forks duplicate structure from their upstream repo and typically do not add
-    original configuration files — they would bias label distribution.
-
-  archived:false  (when exclude_archived=True)
-    Archived repos are read-only and no longer receive updates; their config
-    state is frozen and may not represent current developer intent.
-
-  language: one of settings.languages
-    Scoping to specific languages gives a controlled comparison surface and
-    avoids language-specific config patterns bleeding into each other
-    unexpectedly. One search query is issued per language so each language
-    contributes roughly equally to the final sample.
-
-Output: settings.raw_data_path
-  List of {"repo": <GitHub search item>, "tree": <GitHub git-tree response>}.
-  The full recursive git tree is stored so downstream stages can derive any
-  file-level feature without requiring additional API calls.
+This module implements the first stage of the data pipeline, which queries the
+GitHub API for repositories matching criteria defined in the config, and retrieves their
+metadata and git trees. The output is saved as a JSON file for later processing.
 """
 
 import json
 import random
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from math import ceil
 from pathlib import Path
 from typing import Any
@@ -61,9 +31,7 @@ def _build_search_query(language: str, cfg: Settings) -> str:
         parts.append(f"size:>={cfg.min_size_kb}")
 
     if cfg.max_time_since_update_days > 0:
-        cutoff = datetime.now(timezone.utc) - timedelta(
-            days=cfg.max_time_since_update_days
-        )
+        cutoff = datetime.now(UTC) - timedelta(days=cfg.max_time_since_update_days)
         parts.append(f"pushed:>={cutoff.strftime('%Y-%m-%d')}")
 
     if cfg.exclude_forks:
@@ -79,6 +47,7 @@ class GitHubClient:
     """Thin wrapper around the GitHub REST API with sliding-window throttling."""
 
     def __init__(self, cfg: Settings) -> None:
+        """Initialize GitHub API client with authentication and throttling."""
         self._cfg = cfg
         self._session = requests.Session()
         self._session.headers.update(
@@ -92,7 +61,6 @@ class GitHubClient:
 
     def _throttle(self) -> None:
         """Block until sending another request is within the configured rate."""
-
         now = time.monotonic()
         self._request_times = [t for t in self._request_times if now - t < 60.0]
 
@@ -104,12 +72,17 @@ class GitHubClient:
         self._request_times.append(time.monotonic())
 
     def get(self, url: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
+        """Make a GET request to the GitHub API with throttling."""
         self._throttle()
         response = self._session.get(url, params=params, timeout=30)
         response.raise_for_status()
         return response.json()
 
     def search_repos(self, query: str, limit: int) -> list[dict[str, Any]]:
+        """Search repositories with pagination, respecting the GitHub Search API limits.
+
+        Uses pagination to handle the GitHub Search API's 1000-result cap.
+        """
         repos: list[dict[str, Any]] = []
         page = 1
         per_page = min(100, limit)
@@ -163,6 +136,10 @@ class GitHubClient:
 def fetch_raw(
     cfg: Settings | None = None, output_path: Path | str | None = None
 ) -> None:
+    """Fetch raw repository metadata and git trees from GitHub.
+
+    Applies search criteria from config to filter repositories.
+    """
     cfg = cfg or settings
     client = GitHubClient(cfg)
     rng = random.Random(cfg.random_seed)
