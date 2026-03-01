@@ -1,13 +1,13 @@
 # Model Card
 
 ## Intended Use
-This model is intended solely for research, focusing on recommending configuration files for programming projects. It supports studies in automated configuration and software analytics.
+This model is intended solely for research, focusing on recommending configuration files for Python programming projects. It supports studies in automated configuration and software analytics. The scope is intentionally restricted to Python repositories to ensure label coherence and feature relevance.
 
 ## Model Architecture
 Planned experiments will compare machine learning models from different families, including decision trees, ensemble methods (Random Forest, Gradient Boosting), support vector machines (SVM), and neural networks. The goal is to evaluate and contrast the strengths of these approaches for the configuration recommendation task.
 
 ## Training Data and Preprocessing
-Training data will be sourced from the Public GitHub Repositories Structure Metadata dataset ([Dataset card](./dataset_card.md)). Preprocessing steps will be described as models are developed and evaluated.
+Training data will be sourced from the Public GitHub Repositories Structure Metadata dataset ([Dataset card](./dataset_card.md)), which is restricted to **Python repositories only**. The dataset collects a broad set of configuration file presence labels, but ML experiments use only the three primary labels: `has_pyproject_toml`, `has_dockerfile`, and `has_github_actions`. Preprocessing steps will be described as models are developed and evaluated.
 
 ## Model Version and Training Dates
 - **Version**: Not available yet

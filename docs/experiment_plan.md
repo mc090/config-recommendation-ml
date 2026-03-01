@@ -4,16 +4,16 @@
 The main goal of these experiments is to develop the most effective machine learning model for recommending configuration files for programming projects. Various ML models will be compared, and different preprocessing methods may also be explored.
 
 ## Baselines
-- Simple heuristic-based recommendations (e.g., based on project language or structure)
-- Most common configuration files in similar repositories
+- Simple heuristic-based recommendations (e.g., based on repository size or structure patterns)
+- Most common configuration files in similar Python repositories
 
 ## Metrics
 - Accuracy
 - Precision, Recall, F1-score
 
 ## Cross-Validation Strategy
-- Stratified K-Fold (k=5), stratified by project language or project-size bucket
-- Ensure balanced representation of project types in each fold
+- Stratified K-Fold (k=5), stratified by project-size bucket (e.g., small/medium/large by `num_files`)
+- Ensure balanced representation of project sizes in each fold
 
 ## Hyperparameter Tuning Plan
 - Grid search or randomized search for key model parameters
@@ -45,8 +45,8 @@ The **data pipeline** (`fetch_raw` → `extract_structure` → `compute_features
 | Stage | Script | Input | Output | Responsibility |
 |---|---|---|---|---|
 | `fetch_raw` | `src/data/fetch_raw.py` | GitHub API + config | `data/raw/raw_metadata.json` | Query GitHub Search API per language; fetch full recursive git tree per repo. Each record: `{"repo": <API item>, "tree": {"tree": [{"path":…, "type":…, "size":…}]}}` |
-| `extract_structure` | `src/data/extract_structure.py` | `raw_metadata.json` | `data/interim/structure.json` | Scan the flat tree to count files by extension, list directories, detect label targets (`has_pyproject_toml`, `has_dockerfile`, `has_github_actions`), and preserve per-file sizes for averaging. No derived math yet. |
-| `compute_features` | `src/data/compute_features.py` | `structure.json` | `data/interim/features.json` | Compute all derived numeric features: `avg_files_per_dir`, `avg_py_file_len`, `avg_docs_file_len`, `repo_age_days`, `recent_activity_days`, `num_dependencies`, etc. Output is the full ML feature vector per repo, including labels. |
+| `extract_structure` | `src/data/extract_structure.py` | `raw_metadata.json` | `data/interim/structure.json` | Scan the flat tree to count files by extension, list directories, detect label targets (`has_pyproject_toml`, `has_dockerfile`, `has_github_actions`), detect boolean structural flags (`has_dedicated_test_dir`, `has_license`, `has_src_dir`, `has_docs_dir`, `has_scripts_dir`), and preserve per-file sizes for averaging. No derived math yet. |
+| `compute_features` | `src/data/compute_features.py` | `structure.json` | `data/interim/features.json` | Compute all derived numeric features: `avg_files_per_dir`, `avg_py_file_len`, `avg_nb_cell_count`, `avg_docs_file_len`, `repo_age_days`, `recent_activity_days`, `num_dependencies`, etc. Output is the full ML feature vector per repo, including labels. |
 | `build_dataset` | `src/data/build_dataset.py` | `features.json` | `data/processed/dataset.csv` + `manifest.json` | Stratified train/val/test split (70/15/15), serialise to CSV with a `split` column, write `manifest.json` with version, git commit, row count, and SHA-256 checksum. |
 
 ## Mapping to Scripts/Notebooks
