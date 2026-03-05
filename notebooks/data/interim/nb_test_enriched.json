@@ -107,7 +107,12 @@
     "has_precommit_config": false,
     "has_setup_py": false,
     "has_tox_ini": false,
-    "has_makefile": true
+    "has_makefile": true,
+    "avg_py_file_len": 83.0,
+    "avg_test_file_len": 0,
+    "avg_docs_file_len": 288.6,
+    "avg_nb_cell_count": 0,
+    "num_dependencies": 2
   },
   {
     "repo_url": "https://github.com/donnemartin/system-design-primer",
@@ -732,7 +737,12 @@
     "has_precommit_config": false,
     "has_setup_py": false,
     "has_tox_ini": false,
-    "has_makefile": false
+    "has_makefile": false,
+    "avg_py_file_len": 40.84615384615385,
+    "avg_test_file_len": 0,
+    "avg_docs_file_len": 572.4347826086956,
+    "avg_nb_cell_count": 5.0,
+    "num_dependencies": 0
   },
   {
     "repo_url": "https://github.com/TheAlgorithms/Python",
@@ -7001,7 +7011,12 @@
     "has_precommit_config": true,
     "has_setup_py": false,
     "has_tox_ini": false,
-    "has_makefile": false
+    "has_makefile": false,
+    "avg_py_file_len": 85.5721649484536,
+    "avg_test_file_len": 84.47058823529412,
+    "avg_docs_file_len": 86.03571428571429,
+    "avg_nb_cell_count": 0,
+    "num_dependencies": 21
   },
   {
     "repo_url": "https://github.com/public-apis/public-apis",
@@ -7145,7 +7160,12 @@
     "has_precommit_config": false,
     "has_setup_py": false,
     "has_tox_ini": false,
-    "has_makefile": false
+    "has_makefile": false,
+    "avg_py_file_len": 138.75,
+    "avg_test_file_len": 319.0,
+    "avg_docs_file_len": 100.0,
+    "avg_nb_cell_count": 0,
+    "num_dependencies": 5
   },
   {
     "repo_url": "https://github.com/EbookFoundation/free-programming-books",
@@ -8134,6 +8154,11 @@
     "has_precommit_config": false,
     "has_setup_py": false,
     "has_tox_ini": false,
-    "has_makefile": false
+    "has_makefile": false,
+    "avg_py_file_len": 605.0,
+    "avg_test_file_len": 0,
+    "avg_docs_file_len": 149.58796296296296,
+    "avg_nb_cell_count": 0,
+    "num_dependencies": 0
   }
 ]

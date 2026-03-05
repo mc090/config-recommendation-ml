@@ -12,7 +12,7 @@ def get_logger(name: str) -> logging.Logger:
     log_file = settings.logs_dir / f"extraction_{timestamp}.log"
 
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format="%(asctime)s [%(levelname)s] %(message)s",
         handlers=[
             logging.FileHandler(log_file),

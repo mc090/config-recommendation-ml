@@ -190,8 +190,6 @@ def _extract_one(record: dict[str, Any]) -> dict[str, Any]:
         "yaml_files": yaml_files,
         "test_files": test_files,
         "docs_files": docs_files,
-        # NOTE: notebook_files stores byte sizes only; avg_nb_cell_count
-        # requires fetching and parsing notebook content (not yet implemented).
         "notebook_files": notebook_files,
         "other_files": other_files,
         "dirs": dir_paths,
@@ -215,27 +213,27 @@ def _extract_one(record: dict[str, Any]) -> dict[str, Any]:
 
 
 def extract_structure(
-    input_path: Path | str | None = None,
-    output_path: Path | str | None = None,
+    input_path: Path | None = None,
+    output_path: Path | None = None,
 ) -> None:
     """Extract structural facts from raw repo metadata."""
-    raw_path = Path(input_path) if input_path is not None else settings.raw_data_path
-    out_path = Path(output_path) if output_path is not None else settings.structure_path
+    input_path = input_path or settings.raw_data_path
+    output_path = output_path or settings.structure_path
 
-    raw_records: list[dict[str, Any]] = load_json(raw_path)
+    raw_records: list[dict[str, Any]] = load_json(input_path)
     logger.info(f"Processing {len(raw_records)} raw records...")
 
     structures: list[dict[str, Any]] = []
     for i, record in enumerate(raw_records, 1):
-        repo_name = record["repo"].get("full_name", f"record-{i}")
+        repo_name = record["repo"]["full_name"]
         try:
             result = _extract_one(record)
             structures.append(result)
-            logger.debug(f"[{i}/{len(raw_records)}] {repo_name}: OK")
+            logger.info(f"[{i}/{len(raw_records)}] {repo_name}: OK")
         except Exception as exc:
             logger.warning(f"[{i}/{len(raw_records)}] {repo_name}: skipped — {exc}")
 
-    save_json(structures, out_path)
+    save_json(structures, output_path)
     logger.info(f"extract_structure complete: {len(structures)} records written")
 
 

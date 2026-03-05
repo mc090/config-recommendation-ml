@@ -30,8 +30,8 @@ conda activate config-recommendation-ml
 data/                 # raw, interim, processed dataset snapshots
 docs/                 # dataset_card, experiment_plan, model_card, reproducibility checklist
 notebooks/            # EDA and experiment notebooks
-src/                  # pipeline scripts (pipeline_init, config, logger, utils)
-src/data/             # data pipeline stages (fetch_raw, extract_structure, compute_features, build_dataset)
+src/                  # pipeline scripts (pipeline_init, config, logger, utils, github_client)
+src/data/             # data pipeline stages (fetch_raw, extract_structure, enrich_content, compute_features, build_dataset)
 environment/          # Conda environment YAMLs
 ```
 
@@ -39,16 +39,13 @@ environment/          # Conda environment YAMLs
 - Git commit: `git rev-parse HEAD`
 - Dataset manifest: `data/processed/vX.Y.Z/manifest.json` (each processed snapshot MUST include a manifest)
 - Environment: `environment/environment-base.yaml` ([here](./environment/environment-base.yaml)) and `environment/environment-torch.yaml` ([here](./environment/environment-torch.yaml))
-- Configs: the exact YAML files used from `config/` (include path and any overrides)
+- Settings: the values from `.env` / `src/config.py` used for the run (captured automatically in `logs/config_<run_id>.json` by `pipeline_init`)
 
 Example reproducibility citation you should save with experiments:
 ```
 commit: <git-hash>
 dataset_manifest: data/processed/v1.2.0/manifest.json
-configs:
-	- config/data.yaml
-	- config/features.yaml
-	- config/training.yaml
+config_snapshot: logs/config_<run_id>.json
 environment:
 	- environment/environment-base.yaml
 	- environment/environment-torch.yaml

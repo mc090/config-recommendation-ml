@@ -28,12 +28,22 @@ stages:
     outs:
       - data/interim/structure.json
 
+  enrich_content:
+    cmd: python -m src.data.enrich_content
+    deps:
+      - src/data/enrich_content.py
+      - src/data/utils.py
+      - data/interim/structure.json
+      - src/config.py
+    outs:
+      - data/interim/structure_enriched.json
+
   compute_features:
     cmd: python -m src.data.compute_features
     deps:
       - src/data/compute_features.py
       - src/data/utils.py
-      - data/interim/structure.json
+      - data/interim/structure_enriched.json
       - src/config.py
     outs:
       - data/interim/features.json

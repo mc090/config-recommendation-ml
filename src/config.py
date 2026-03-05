@@ -63,7 +63,11 @@ class Settings(BaseSettings):
     )
     structure_path: Path = Field(
         default=Path("data/interim/structure.json"),
-        description="Path to save extracted structure data (Stage 2 output)",
+        description="Path to save extracted structure data",
+    )
+    structure_enriched_path: Path = Field(
+        default=Path("data/interim/structure_enriched.json"),
+        description="Path to save content-enriched structure data",
     )
     logs_dir: Path = Field(
         default=Path("logs"),
@@ -98,6 +102,13 @@ class Settings(BaseSettings):
     @classmethod
     def create_structure_parent_dir(cls, v: Path) -> Path:
         """Ensure parent directory for the structure output file exists."""
+        v.parent.mkdir(parents=True, exist_ok=True)
+        return v
+
+    @field_validator("structure_enriched_path")
+    @classmethod
+    def create_structure_enriched_parent_dir(cls, v: Path) -> Path:
+        """Ensure parent directory for the enriched structure output file exists."""
         v.parent.mkdir(parents=True, exist_ok=True)
         return v
 

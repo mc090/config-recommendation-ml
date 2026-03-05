@@ -31,8 +31,8 @@ TBA
 | `forks` | int | Number of forks in GitHub repository | `56` |
 | `repo_size_kb` | int | Total repository size in kilobytes as reported by the GitHub API | `2048` |
 | `open_issues_count` | int | Number of currently open issues | `12` |
-| `num_files` | int | Total number of files | `42` |
-| `num_py_files` | int | Number of Python (`.py`) files | `12` |
+| `num_files` | int | Total number of files (all extensions, including test files) | `42` |
+| `num_py_files` | int | Number of Python (`.py`) files, excluding test files (test files are counted separately in `num_test_files`) | `12` |
 | `num_js_files` | int | Number of JavaScript (`.js`) files | `2` |
 | `num_ts_files` | int | Number of TypeScript (`.ts`) files | `0` |
 | `num_html_files` | int | Number of HTML (`.html`) files | `1` |
@@ -41,6 +41,7 @@ TBA
 | `num_sh_files` | int | Number of Shell (`.sh`) files | `1` |
 | `num_yaml_files` | int | Number of YAML (`.yml` or `.yaml`) files | `3` |
 | `num_test_files` | int | Number of Python test files matching `test_*.py` or `*_test.py` patterns anywhere in the repository tree | `5` |
+| `test_file_ratio` | float | Ratio of test files to all Python files: `num_test_files / (num_py_files + num_test_files)`. Captures testing investment as a normalised value independent of repo size. `0` when no Python files are present. | `0.29` |
 | `num_docs_files` | int | Number of documentation files (`.md` or `.rst`) | `2` |
 | `num_notebooks` | int | Number of Jupyter Notebook (`.ipynb`) files | `0` |
 | `other_extensions_count` | int | Number of files whose extension is not one of: `.py`, `.js`, `.ts`, `.html`, `.css`, `.json`, `.sh`, `.yml`, `.yaml`, `.md`, `.rst`, `.ipynb` | `4` |
@@ -50,11 +51,12 @@ TBA
 | `has_docs_dir` | bool | True if a top-level directory named `docs/` or `doc/` is present | `false` |
 | `has_scripts_dir` | bool | True if a top-level directory named `scripts/` or `bin/` is present | `false` |
 | `num_dirs` | int | Total number of directories | `8` |
-| `avg_files_per_dir` | float | Average number of files per directory | `5.25` |
-| `avg_py_file_len` | int | Average length of Python files in lines of code | `200` |
-| `avg_nb_cell_count` | int | Average number of cells (code + markdown) per Jupyter Notebook file | `24` |
-| `avg_docs_file_len` | int | Average length of documentation files in lines | `120` |
-| `num_dependencies` | int | Number of unique declared dependencies parsed from `requirements.txt`, `requirements/*.txt`, `Pipfile`, `pyproject.toml` (dependencies table), and `setup.py` (`install_requires`) | `10` |
+| `avg_files_per_dir` | float | Average number of files per directory, computed as `num_files / (num_dirs + 1)`. The `+1` accounts for the repository root, ensuring a consistent denominator for all repos including flat ones with no subdirectories. | `5.25` |
+| `avg_py_file_len` | float | Average length of Python source files in lines of code, excluding test files | `200.5` |
+| `avg_test_file_len` | float | Average length of Python test files in lines of code. `0` when no test files are present. | `85.0` |
+| `avg_nb_cell_count` | float | Average number of cells (code + markdown) per Jupyter Notebook file | `24.75` |
+| `avg_docs_file_len` | float | Average length of documentation files in lines | `120.0` |
+| `num_dependencies` | int | Number of declared dependencies parsed from `requirements.txt`, `requirements/*.txt`, `Pipfile`, `pyproject.toml` (PEP 621 `[project].dependencies` and Poetry `[tool.poetry.dependencies]`), and `setup.cfg` (`install_requires`). Counts are summed across all parseable dependency files present. `setup.py` is not parsed (see Limitations). | `10` |
 | `repo_age_days` | int | Days since repository creation (derived from GitHub API `created_at`) | `1500` |
 | `recent_activity_days` | int | Days since last repository update (derived from GitHub API `updated_at`) | `20` |
 
@@ -70,7 +72,7 @@ TBA
 | `has_requirements_txt` | bool | Presence of `requirements.txt` at the repository root or any `.txt` file inside a `requirements/` directory | `true` |
 | `has_conda_env_file` | bool | Presence of any `.yml` or `.yaml` file whose name starts with `environment` or `conda` anywhere in the repository tree (e.g. `environment.yml`, `environment-base.yaml`, `conda.yaml`) | `false` |
 | `has_docker_compose` | bool | Presence of `docker-compose.yml`, `docker-compose.yaml`, `compose.yml`, or `compose.yaml` anywhere in the repository tree | `false` |
-| `has_precommit_config` | bool | Presence of `.pre-commit-config.yaml` anywhere in the repository tree | `false` |
+| `has_precommit_config` | bool | Presence of `.pre-commit-config.yaml` at the repository root | `false` |
 | `has_setup_py` | bool | Presence of `setup.py` at the repository root | `true` |
 | `has_tox_ini` | bool | Presence of `tox.ini` at the repository root | `false` |
 | `has_makefile` | bool | Presence of `Makefile` at the repository root | `false` |
@@ -80,7 +82,8 @@ TBA
 - **Preprocessing**: TBA
 
 ## Limitations
-- **Limitations**: The dataset may not represent all types of software projects, as it focuses on repositories with specific characteristics that meets intended selection 
+- **Limitations**: The dataset may not represent all types of software projects, as it focuses on repositories with specific characteristics that meets intended selection criteria.
+- **`setup.py` exclusion**: Repositories where `setup.py` is the sole dependency file are excluded during enrichment. `setup.py` is arbitrary Python code and cannot be reliably parsed without execution. Including such repositories would produce `num_dependencies = 0`, which is indistinguishable from a repository that genuinely has no dependencies, silently corrupting the feature. Repositories that have `setup.py` alongside other parseable dependency files (e.g. `requirements.txt`) are retained — the count is derived from the parseable files only.
 
 ## Recommended Splits and Versioning Policy
 - **Splits**: Train (70%), Validation (15%), Test (15%).
