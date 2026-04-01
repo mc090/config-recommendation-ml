@@ -29,32 +29,22 @@ conda activate config-recommendation-ml
 .devcontainer/        # DevContainer + Dockerfile
 data/                 # raw, interim, processed dataset snapshots
 docs/                 # dataset_card, experiment_plan, model_card, reproducibility checklist
+environment/          # Conda environment YAMLs
 notebooks/            # EDA and experiment notebooks
 src/                  # pipeline scripts (pipeline_init, config, logger, utils, github_client)
 src/data/             # data pipeline stages (fetch_raw, extract_structure, enrich_content, compute_features, build_dataset)
-environment/          # Conda environment YAMLs
 ```
 
 ## Reproducibility snapshot (how to reference an experiment)
 - Git commit: `git rev-parse HEAD`
 - Dataset manifest: `data/processed/vX.Y.Z/manifest.json` (each processed snapshot MUST include a manifest)
-- Environment: `environment/environment-base.yaml` ([here](./environment/environment-base.yaml)) and `environment/environment-torch.yaml` ([here](./environment/environment-torch.yaml))
+- Environment: `environment/environment-base.yaml` and `environment/environment-torch.yaml`
 - Settings: the values from `.env` / `src/config.py` used for the run (captured automatically in `logs/config_<run_id>.json` by `pipeline_init`)
 
-Example reproducibility citation you should save with experiments:
-```
-commit: <git-hash>
-dataset_manifest: data/processed/v1.2.0/manifest.json
-config_snapshot: logs/config_<run_id>.json
-environment:
-	- environment/environment-base.yaml
-	- environment/environment-torch.yaml
-```
-
-## Documentation & Links
-- [Dataset card](./docs/dataset_card.md) — schema, collection process, manifest template, and ethical considerations.
-- [Experiment plan](./docs/experiment_plan.md) — experiments, baselines, cross-validation strategy, and timelines.
-- [Model card](./docs/model_card.md) — model details, intended use, limitations, and deployment notes.
+## Documentation
+- [Dataset card](./docs/dataset_card.md) — schema, collection process, manifest template, and versioning policy.
+- [Experiment plan](./docs/experiment_plan.md) — experiments, baselines and cross-validation strategy.
+- [Model card](./docs/model_card.md) — model details, intended use and limitations.
 - [Reproducibility checklist](./docs/reproducibility_checklist.md) — step-by-step reproduction items linked to scripts.
 
 ## Dataset

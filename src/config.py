@@ -49,12 +49,26 @@ class Settings(BaseSettings):
         default=500_000,  # 500 MB
         description="Maximum repository size in KB (None = no limit)",
     )
+
+    # API rate limiting parameters
     requests_per_minute: int = Field(
-        default=30,
+        default=60,
         gt=0,
         le=5000,
-        description="Max GitHub API requests per minute",
+        description="Max GitHub REST API requests per minute (for Trees API, etc.). "
+        "Note: Search API has hard limit of 30 req/min regardless of this setting.",
     )
+    min_request_delay: float = Field(
+        default=1.0,
+        ge=0.0,
+        le=10.0,
+        description="Minimum delay between GitHub API requests (seconds). "
+        "Prevents secondary rate limits triggered by request bursts. "
+        "Recommended: 1.0s for safety, reduce to 0.5s if needed.",
+    )
+
+    # GitHub Search API has a hard limit of 30 requests/minute
+    GITHUB_SEARCH_API_LIMIT: int = 30
 
     # Output paths
     raw_data_path: Path = Field(
@@ -69,6 +83,14 @@ class Settings(BaseSettings):
         default=Path("data/interim/structure_enriched.json"),
         description="Path to save content-enriched structure data",
     )
+    computed_features_path: Path = Field(
+        default=Path("data/interim/computed_features.json"),
+        description="Path to save computed features for modeling",
+    )
+    dataset_output_dir: Path = Field(
+        default=Path("data/processed"),
+        description="Base directory for processed datasets",
+    )
     logs_dir: Path = Field(
         default=Path("logs"),
         description="Directory for extraction logs",
@@ -78,6 +100,21 @@ class Settings(BaseSettings):
     random_seed: int = Field(
         default=90,
         description="Random seed for reproducible sampling",
+    )
+
+    # Dataset stratification
+    stratify_labels: list[str] = Field(
+        default=["has_pyproject_toml", "has_dockerfile", "has_github_actions"],
+        description="Label columns to use for multi-label stratification in splits",
+    )
+
+    # Dataset versioning
+    dataset_version: str | None = Field(
+        default=None,
+        description=(
+            "Manual override for dataset version (e.g., '2.0.0')."
+            "If None, auto-increments patch version.",
+        ),
     )
 
     @field_validator("github_token")
@@ -91,32 +128,17 @@ class Settings(BaseSettings):
             )
         return v
 
-    @field_validator("raw_data_path")
+    @field_validator(
+        "raw_data_path",
+        "structure_path",
+        "structure_enriched_path",
+        "computed_features_path",
+        "logs_dir",
+    )
     @classmethod
-    def create_raw_data_parent_dir(cls, v: Path) -> Path:
+    def create_dir(cls, v: Path) -> Path:
         """Ensure parent directory for the raw output file exists."""
         v.parent.mkdir(parents=True, exist_ok=True)
-        return v
-
-    @field_validator("structure_path")
-    @classmethod
-    def create_structure_parent_dir(cls, v: Path) -> Path:
-        """Ensure parent directory for the structure output file exists."""
-        v.parent.mkdir(parents=True, exist_ok=True)
-        return v
-
-    @field_validator("structure_enriched_path")
-    @classmethod
-    def create_structure_enriched_parent_dir(cls, v: Path) -> Path:
-        """Ensure parent directory for the enriched structure output file exists."""
-        v.parent.mkdir(parents=True, exist_ok=True)
-        return v
-
-    @field_validator("logs_dir")
-    @classmethod
-    def create_logs_dir(cls, v: Path) -> Path:
-        """Ensure logs directory exists."""
-        v.mkdir(parents=True, exist_ok=True)
         return v
 
     @field_validator("max_size_kb")

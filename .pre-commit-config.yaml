@@ -7,3 +7,10 @@ repos:
         args: [--fix] 
       - id: ruff-format
         name: ruff (format)
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-requests, types-toml, pandas-stubs]
+        args: [--ignore-missing-imports, --no-strict-optional]

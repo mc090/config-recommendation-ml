@@ -1,0 +1,35 @@
+{
+  "version": "1.0.1",
+  "created_at": "2026-03-25T22:14:08.139961+00:00",
+  "script": "src/data/build_dataset.py",
+  "git_commit": "1dad89881788ab02606ea0d156a44df01de8f26c",
+  "input_source": "data/interim/nb_test_features.json",
+  "preprocessing": {
+    "stratification_method": "random",
+    "stratify_labels": [
+      "has_pyproject_toml",
+      "has_dockerfile",
+      "has_github_actions"
+    ],
+    "random_seed": 90
+  },
+  "splits": {
+    "train": {
+      "count": 3,
+      "ratio": 0.7
+    },
+    "val": {
+      "count": 1,
+      "ratio": 0.15
+    },
+    "test": {
+      "count": 1,
+      "ratio": 0.15
+    }
+  },
+  "schema": {
+    "total_features": 43,
+    "total_rows": 5
+  },
+  "checksum": "sha256:34bb883a6758a87825d626d6efb406a37d123643e13fbfa996e8f4814cdfbc85"
+}

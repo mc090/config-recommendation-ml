@@ -234,7 +234,12 @@ def extract_structure(
             logger.warning(f"[{i}/{len(raw_records)}] {repo_name}: skipped — {exc}")
 
     save_json(structures, output_path)
-    logger.info(f"extract_structure complete: {len(structures)} records written")
+    logger.info("=" * 60)
+    logger.info("Extract_structure complete")
+    logger.info(f"  Input: {len(raw_records)} raw records")
+    logger.info(f"  Output: {len(structures)} structure records")
+    logger.info(f"  File: {output_path}")
+    logger.info("=" * 60)
 
 
 if __name__ == "__main__":

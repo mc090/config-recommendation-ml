@@ -1,27 +1,49 @@
 [
   {
     "repo_url": "https://github.com/vinta/awesome-python",
-    "stars": 285718,
-    "forks": 27298,
+    "stars": 289266,
+    "forks": 27492,
     "created_at": "2014-06-27T21:00:06Z",
-    "last_updated": "2026-03-05T19:14:51Z",
-    "repo_size_kb": 4763,
-    "open_issues_count": 16,
+    "last_updated": "2026-03-27T15:39:01Z",
+    "repo_size_kb": 5239,
+    "open_issues_count": 18,
     "language": "Python",
     "tree_truncated": false,
     "py_files": [
       {
-        "path": "sort.py",
-        "size": 2959
+        "path": "website/build.py",
+        "size": 7025
+      },
+      {
+        "path": "website/fetch_github_stars.py",
+        "size": 6064
+      },
+      {
+        "path": "website/readme_parser.py",
+        "size": 12706
       }
     ],
-    "js_files": [],
+    "js_files": [
+      {
+        "path": "website/static/main.js",
+        "size": 11926
+      }
+    ],
     "ts_files": [],
-    "html_files": [],
+    "html_files": [
+      {
+        "path": "website/templates/base.html",
+        "size": 3084
+      },
+      {
+        "path": "website/templates/index.html",
+        "size": 9147
+      }
+    ],
     "css_files": [
       {
-        "path": "docs/css/extra.css",
-        "size": 157
+        "path": "website/static/style.css",
+        "size": 21858
       }
     ],
     "json_files": [
@@ -33,11 +55,24 @@
     "sh_files": [],
     "yaml_files": [
       {
-        "path": "mkdocs.yml",
-        "size": 651
+        "path": ".github/workflows/deploy-website.yml",
+        "size": 1952
       }
     ],
-    "test_files": [],
+    "test_files": [
+      {
+        "path": "website/tests/test_build.py",
+        "size": 13775
+      },
+      {
+        "path": "website/tests/test_fetch_github_stars.py",
+        "size": 9808
+      },
+      {
+        "path": "website/tests/test_readme_parser.py",
+        "size": 14423
+      }
+    ],
     "docs_files": [
       {
         "path": ".claude/commands/review-pending-prs.md",
@@ -49,22 +84,26 @@
       },
       {
         "path": "CLAUDE.md",
-        "size": 1112
+        "size": 1512
       },
       {
         "path": "CONTRIBUTING.md",
-        "size": 3063
+        "size": 3623
       },
       {
         "path": "README.md",
-        "size": 82851
+        "size": 72376
+      },
+      {
+        "path": "SPONSORSHIP.md",
+        "size": 2366
       }
     ],
     "notebook_files": [],
     "other_files": [
       {
         "path": ".gitignore",
-        "size": 62
+        "size": 204
       },
       {
         "path": "LICENSE",
@@ -72,56 +111,71 @@
       },
       {
         "path": "Makefile",
-        "size": 237
+        "size": 484
       },
       {
-        "path": "docs/CNAME",
-        "size": 18
+        "path": "pyproject.toml",
+        "size": 796
       },
       {
-        "path": "requirements.txt",
-        "size": 37
+        "path": "uv.lock",
+        "size": 36816
+      },
+      {
+        "path": "website/static/favicon.svg",
+        "size": 320
+      },
+      {
+        "path": "website/static/og-image.png",
+        "size": 149905
+      },
+      {
+        "path": "website/static/og-image.svg",
+        "size": 2787
       }
     ],
     "dirs": [
       ".claude",
       ".claude/commands",
       ".github",
-      "docs",
-      "docs/css"
+      ".github/workflows",
+      "website",
+      "website/static",
+      "website/templates",
+      "website/tests"
     ],
     "has_dedicated_test_dir": false,
     "has_license": true,
     "has_src_dir": false,
-    "has_docs_dir": true,
+    "has_docs_dir": false,
     "has_scripts_dir": false,
     "dependency_files": [
-      "requirements.txt"
+      "pyproject.toml"
     ],
-    "has_pyproject_toml": false,
+    "has_pyproject_toml": true,
     "has_dockerfile": false,
-    "has_github_actions": false,
-    "has_requirements_txt": true,
+    "has_github_actions": true,
+    "has_requirements_txt": false,
     "has_conda_env_file": false,
     "has_docker_compose": false,
     "has_precommit_config": false,
     "has_setup_py": false,
     "has_tox_ini": false,
     "has_makefile": true,
-    "avg_py_file_len": 83.0,
-    "avg_test_file_len": 0,
-    "avg_docs_file_len": 288.6,
+    "avg_py_file_len": 256.0,
+    "avg_test_file_len": 403.3333333333333,
+    "avg_docs_file_len": 233.5,
     "avg_nb_cell_count": 0,
-    "num_dependencies": 2
+    "num_dependencies": 0
   },
   {
     "repo_url": "https://github.com/donnemartin/system-design-primer",
-    "stars": 337377,
-    "forks": 54672,
+    "stars": 340387,
+    "forks": 55063,
     "created_at": "2017-02-26T16:15:28Z",
-    "last_updated": "2026-03-05T19:11:27Z",
-    "repo_size_kb": 11243,
-    "open_issues_count": 534,
+    "last_updated": "2026-03-27T15:39:01Z",
+    "repo_size_kb": 11277,
+    "open_issues_count": 519,
     "language": "Python",
     "tree_truncated": false,
     "py_files": [
@@ -263,7 +317,7 @@
       },
       {
         "path": "README-zh-Hans.md",
-        "size": 101503
+        "size": 101490
       },
       {
         "path": "README-zh-TW.md",
@@ -271,7 +325,7 @@
       },
       {
         "path": "README.md",
-        "size": 109690
+        "size": 109830
       },
       {
         "path": "TRANSLATIONS.md",
@@ -746,12 +800,12 @@
   },
   {
     "repo_url": "https://github.com/TheAlgorithms/Python",
-    "stars": 218362,
-    "forks": 50126,
+    "stars": 219090,
+    "forks": 50253,
     "created_at": "2016-07-16T09:44:01Z",
-    "last_updated": "2026-03-05T18:16:30Z",
-    "repo_size_kb": 15673,
-    "open_issues_count": 925,
+    "last_updated": "2026-03-27T14:58:09Z",
+    "repo_size_kb": 15738,
+    "open_issues_count": 902,
     "language": "Python",
     "tree_truncated": false,
     "py_files": [
@@ -789,7 +843,7 @@
       },
       {
         "path": "backtracking/coloring.py",
-        "size": 3198
+        "size": 3450
       },
       {
         "path": "backtracking/combination_sum.py",
@@ -801,11 +855,11 @@
       },
       {
         "path": "backtracking/generate_parentheses.py",
-        "size": 2381
+        "size": 2438
       },
       {
         "path": "backtracking/generate_parentheses_iterative.py",
-        "size": 2050
+        "size": 2164
       },
       {
         "path": "backtracking/hamiltonian_cycle.py",
@@ -825,7 +879,7 @@
       },
       {
         "path": "backtracking/n_queens.py",
-        "size": 3029
+        "size": 3293
       },
       {
         "path": "backtracking/n_queens_math.py",
@@ -849,7 +903,7 @@
       },
       {
         "path": "backtracking/word_break.py",
-        "size": 2095
+        "size": 2146
       },
       {
         "path": "backtracking/word_ladder.py",
@@ -1677,7 +1731,7 @@
       },
       {
         "path": "data_structures/hashing/hash_table_with_linked_list.py",
-        "size": 846
+        "size": 844
       },
       {
         "path": "data_structures/hashing/number_theory/__init__.py",
@@ -2533,7 +2587,7 @@
       },
       {
         "path": "geodesy/lamberts_ellipsoidal_distance.py",
-        "size": 3470
+        "size": 4444
       },
       {
         "path": "geometry/__init__.py",
@@ -2542,6 +2596,18 @@
       {
         "path": "geometry/geometry.py",
         "size": 8104
+      },
+      {
+        "path": "geometry/graham_scan.py",
+        "size": 7645
+      },
+      {
+        "path": "geometry/jarvis_march.py",
+        "size": 5866
+      },
+      {
+        "path": "geometry/tests/__init__.py",
+        "size": 0
       },
       {
         "path": "graphics/__init__.py",
@@ -3049,7 +3115,7 @@
       },
       {
         "path": "machine_learning/linear_discriminant_analysis.py",
-        "size": 16905
+        "size": 16860
       },
       {
         "path": "machine_learning/linear_regression.py",
@@ -3157,7 +3223,7 @@
       },
       {
         "path": "maths/area.py",
-        "size": 19695
+        "size": 19639
       },
       {
         "path": "maths/area_under_curve.py",
@@ -3285,7 +3351,7 @@
       },
       {
         "path": "maths/factorial.py",
-        "size": 1849
+        "size": 1919
       },
       {
         "path": "maths/factors.py",
@@ -3301,7 +3367,7 @@
       },
       {
         "path": "maths/fibonacci.py",
-        "size": 8986
+        "size": 9024
       },
       {
         "path": "maths/find_max.py",
@@ -3337,7 +3403,7 @@
       },
       {
         "path": "maths/greatest_common_divisor.py",
-        "size": 2012
+        "size": 2093
       },
       {
         "path": "maths/hardy_ramanujanalgo.py",
@@ -3421,7 +3487,7 @@
       },
       {
         "path": "maths/matrix_exponentiation.py",
-        "size": 3250
+        "size": 3387
       },
       {
         "path": "maths/max_sum_sliding_window.py",
@@ -3437,7 +3503,7 @@
       },
       {
         "path": "maths/modular_division.py",
-        "size": 3472
+        "size": 3660
       },
       {
         "path": "maths/modular_exponential.py",
@@ -4500,6 +4566,10 @@
         "size": 1145
       },
       {
+        "path": "project_euler/problem_015/sol2.py",
+        "size": 733
+      },
+      {
         "path": "project_euler/problem_016/__init__.py",
         "size": 0
       },
@@ -5553,7 +5623,7 @@
       },
       {
         "path": "searches/binary_search.py",
-        "size": 14597
+        "size": 14590
       },
       {
         "path": "searches/binary_tree_traversal.py",
@@ -5585,11 +5655,11 @@
       },
       {
         "path": "searches/jump_search.py",
-        "size": 1839
+        "size": 1808
       },
       {
         "path": "searches/linear_search.py",
-        "size": 2391
+        "size": 2394
       },
       {
         "path": "searches/median_of_medians.py",
@@ -5637,11 +5707,11 @@
       },
       {
         "path": "sorts/bogo_sort.py",
-        "size": 1321
+        "size": 1349
       },
       {
         "path": "sorts/bubble_sort.py",
-        "size": 4873
+        "size": 5046
       },
       {
         "path": "sorts/bucket_sort.py",
@@ -5873,7 +5943,7 @@
       },
       {
         "path": "strings/count_vowels.py",
-        "size": 744
+        "size": 743
       },
       {
         "path": "strings/credit_card_validator.py",
@@ -5993,7 +6063,7 @@
       },
       {
         "path": "strings/reverse_letters.py",
-        "size": 729
+        "size": 733
       },
       {
         "path": "strings/reverse_words.py",
@@ -6316,6 +6386,14 @@
         "size": 1013
       },
       {
+        "path": "geometry/tests/test_graham_scan.py",
+        "size": 6872
+      },
+      {
+        "path": "geometry/tests/test_jarvis_march.py",
+        "size": 3647
+      },
+      {
         "path": "graphs/tests/test_min_spanning_tree_kruskal.py",
         "size": 667
       },
@@ -6375,11 +6453,11 @@
       },
       {
         "path": "CONTRIBUTING.md",
-        "size": 11428
+        "size": 11429
       },
       {
         "path": "DIRECTORY.md",
-        "size": 70071
+        "size": 70341
       },
       {
         "path": "LICENSE.md",
@@ -6824,6 +6902,7 @@
       "genetic_algorithm",
       "geodesy",
       "geometry",
+      "geometry/tests",
       "graphics",
       "graphs",
       "graphs/tests",
@@ -7012,20 +7091,20 @@
     "has_setup_py": false,
     "has_tox_ini": false,
     "has_makefile": false,
-    "avg_py_file_len": 85.5721649484536,
-    "avg_test_file_len": 84.47058823529412,
-    "avg_docs_file_len": 86.03571428571429,
+    "avg_py_file_len": 85.70704845814979,
+    "avg_test_file_len": 95.63157894736842,
+    "avg_docs_file_len": 86.25,
     "avg_nb_cell_count": 0,
     "num_dependencies": 21
   },
   {
     "repo_url": "https://github.com/public-apis/public-apis",
-    "stars": 404482,
-    "forks": 43649,
+    "stars": 416687,
+    "forks": 45191,
     "created_at": "2016-03-20T23:49:42Z",
-    "last_updated": "2026-03-05T19:18:30Z",
-    "repo_size_kb": 5012,
-    "open_issues_count": 932,
+    "last_updated": "2026-03-27T15:43:13Z",
+    "repo_size_kb": 4962,
+    "open_issues_count": 1101,
     "language": "Python",
     "tree_truncated": false,
     "py_files": [
@@ -7096,7 +7175,7 @@
       },
       {
         "path": "README.md",
-        "size": 194087
+        "size": 195187
       },
       {
         "path": "scripts/README.md",
@@ -7169,12 +7248,12 @@
   },
   {
     "repo_url": "https://github.com/EbookFoundation/free-programming-books",
-    "stars": 383629,
-    "forks": 66009,
+    "stars": 384646,
+    "forks": 66064,
     "created_at": "2013-10-11T06:50:37Z",
-    "last_updated": "2026-03-05T19:09:45Z",
-    "repo_size_kb": 21027,
-    "open_issues_count": 78,
+    "last_updated": "2026-03-27T15:31:07Z",
+    "repo_size_kb": 21176,
+    "open_issues_count": 81,
     "language": "Python",
     "tree_truncated": false,
     "py_files": [
@@ -7280,7 +7359,7 @@
       },
       {
         "path": "books/free-programming-books-da.md",
-        "size": 1178
+        "size": 1048
       },
       {
         "path": "books/free-programming-books-de.md",
@@ -7296,7 +7375,7 @@
       },
       {
         "path": "books/free-programming-books-es.md",
-        "size": 28343
+        "size": 28445
       },
       {
         "path": "books/free-programming-books-et.md",
@@ -7348,7 +7427,7 @@
       },
       {
         "path": "books/free-programming-books-langs.md",
-        "size": 197243
+        "size": 197492
       },
       {
         "path": "books/free-programming-books-lv.md",
@@ -7388,7 +7467,7 @@
       },
       {
         "path": "books/free-programming-books-ru.md",
-        "size": 34179
+        "size": 34177
       },
       {
         "path": "books/free-programming-books-sk.md",
@@ -7404,7 +7483,7 @@
       },
       {
         "path": "books/free-programming-books-subjects.md",
-        "size": 107405
+        "size": 107705
       },
       {
         "path": "books/free-programming-books-sv.md",
@@ -7412,7 +7491,7 @@
       },
       {
         "path": "books/free-programming-books-ta.md",
-        "size": 5108
+        "size": 4757
       },
       {
         "path": "books/free-programming-books-te.md",
@@ -7440,7 +7519,7 @@
       },
       {
         "path": "books/free-programming-books-zh.md",
-        "size": 36751
+        "size": 37313
       },
       {
         "path": "casts/free-podcasts-screencasts-ar.md",
@@ -7548,7 +7627,7 @@
       },
       {
         "path": "courses/free-courses-en.md",
-        "size": 173437
+        "size": 173442
       },
       {
         "path": "courses/free-courses-es.md",
@@ -7644,7 +7723,7 @@
       },
       {
         "path": "courses/free-courses-ru.md",
-        "size": 10812
+        "size": 10705
       },
       {
         "path": "courses/free-courses-si.md",
@@ -8157,7 +8236,7 @@
     "has_makefile": false,
     "avg_py_file_len": 605.0,
     "avg_test_file_len": 0,
-    "avg_docs_file_len": 149.58796296296296,
+    "avg_docs_file_len": 149.57407407407408,
     "avg_nb_cell_count": 0,
     "num_dependencies": 0
   }

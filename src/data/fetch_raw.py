@@ -1,9 +1,4 @@
-"""Fetch raw repository metadata and git trees from GitHub.
-
-This module implements the first stage of the data pipeline, which queries the
-GitHub API for repositories matching criteria defined in the config, and retrieves their
-metadata and git trees. The output is saved as a JSON file for later processing.
-"""
+"""Fetch raw repository metadata and git trees from GitHub."""
 
 import random
 from datetime import UTC, datetime, timedelta
@@ -21,8 +16,11 @@ logger = get_logger(__name__)
 
 
 def _build_search_query(cfg: Settings) -> str:
-    """Construct a GitHub repository-search query string."""
-    parts = ["language:Python", f"stars:>={cfg.min_stars}"]
+    """Construct a GitHub repository-search query string WITHOUT star filters.
+
+    Star filters are handled separately by the adaptive batching algorithm.
+    """
+    parts = ["language:Python"]
 
     if cfg.min_size_kb > 0 and cfg.max_size_kb is not None:
         parts.append(f"size:{cfg.min_size_kb}..{cfg.max_size_kb}")
@@ -43,17 +41,20 @@ def _build_search_query(cfg: Settings) -> str:
 
 
 def fetch_raw(cfg: Settings | None = None, output_path: Path | None = None) -> None:
-    """Fetch raw repository metadata and git trees from GitHub.
-
-    Applies search criteria from config to filter repositories.
-    """
+    """Fetch raw repository metadata and git trees from GitHub."""
     cfg = cfg or settings
     rng = random.Random(cfg.random_seed)
     output_path = output_path or cfg.raw_data_path
 
-    query = _build_search_query(cfg)
-    logger.info(f"query: {query!r}  target: {cfg.max_repos}")
-    all_repos = github_client.search_repos(query, limit=cfg.max_repos)
+    base_query = _build_search_query(cfg)
+    logger.info(
+        f"base_query: {base_query!r}  "
+        f"min_stars: {cfg.min_stars}  "
+        f"target: {cfg.max_repos}"
+    )
+    all_repos = github_client.search_repos(
+        base_query, min_stars=cfg.min_stars, limit=cfg.max_repos
+    )
     logger.info(f"collected {len(all_repos)} repos")
 
     rng.shuffle(all_repos)
@@ -77,8 +78,17 @@ def fetch_raw(cfg: Settings | None = None, output_path: Path | None = None) -> N
 
         records.append({"repo": repo, "tree": tree})
 
+    loss_percent = 100 * (len(all_repos) - len(records)) / len(all_repos)
+
+    logger.info("=" * 60)
+    logger.info("Fetch_raw complete")
+    logger.info(f"  Input: {len(all_repos)} repos from search")
+    logger.info(f"  Output: {len(records)} records with trees")
+    logger.info(f"  Loss: {len(all_repos) - len(records)} repos ({loss_percent:.1f}%)")
+    logger.info(f"  File: {output_path}")
+    logger.info("=" * 60)
+
     save_json(records, output_path)
-    logger.info(f"fetch_raw complete: {len(records)} records")
 
 
 if __name__ == "__main__":

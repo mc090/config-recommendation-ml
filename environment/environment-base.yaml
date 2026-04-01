@@ -12,7 +12,8 @@ dependencies:
   - ipykernel=6.30.*
   - requests=2.32.*
   - pydantic>=2.0
+  - dvc>=3.67
+  - shape>=0.51
 
-  - pip
   - pip:
     - pydantic-settings

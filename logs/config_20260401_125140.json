@@ -1,0 +1,28 @@
+{
+  "run_id": "20260401_125140",
+  "timestamp": "2026-04-01T12:51:40.537068+00:00",
+  "config": {
+    "min_stars": 10,
+    "max_repos": 1500,
+    "exclude_forks": true,
+    "exclude_archived": true,
+    "max_time_since_update_days": 365,
+    "min_size_kb": 10,
+    "max_size_kb": 500000,
+    "requests_per_minute": 80,
+    "GITHUB_SEARCH_API_LIMIT": 30,
+    "raw_data_path": "data/raw/raw_metadata.json",
+    "structure_path": "data/interim/structure.json",
+    "structure_enriched_path": "data/interim/structure_enriched.json",
+    "computed_features_path": "data/interim/computed_features.json",
+    "dataset_output_dir": "data/processed",
+    "logs_dir": "logs",
+    "random_seed": 90,
+    "stratify_labels": [
+      "has_pyproject_toml",
+      "has_dockerfile",
+      "has_github_actions"
+    ],
+    "dataset_version": null
+  }
+}

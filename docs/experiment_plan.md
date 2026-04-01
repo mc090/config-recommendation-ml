@@ -7,21 +7,58 @@ The main goal of these experiments is to develop the most effective machine lear
 - Simple heuristic-based recommendations (e.g., based on repository size or structure patterns)
 - Most common configuration files in similar Python repositories
 
+## Dataset Splitting Strategy
+
+**The dataset CSV contains unsplit data.** Splitting into train/val/test sets should be performed in experiment scripts, not during dataset building. This provides maximum flexibility for experimentation and follows best practices for academic research.
+
+### Recommended Approach:
+
+1. **Test Set Holdout** (15-20%): Create once at the beginning of experiments using **multi-label iterative stratification** (`MultilabelStratifiedShuffleSplit` from `iterstrat` library) stratified by `has_pyproject_toml`, `has_dockerfile`, `has_github_actions`. Save test indices in experiment logs for consistency.
+
+2. **K-Fold Cross-Validation** (k=5 or k=10): Perform on the remaining training data using `StratifiedKFold` or `MultilabelStratifiedKFold`. Report mean ± std across folds for robust evaluation.
+
+3. **Final Evaluation**: After selecting the best model based on CV results, retrain on the full training set and evaluate once on the holdout test set for final thesis results.
+
+### Why This Approach:
+- **Data efficiency**: Uses 100% of training data across folds (vs. fixed 70% in pre-split)
+- **Robust estimates**: Mean ± std more reliable than single number
+- **Flexibility**: Easy to experiment with different split ratios or stratification strategies
+- **Standard practice**: Expected in academic ML research and thesis work
+
+## Cross-Validation Strategy (Implementation)
+
+**In experiment scripts** (not in data pipeline):
+- Use `MultilabelStratifiedShuffleSplit` for initial test holdout
+- Use `StratifiedKFold` (k=5) or `MultilabelStratifiedKFold` (k=5) for CV
+- Stratify by multi-label configuration presence (not project size)
+- Track all random seeds and split indices in MLflow/logs
+
 ## Metrics
 - Accuracy
-- Precision, Recall, F1-score
-
-## Cross-Validation Strategy
-- Stratified K-Fold (k=5), stratified by project-size bucket (e.g., small/medium/large by `num_files`)
-- Ensure balanced representation of project sizes in each fold
+- Precision, Recall, F1-score (per label and macro/micro averages for multi-label)
+- Report as mean ± std across CV folds
 
 ## Hyperparameter Tuning Plan
 - Grid search or randomized search for key model parameters
 - Use validation set from cross-validation splits
 
 ## Logging and Artifact Policy
-- Log all experiment runs, parameters, and results using MLflow or similar tool (TBA)
-- Save model checkpoints and configuration files for each run
+
+**Current Implementation**:
+- **Python logging module**: All pipeline stages use timestamped file logging (`logs/extraction_<timestamp>.log`)
+- **Config snapshots**: Reproducible JSON snapshots saved to `logs/config_<run_id>.json` (secrets excluded)
+- **Pipeline metadata**: `logs/pipeline_init.json` tracks run_id, timestamp, git commit
+- **Dataset manifests**: Each dataset version includes `manifest.json` with version, git commit, checksum
+
+**Future Work**:
+- MLflow integration for model training experiments (TBA)
+- Track hyperparameters, metrics, and model artifacts
+- Enable experiment comparison and model registry
+
+**Reproducibility**: Every pipeline run produces:
+1. Timestamped log file with all INFO/WARNING/ERROR messages
+2. Config snapshot with all settings (excluding secrets)
+3. Git commit hash recorded in manifest
 
 ## Seeds
 Random seeds (`random_seed`) are configured via `.env` and read by `src/config.py`. The active seed value is captured automatically in `logs/config_<run_id>.json` for every pipeline run.
@@ -36,7 +73,7 @@ TBA
 
 The project uses the **Dev Container** as the canonical development environment. It enforces a reproducible setup automatically (GPU passthrough, pre-commit hooks, correct dependencies) and eliminates environment drift between machines. Local Conda setup is available as a fallback only.
 
-The **data pipeline** (`fetch_raw` → `extract_structure` → `compute_features` → `build_dataset`) is driven by `dvc repro`. DVC handles stage caching and dependency tracking, ensuring that only changed stages re-run and that each processed snapshot is traceable. Manual script execution is reserved for debugging individual stages.
+The **data pipeline** (`pipeline_init` → `fetch_raw` → `extract_structure` → `enrich_content` → `compute_features` → `build_dataset`) is driven by `dvc repro`. DVC handles stage caching and dependency tracking, ensuring that only changed stages re-run and that each processed snapshot is traceable. Manual script execution is reserved for debugging individual stages.
 
 **Notebooks** are used exclusively for exploratory analysis, visualization, and thesis figures. Final training runs are executed via CLI scripts logged with MLflow, making each run independently referenceable by commit hash, config, and dataset manifest.
 
@@ -49,14 +86,15 @@ The **data pipeline** (`fetch_raw` → `extract_structure` → `compute_features
 | `extract_structure` | `src/data/extract_structure.py` | `raw_metadata.json` | `data/interim/structure.json` | Scan the flat tree to count files by extension, list directories, detect label targets (`has_pyproject_toml`, `has_dockerfile`, `has_github_actions`), detect boolean structural flags (`has_dedicated_test_dir`, `has_license`, `has_src_dir`, `has_docs_dir`, `has_scripts_dir`), and preserve per-file sizes for averaging. No derived math yet. |
 | `enrich_content` | `src/data/enrich_content.py` | `structure.json` | `data/interim/structure_enriched.json` | Download each repo's HEAD tarball (1 API call per repo; transfer served from GitHub CDN). Reads all Python, documentation, notebook, and dependency files locally. Computes `avg_py_file_len`, `avg_docs_file_len`, `avg_nb_cell_count`, and `num_dependencies` per repo. |
 | `compute_features` | `src/data/compute_features.py` | `structure_enriched.json` | `data/interim/features.json` | Compute all remaining derived numeric features: `num_files`, `num_py_files`, `num_test_files`, `num_dirs`, `avg_files_per_dir`, `test_file_ratio`, `repo_age_days`, `recent_activity_days`, etc. Output is the full ML feature vector per repo, including labels. |
-| `build_dataset` | `src/data/build_dataset.py` | `features.json` | `data/processed/dataset.csv` + `manifest.json` | Stratified train/val/test split (70/15/15), serialise to CSV with a `split` column, write `manifest.json` with version, git commit, row count, and SHA-256 checksum. |
+| `build_dataset` | `src/data/build_dataset.py` | `computed_features.json` | `data/processed/v{version}/dataset.csv` + `manifest.json` | Load computed features and save as complete unsplit CSV with version and manifest. No pre-splitting performed—splitting should be done in experiment scripts using iterative stratification for multi-label problems. |
 
 ## Mapping to Scripts/Notebooks
 - [Pipeline init](../src/pipeline_init.py)
 - [Data collection](../src/data/fetch_raw.py)
 - [Structure extraction](../src/data/extract_structure.py)
-- Feature computation — `src/data/compute_features.py` (TBA)
-- Dataset build — `src/data/build_dataset.py` (TBA)
+- [Content enrichment](../src/data/enrich_content.py)
+- [Feature computation](../src/data/compute_features.py)
+- [Dataset build](../src/data/build_dataset.py)
 - [Exploration](../notebooks/01_explore_dataset.ipynb)
 - Model training/evaluation (TBA)
 

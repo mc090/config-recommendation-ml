@@ -28,7 +28,7 @@
         "site_admin": false
       },
       "html_url": "https://github.com/vinta/awesome-python",
-      "description": "An opinionated list of awesome Python frameworks, libraries, software and resources.",
+      "description": "An opinionated list of Python frameworks, libraries, tools, and resources.",
       "fork": false,
       "url": "https://api.github.com/repos/vinta/awesome-python",
       "forks_url": "https://api.github.com/repos/vinta/awesome-python/forks",
@@ -68,16 +68,16 @@
       "releases_url": "https://api.github.com/repos/vinta/awesome-python/releases{/id}",
       "deployments_url": "https://api.github.com/repos/vinta/awesome-python/deployments",
       "created_at": "2014-06-27T21:00:06Z",
-      "updated_at": "2026-03-05T19:14:51Z",
-      "pushed_at": "2026-03-04T17:17:10Z",
+      "updated_at": "2026-03-27T15:39:01Z",
+      "pushed_at": "2026-03-27T12:09:59Z",
       "git_url": "git://github.com/vinta/awesome-python.git",
       "ssh_url": "git@github.com:vinta/awesome-python.git",
       "clone_url": "https://github.com/vinta/awesome-python.git",
       "svn_url": "https://github.com/vinta/awesome-python",
       "homepage": "https://awesome-python.com/",
-      "size": 4763,
-      "stargazers_count": 285718,
-      "watchers_count": 285718,
+      "size": 5239,
+      "stargazers_count": 289266,
+      "watchers_count": 289266,
       "language": "Python",
       "has_issues": false,
       "has_projects": false,
@@ -85,11 +85,11 @@
       "has_wiki": false,
       "has_pages": true,
       "has_discussions": true,
-      "forks_count": 27298,
+      "forks_count": 27492,
       "mirror_url": null,
       "archived": false,
       "disabled": false,
-      "open_issues_count": 16,
+      "open_issues_count": 18,
       "license": {
         "key": "other",
         "name": "Other",
@@ -106,14 +106,14 @@
         "awesome",
         "collections",
         "python",
-        "python-framework",
-        "python-library",
-        "python-resources"
+        "python-frameworks",
+        "python-libraries",
+        "python-tools"
       ],
       "visibility": "public",
-      "forks": 27298,
-      "open_issues": 16,
-      "watchers": 285718,
+      "forks": 27492,
+      "open_issues": 18,
+      "watchers": 289266,
       "default_branch": "master",
       "permissions": {
         "admin": false,
@@ -125,8 +125,8 @@
       "score": 1.0
     },
     "tree": {
-      "sha": "8ff31df69219f7763e63203941940215957a2e6e",
-      "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/8ff31df69219f7763e63203941940215957a2e6e",
+      "sha": "d1804c9f1f563f2e0419a03fa6a0641d2f89072d",
+      "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/d1804c9f1f563f2e0419a03fa6a0641d2f89072d",
       "tree": [
         {
           "path": ".claude",
@@ -162,8 +162,8 @@
           "path": ".github",
           "mode": "040000",
           "type": "tree",
-          "sha": "bf80350adabb9342d11d27fc61419eca81382e53",
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/bf80350adabb9342d11d27fc61419eca81382e53"
+          "sha": "a66a317be996c051cdc601b05e2cf9571a65bb69",
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/a66a317be996c051cdc601b05e2cf9571a65bb69"
         },
         {
           "path": ".github/PULL_REQUEST_TEMPLATE.md",
@@ -174,28 +174,43 @@
           "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/f88b55341a8749e3962e99077ba63f39ad2f7ee1"
         },
         {
+          "path": ".github/workflows",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "269797887ff32cadbdb6d94c6129c9c03f84831d",
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/269797887ff32cadbdb6d94c6129c9c03f84831d"
+        },
+        {
+          "path": ".github/workflows/deploy-website.yml",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "2445da1d6411f1d4adf59e0f26cba2ae7d7590e6",
+          "size": 1952,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/2445da1d6411f1d4adf59e0f26cba2ae7d7590e6"
+        },
+        {
           "path": ".gitignore",
           "mode": "100644",
           "type": "blob",
-          "sha": "096c327d6914965ffb1bfd8919b75883d0e764a7",
-          "size": 62,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/096c327d6914965ffb1bfd8919b75883d0e764a7"
+          "sha": "ca26a6e8fc1d1b242ce27e50ab047f8fdd5a9086",
+          "size": 204,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/ca26a6e8fc1d1b242ce27e50ab047f8fdd5a9086"
         },
         {
           "path": "CLAUDE.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "81d13417c67a866b34c9ff313965c677395a9313",
-          "size": 1112,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/81d13417c67a866b34c9ff313965c677395a9313"
+          "sha": "7210cc41824b396893480507d8a848a71650e817",
+          "size": 1512,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/7210cc41824b396893480507d8a848a71650e817"
         },
         {
           "path": "CONTRIBUTING.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "d5dd034b42ee0397c2823bd8797048dcbd3195ff",
-          "size": 3063,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/d5dd034b42ee0397c2823bd8797048dcbd3195ff"
+          "sha": "d15d811d8f6572a02fa68d82f5c492c3a8f2e9c5",
+          "size": 3623,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/d15d811d8f6572a02fa68d82f5c492c3a8f2e9c5"
         },
         {
           "path": "LICENSE",
@@ -209,71 +224,173 @@
           "path": "Makefile",
           "mode": "100644",
           "type": "blob",
-          "sha": "eda7a8ff3a99b0f30442d2cb960bbd660b337349",
-          "size": 237,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/eda7a8ff3a99b0f30442d2cb960bbd660b337349"
+          "sha": "8a0905f4ff6bd43508cb25a465b6584107528ad5",
+          "size": 484,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/8a0905f4ff6bd43508cb25a465b6584107528ad5"
         },
         {
           "path": "README.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "00b4d2ef793253bad44becd0bfad406a0250c6ac",
-          "size": 82851,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/00b4d2ef793253bad44becd0bfad406a0250c6ac"
+          "sha": "85a1a8361382240c1084867e0336520ca5c0ce78",
+          "size": 72376,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/85a1a8361382240c1084867e0336520ca5c0ce78"
         },
         {
-          "path": "docs",
+          "path": "SPONSORSHIP.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4bb3b8986bad727b1faeb19dc4a4ef53120e4d6b",
+          "size": 2366,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/4bb3b8986bad727b1faeb19dc4a4ef53120e4d6b"
+        },
+        {
+          "path": "pyproject.toml",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "31fee98f1b75d23f3c59d8b4658397933f17666d",
+          "size": 796,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/31fee98f1b75d23f3c59d8b4658397933f17666d"
+        },
+        {
+          "path": "uv.lock",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ecff72915bd92c6a9e3a6201cf46b94f51007cd2",
+          "size": 36816,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/ecff72915bd92c6a9e3a6201cf46b94f51007cd2"
+        },
+        {
+          "path": "website",
           "mode": "040000",
           "type": "tree",
-          "sha": "c5161b79d82019a96bbcef52bdb4929032319adb",
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/c5161b79d82019a96bbcef52bdb4929032319adb"
+          "sha": "bb39b817fca8de3860def5836f0ff7048b247e3b",
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/bb39b817fca8de3860def5836f0ff7048b247e3b"
         },
         {
-          "path": "docs/CNAME",
+          "path": "website/build.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "0f6ced6634453785f715fd7b241ab6d0073ba574",
-          "size": 18,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/0f6ced6634453785f715fd7b241ab6d0073ba574"
+          "sha": "cf75928379cab2fe999bde3087e0bbbb779181f8",
+          "size": 7025,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/cf75928379cab2fe999bde3087e0bbbb779181f8"
         },
         {
-          "path": "docs/css",
+          "path": "website/fetch_github_stars.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ccff1b6d695da856adb30e6c107e184ba96a7e11",
+          "size": 6064,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/ccff1b6d695da856adb30e6c107e184ba96a7e11"
+        },
+        {
+          "path": "website/readme_parser.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4f36ed77e4c4ef651bc514c55e7fe979c5510451",
+          "size": 12706,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/4f36ed77e4c4ef651bc514c55e7fe979c5510451"
+        },
+        {
+          "path": "website/static",
           "mode": "040000",
           "type": "tree",
-          "sha": "111095e4b349e58eb6cb26e802542d1d49140860",
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/111095e4b349e58eb6cb26e802542d1d49140860"
+          "sha": "4d7b0caf4bc51413ef539ccb1874f7c56ea11d8f",
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/4d7b0caf4bc51413ef539ccb1874f7c56ea11d8f"
         },
         {
-          "path": "docs/css/extra.css",
+          "path": "website/static/favicon.svg",
           "mode": "100644",
           "type": "blob",
-          "sha": "1230d796a6b5ef484a7d590f9c3e2a1b4a8ca589",
-          "size": 157,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/1230d796a6b5ef484a7d590f9c3e2a1b4a8ca589"
+          "sha": "660a7c6f3159e02419a610161860e91393a42acc",
+          "size": 320,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/660a7c6f3159e02419a610161860e91393a42acc"
         },
         {
-          "path": "mkdocs.yml",
+          "path": "website/static/main.js",
           "mode": "100644",
           "type": "blob",
-          "sha": "67a0373a4ba3a8c81efd5f26acd3f8a9cc03372c",
-          "size": 651,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/67a0373a4ba3a8c81efd5f26acd3f8a9cc03372c"
+          "sha": "7353ff2cb5529b2c021fea602aa72716a75526d4",
+          "size": 11926,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/7353ff2cb5529b2c021fea602aa72716a75526d4"
         },
         {
-          "path": "requirements.txt",
+          "path": "website/static/og-image.png",
           "mode": "100644",
           "type": "blob",
-          "sha": "89d64c303435e37104825ff1551b645c06252c83",
-          "size": 37,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/89d64c303435e37104825ff1551b645c06252c83"
+          "sha": "d41e78098d4dd4f4da20c887fa8439c4b7c2f263",
+          "size": 149905,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/d41e78098d4dd4f4da20c887fa8439c4b7c2f263"
         },
         {
-          "path": "sort.py",
-          "mode": "100755",
+          "path": "website/static/og-image.svg",
+          "mode": "100644",
           "type": "blob",
-          "sha": "431bd02b48e6cdc850b147b5fc4e47a4370943a6",
-          "size": 2959,
-          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/431bd02b48e6cdc850b147b5fc4e47a4370943a6"
+          "sha": "4aeda17b79ced65a9cd4511cd566d2a06debc9c1",
+          "size": 2787,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/4aeda17b79ced65a9cd4511cd566d2a06debc9c1"
+        },
+        {
+          "path": "website/static/style.css",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ee24ce9407074be5e66cc265db16547cc0d1863a",
+          "size": 21858,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/ee24ce9407074be5e66cc265db16547cc0d1863a"
+        },
+        {
+          "path": "website/templates",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "571ae9aed7168e9d98a03bb09e961527fade5865",
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/571ae9aed7168e9d98a03bb09e961527fade5865"
+        },
+        {
+          "path": "website/templates/base.html",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "34546e73c392245a1c220d2d0259b3c3c0cac009",
+          "size": 3084,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/34546e73c392245a1c220d2d0259b3c3c0cac009"
+        },
+        {
+          "path": "website/templates/index.html",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1003c1a7e95de580b50abfbfb02d53ae5eaa11a6",
+          "size": 9147,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/1003c1a7e95de580b50abfbfb02d53ae5eaa11a6"
+        },
+        {
+          "path": "website/tests",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "424a56156bc3dd0c812ab32a484083914f0351b6",
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/trees/424a56156bc3dd0c812ab32a484083914f0351b6"
+        },
+        {
+          "path": "website/tests/test_build.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3b4066078afd478860e2703f16bb0d254c48317b",
+          "size": 13775,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/3b4066078afd478860e2703f16bb0d254c48317b"
+        },
+        {
+          "path": "website/tests/test_fetch_github_stars.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "10d6478ec035a25f15ca9d5dd975799f7ecac8a0",
+          "size": 9808,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/10d6478ec035a25f15ca9d5dd975799f7ecac8a0"
+        },
+        {
+          "path": "website/tests/test_readme_parser.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cea5cbbf8278d91dfca9bd938e7df79a556bcd53",
+          "size": 14423,
+          "url": "https://api.github.com/repos/vinta/awesome-python/git/blobs/cea5cbbf8278d91dfca9bd938e7df79a556bcd53"
         }
       ],
       "truncated": false
@@ -348,16 +465,16 @@
       "releases_url": "https://api.github.com/repos/donnemartin/system-design-primer/releases{/id}",
       "deployments_url": "https://api.github.com/repos/donnemartin/system-design-primer/deployments",
       "created_at": "2017-02-26T16:15:28Z",
-      "updated_at": "2026-03-05T19:11:27Z",
-      "pushed_at": "2025-11-03T12:06:22Z",
+      "updated_at": "2026-03-27T15:39:01Z",
+      "pushed_at": "2026-03-20T01:52:19Z",
       "git_url": "git://github.com/donnemartin/system-design-primer.git",
       "ssh_url": "git@github.com:donnemartin/system-design-primer.git",
       "clone_url": "https://github.com/donnemartin/system-design-primer.git",
       "svn_url": "https://github.com/donnemartin/system-design-primer",
       "homepage": "",
-      "size": 11243,
-      "stargazers_count": 337377,
-      "watchers_count": 337377,
+      "size": 11277,
+      "stargazers_count": 340387,
+      "watchers_count": 340387,
       "language": "Python",
       "has_issues": true,
       "has_projects": true,
@@ -365,11 +482,11 @@
       "has_wiki": true,
       "has_pages": false,
       "has_discussions": false,
-      "forks_count": 54672,
+      "forks_count": 55063,
       "mirror_url": null,
       "archived": false,
       "disabled": false,
-      "open_issues_count": 534,
+      "open_issues_count": 519,
       "license": {
         "key": "other",
         "name": "Other",
@@ -398,9 +515,9 @@
         "webapp"
       ],
       "visibility": "public",
-      "forks": 54672,
-      "open_issues": 534,
-      "watchers": 337377,
+      "forks": 55063,
+      "open_issues": 519,
+      "watchers": 340387,
       "default_branch": "master",
       "permissions": {
         "admin": false,
@@ -412,8 +529,8 @@
       "score": 1.0
     },
     "tree": {
-      "sha": "693424b79261e32b937ca9400071a8a807c940bc",
-      "url": "https://api.github.com/repos/donnemartin/system-design-primer/git/trees/693424b79261e32b937ca9400071a8a807c940bc",
+      "sha": "9c8ac8640a49cfae54d38b4932a825796a2468c5",
+      "url": "https://api.github.com/repos/donnemartin/system-design-primer/git/trees/9c8ac8640a49cfae54d38b4932a825796a2468c5",
       "tree": [
         {
           "path": ".gitattributes",
@@ -474,9 +591,9 @@
           "path": "README-zh-Hans.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "93284d0ae704e5559525bb2a81ffe16138287da9",
-          "size": 101503,
-          "url": "https://api.github.com/repos/donnemartin/system-design-primer/git/blobs/93284d0ae704e5559525bb2a81ffe16138287da9"
+          "sha": "474fb4251a8298121172d372fd6c4e89abb5ad5b",
+          "size": 101490,
+          "url": "https://api.github.com/repos/donnemartin/system-design-primer/git/blobs/474fb4251a8298121172d372fd6c4e89abb5ad5b"
         },
         {
           "path": "README-zh-TW.md",
@@ -490,9 +607,9 @@
           "path": "README.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "f2a1fa3c0f48cd04d7211d6bd3fb4244ea778d41",
-          "size": 109690,
-          "url": "https://api.github.com/repos/donnemartin/system-design-primer/git/blobs/f2a1fa3c0f48cd04d7211d6bd3fb4244ea778d41"
+          "sha": "9e2cdb88dec86c34c9b49b657f5629a1866c6976",
+          "size": 109830,
+          "url": "https://api.github.com/repos/donnemartin/system-design-primer/git/blobs/9e2cdb88dec86c34c9b49b657f5629a1866c6976"
         },
         {
           "path": "TRANSLATIONS.md",
@@ -1754,16 +1871,16 @@
       "releases_url": "https://api.github.com/repos/TheAlgorithms/Python/releases{/id}",
       "deployments_url": "https://api.github.com/repos/TheAlgorithms/Python/deployments",
       "created_at": "2016-07-16T09:44:01Z",
-      "updated_at": "2026-03-05T18:16:30Z",
-      "pushed_at": "2026-03-02T18:33:49Z",
+      "updated_at": "2026-03-27T14:58:09Z",
+      "pushed_at": "2026-03-25T22:39:47Z",
       "git_url": "git://github.com/TheAlgorithms/Python.git",
       "ssh_url": "git@github.com:TheAlgorithms/Python.git",
       "clone_url": "https://github.com/TheAlgorithms/Python.git",
       "svn_url": "https://github.com/TheAlgorithms/Python",
       "homepage": "https://thealgorithms.github.io/Python/",
-      "size": 15673,
-      "stargazers_count": 218362,
-      "watchers_count": 218362,
+      "size": 15738,
+      "stargazers_count": 219090,
+      "watchers_count": 219090,
       "language": "Python",
       "has_issues": true,
       "has_projects": true,
@@ -1771,11 +1888,11 @@
       "has_wiki": true,
       "has_pages": true,
       "has_discussions": true,
-      "forks_count": 50126,
+      "forks_count": 50253,
       "mirror_url": null,
       "archived": false,
       "disabled": false,
-      "open_issues_count": 925,
+      "open_issues_count": 902,
       "license": {
         "key": "mit",
         "name": "MIT License",
@@ -1805,9 +1922,9 @@
         "sorts"
       ],
       "visibility": "public",
-      "forks": 50126,
-      "open_issues": 925,
-      "watchers": 218362,
+      "forks": 50253,
+      "open_issues": 902,
+      "watchers": 219090,
       "default_branch": "master",
       "permissions": {
         "admin": false,
@@ -1819,8 +1936,8 @@
       "score": 1.0
     },
     "tree": {
-      "sha": "3b307854f8473368bbf9be7aff7b7623aa08415d",
-      "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/3b307854f8473368bbf9be7aff7b7623aa08415d",
+      "sha": "3c22da061260329e5673b64cb8df15791296b9ea",
+      "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/3c22da061260329e5673b64cb8df15791296b9ea",
       "tree": [
         {
           "path": ".devcontainer",
@@ -1873,8 +1990,8 @@
           "path": ".github",
           "mode": "040000",
           "type": "tree",
-          "sha": "0112118e6b5590ffb63cd1285fe52a80e6e4f1aa",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/0112118e6b5590ffb63cd1285fe52a80e6e4f1aa"
+          "sha": "10c11e6b73e1f773a31d5ac8b69ecf84ad588142",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/10c11e6b73e1f773a31d5ac8b69ecf84ad588142"
         },
         {
           "path": ".github/CODEOWNERS",
@@ -1951,8 +2068,8 @@
           "path": ".github/workflows",
           "mode": "040000",
           "type": "tree",
-          "sha": "2447f99d456da571809a8733bb0aba36225e0992",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/2447f99d456da571809a8733bb0aba36225e0992"
+          "sha": "963dc30ecd7e349b694fdb14ad80bdb70c7365d2",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/963dc30ecd7e349b694fdb14ad80bdb70c7365d2"
         },
         {
           "path": ".github/workflows/build.yml",
@@ -1998,9 +2115,9 @@
           "path": ".github/workflows/sphinx.yml",
           "mode": "100644",
           "type": "blob",
-          "sha": "bf0a74a239c85a8008363d73cc62c03b481afc9b",
+          "sha": "c5707804b1fa0215dfcf20b9d88724ce2f73f969",
           "size": 1746,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/bf0a74a239c85a8008363d73cc62c03b481afc9b"
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/c5707804b1fa0215dfcf20b9d88724ce2f73f969"
         },
         {
           "path": ".gitignore",
@@ -2045,17 +2162,17 @@
           "path": "CONTRIBUTING.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "35de0bf75ed5bd4c060d0a61200a617e0527e268",
-          "size": 11428,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/35de0bf75ed5bd4c060d0a61200a617e0527e268"
+          "sha": "aa6bff3ad1dadc7fe32e36069bff71fa7d1c24fc",
+          "size": 11429,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/aa6bff3ad1dadc7fe32e36069bff71fa7d1c24fc"
         },
         {
           "path": "DIRECTORY.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "a73c630bc8a781682065b0c312298beba8557092",
-          "size": 70071,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/a73c630bc8a781682065b0c312298beba8557092"
+          "sha": "ca454bd5fd8200d37a2dfd0e89dd9a6e18766720",
+          "size": 70341,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/ca454bd5fd8200d37a2dfd0e89dd9a6e18766720"
         },
         {
           "path": "LICENSE.md",
@@ -2140,8 +2257,8 @@
           "path": "backtracking",
           "mode": "040000",
           "type": "tree",
-          "sha": "b538d3b37d3fe60bf630ccb88de530caffe33fa2",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/b538d3b37d3fe60bf630ccb88de530caffe33fa2"
+          "sha": "7e77d08abe4b5df81f4bda47f5da3773c053bce6",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/7e77d08abe4b5df81f4bda47f5da3773c053bce6"
         },
         {
           "path": "backtracking/README.md",
@@ -2187,9 +2304,9 @@
           "path": "backtracking/coloring.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "f10cdbcf9d2631c9c522702da2df1f9fbefcfaf5",
-          "size": 3198,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/f10cdbcf9d2631c9c522702da2df1f9fbefcfaf5"
+          "sha": "abfdf16f13424886763696e0cdbe367b3e058a03",
+          "size": 3450,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/abfdf16f13424886763696e0cdbe367b3e058a03"
         },
         {
           "path": "backtracking/combination_sum.py",
@@ -2211,17 +2328,17 @@
           "path": "backtracking/generate_parentheses.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "18c21e2a9b51173fe679bee10a3b037bcc7507bc",
-          "size": 2381,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/18c21e2a9b51173fe679bee10a3b037bcc7507bc"
+          "sha": "5094f4b086196cc1ae20f96ec35610be9a00693c",
+          "size": 2438,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/5094f4b086196cc1ae20f96ec35610be9a00693c"
         },
         {
           "path": "backtracking/generate_parentheses_iterative.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "175941c7ae95dbbde8010ef7c6aabe4513dbe1bc",
-          "size": 2050,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/175941c7ae95dbbde8010ef7c6aabe4513dbe1bc"
+          "sha": "84c032f52dc4424f03dd2ec626eed13c2b771835",
+          "size": 2164,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/84c032f52dc4424f03dd2ec626eed13c2b771835"
         },
         {
           "path": "backtracking/hamiltonian_cycle.py",
@@ -2259,9 +2376,9 @@
           "path": "backtracking/n_queens.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "d10181f319b313553ed542c2ecf04f1ba9f7a11a",
-          "size": 3029,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/d10181f319b313553ed542c2ecf04f1ba9f7a11a"
+          "sha": "6fac93aa77d6d6850c1769806314178ddfb5670e",
+          "size": 3293,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/6fac93aa77d6d6850c1769806314178ddfb5670e"
         },
         {
           "path": "backtracking/n_queens_math.py",
@@ -2307,9 +2424,9 @@
           "path": "backtracking/word_break.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "1f2ab073f499516b21e561a7388e07ca8c390645",
-          "size": 2095,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/1f2ab073f499516b21e561a7388e07ca8c390645"
+          "sha": "2e874a02b61c3676a111a8c41d1f05604be75159",
+          "size": 2146,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/2e874a02b61c3676a111a8c41d1f05604be75159"
         },
         {
           "path": "backtracking/word_ladder.py",
@@ -3698,8 +3815,8 @@
           "path": "data_structures",
           "mode": "040000",
           "type": "tree",
-          "sha": "1226f39d83ba1ee1fa2d4436c6055aa7ccbce158",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/1226f39d83ba1ee1fa2d4436c6055aa7ccbce158"
+          "sha": "a843975c7602e5cde5c6d345689daee944563228",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/a843975c7602e5cde5c6d345689daee944563228"
         },
         {
           "path": "data_structures/__init__.py",
@@ -4142,8 +4259,8 @@
           "path": "data_structures/hashing",
           "mode": "040000",
           "type": "tree",
-          "sha": "abd06650d5c48357df2ca6d093ef9e7660422705",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/abd06650d5c48357df2ca6d093ef9e7660422705"
+          "sha": "5c03a2046f76f3afdbdb5a93b9a9ba7012e48fbe",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/5c03a2046f76f3afdbdb5a93b9a9ba7012e48fbe"
         },
         {
           "path": "data_structures/hashing/__init__.py",
@@ -4189,9 +4306,9 @@
           "path": "data_structures/hashing/hash_table_with_linked_list.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "f404c52512463c6d0d8b6b1a1bce17928186303b",
-          "size": 846,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/f404c52512463c6d0d8b6b1a1bce17928186303b"
+          "sha": "c8dffa30b8e83d92c8b171dd7bfd97bde16a43df",
+          "size": 844,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/c8dffa30b8e83d92c8b171dd7bfd97bde16a43df"
         },
         {
           "path": "data_structures/hashing/number_theory",
@@ -6226,8 +6343,8 @@
           "path": "geodesy",
           "mode": "040000",
           "type": "tree",
-          "sha": "b9777d2f9138a4dd62a0ebdfba24e946cb2cb338",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/b9777d2f9138a4dd62a0ebdfba24e946cb2cb338"
+          "sha": "77050fd85819bae19093a4e4cc0ec003600a2b92",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/77050fd85819bae19093a4e4cc0ec003600a2b92"
         },
         {
           "path": "geodesy/__init__.py",
@@ -6249,16 +6366,16 @@
           "path": "geodesy/lamberts_ellipsoidal_distance.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "4805674e51aba8a1ae333137810f4b7ec2143d19",
-          "size": 3470,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/4805674e51aba8a1ae333137810f4b7ec2143d19"
+          "sha": "a5c43c5656e93454d34b8b6b296fa3632bf20a30",
+          "size": 4444,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/a5c43c5656e93454d34b8b6b296fa3632bf20a30"
         },
         {
           "path": "geometry",
           "mode": "040000",
           "type": "tree",
-          "sha": "802af2b95b62eef123515df621c6c739cc2620dc",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/802af2b95b62eef123515df621c6c739cc2620dc"
+          "sha": "f3bbc15d44ca99555bb88ea6f8ff668f5a7c5627",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/f3bbc15d44ca99555bb88ea6f8ff668f5a7c5627"
         },
         {
           "path": "geometry/__init__.py",
@@ -6275,6 +6392,53 @@
           "sha": "a0be8eb3befcf174f9e2d89d8b0d54de06cade12",
           "size": 8104,
           "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/a0be8eb3befcf174f9e2d89d8b0d54de06cade12"
+        },
+        {
+          "path": "geometry/graham_scan.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a48391dfbc5d2b96d6bf4b5a99d1f593c0a835c4",
+          "size": 7645,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/a48391dfbc5d2b96d6bf4b5a99d1f593c0a835c4"
+        },
+        {
+          "path": "geometry/jarvis_march.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "55a0872ff60e2d57c76948cfbfde0114e66ad08e",
+          "size": 5866,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/55a0872ff60e2d57c76948cfbfde0114e66ad08e"
+        },
+        {
+          "path": "geometry/tests",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6f57b623af6423cea0824a63d24dd0379c36f98e",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/6f57b623af6423cea0824a63d24dd0379c36f98e"
+        },
+        {
+          "path": "geometry/tests/__init__.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "size": 0,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+        },
+        {
+          "path": "geometry/tests/test_graham_scan.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d9a573289ce94f99ac2e6150587d021b0cf61236",
+          "size": 6872,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/d9a573289ce94f99ac2e6150587d021b0cf61236"
+        },
+        {
+          "path": "geometry/tests/test_jarvis_march.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6e7defe414a358630992813c7681eb0bb3f3477e",
+          "size": 3647,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/6e7defe414a358630992813c7681eb0bb3f3477e"
         },
         {
           "path": "graphics",
@@ -7318,8 +7482,8 @@
           "path": "machine_learning",
           "mode": "040000",
           "type": "tree",
-          "sha": "215757267b884f4d1fb95fecae4ad139fd40f1ca",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/215757267b884f4d1fb95fecae4ad139fd40f1ca"
+          "sha": "d910dea35dea32d4f04d0b53b9537fdbb2fab864",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/d910dea35dea32d4f04d0b53b9537fdbb2fab864"
         },
         {
           "path": "machine_learning/__init__.py",
@@ -7468,9 +7632,9 @@
           "path": "machine_learning/linear_discriminant_analysis.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "8528ccbbae51eb8366c72df0cf210898ba429f33",
-          "size": 16905,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/8528ccbbae51eb8366c72df0cf210898ba429f33"
+          "sha": "de2d1de46ba1016a778d316ab40f7b33a2d7118c",
+          "size": 16860,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/de2d1de46ba1016a778d316ab40f7b33a2d7118c"
         },
         {
           "path": "machine_learning/linear_regression.py",
@@ -7682,8 +7846,8 @@
           "path": "maths",
           "mode": "040000",
           "type": "tree",
-          "sha": "ce6694a94f0d64b88c3faba0279eace88b11be2e",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/ce6694a94f0d64b88c3faba0279eace88b11be2e"
+          "sha": "17b7d6bcabc1a275ac8958916dcbaffae0692630",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/17b7d6bcabc1a275ac8958916dcbaffae0692630"
         },
         {
           "path": "maths/__init__.py",
@@ -7737,9 +7901,9 @@
           "path": "maths/area.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "31a6542069770a29e281a5fce14ef30a2d17428c",
-          "size": 19695,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/31a6542069770a29e281a5fce14ef30a2d17428c"
+          "sha": "e14cc0aa71954ad2425bae3de76a631d27b1f08a",
+          "size": 19639,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/e14cc0aa71954ad2425bae3de76a631d27b1f08a"
         },
         {
           "path": "maths/area_under_curve.py",
@@ -7993,9 +8157,9 @@
           "path": "maths/factorial.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "ba61447c7564e3b67ba61b253f1e6fbc485c48b0",
-          "size": 1849,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/ba61447c7564e3b67ba61b253f1e6fbc485c48b0"
+          "sha": "2b8b68764d89b63b77757649c06a2b1c7f54e4a0",
+          "size": 1919,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/2b8b68764d89b63b77757649c06a2b1c7f54e4a0"
         },
         {
           "path": "maths/factors.py",
@@ -8025,9 +8189,9 @@
           "path": "maths/fibonacci.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "71ff479f9cc21b5a6bdc17aee4b782fe173aa8ea",
-          "size": 8986,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/71ff479f9cc21b5a6bdc17aee4b782fe173aa8ea"
+          "sha": "595233cf844689c2ff9d89f5ab98dfbad06464b5",
+          "size": 9024,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/595233cf844689c2ff9d89f5ab98dfbad06464b5"
         },
         {
           "path": "maths/find_max.py",
@@ -8097,9 +8261,9 @@
           "path": "maths/greatest_common_divisor.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "a2174a8eb74a1ff149d776ec908e2a35f9b30f98",
-          "size": 2012,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/a2174a8eb74a1ff149d776ec908e2a35f9b30f98"
+          "sha": "1fc123fc2b14e3012e4bc81c662f1137b16ed0ae",
+          "size": 2093,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/1fc123fc2b14e3012e4bc81c662f1137b16ed0ae"
         },
         {
           "path": "maths/hardy_ramanujanalgo.py",
@@ -8288,9 +8452,9 @@
           "path": "maths/matrix_exponentiation.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "7cdac9d34674b3bd243ee159698c0683d7a4ed5e",
-          "size": 3250,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/7cdac9d34674b3bd243ee159698c0683d7a4ed5e"
+          "sha": "15b0c96e0f070e73fd51ddda0fad8fabb88418e0",
+          "size": 3387,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/15b0c96e0f070e73fd51ddda0fad8fabb88418e0"
         },
         {
           "path": "maths/max_sum_sliding_window.py",
@@ -8320,9 +8484,9 @@
           "path": "maths/modular_division.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "94f12b3e096eb32ca9fbd2be20d09b7178a22f4f",
-          "size": 3472,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/94f12b3e096eb32ca9fbd2be20d09b7178a22f4f"
+          "sha": "ed4ae6ae8ce309514a6d1a3e582ac2c14254d11e",
+          "size": 3660,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/ed4ae6ae8ce309514a6d1a3e582ac2c14254d11e"
         },
         {
           "path": "maths/modular_exponential.py",
@@ -10124,8 +10288,8 @@
           "path": "project_euler",
           "mode": "040000",
           "type": "tree",
-          "sha": "bcca82e2b531fb8bd82a74fb2cb81648d05a7100",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/bcca82e2b531fb8bd82a74fb2cb81648d05a7100"
+          "sha": "a465e3c4b5053bb26bda776d79430b0b1bbd353c",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/a465e3c4b5053bb26bda776d79430b0b1bbd353c"
         },
         {
           "path": "project_euler/README.md",
@@ -10717,8 +10881,8 @@
           "path": "project_euler/problem_015",
           "mode": "040000",
           "type": "tree",
-          "sha": "eb6f026cb4ab5a07ff741f2d8850ac0d773dfe75",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/eb6f026cb4ab5a07ff741f2d8850ac0d773dfe75"
+          "sha": "cc1e5ea630534157b2c27ea267f842a93a2746ad",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/cc1e5ea630534157b2c27ea267f842a93a2746ad"
         },
         {
           "path": "project_euler/problem_015/__init__.py",
@@ -10735,6 +10899,14 @@
           "sha": "3c9dae1aed77062246b9cc7e69db598e5b720b95",
           "size": 1145,
           "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/3c9dae1aed77062246b9cc7e69db598e5b720b95"
+        },
+        {
+          "path": "project_euler/problem_015/sol2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "903095e144ecfd9045ce128df71789d4d1d52d12",
+          "size": 733,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/903095e144ecfd9045ce128df71789d4d1d52d12"
         },
         {
           "path": "project_euler/problem_016",
@@ -14011,8 +14183,8 @@
           "path": "searches",
           "mode": "040000",
           "type": "tree",
-          "sha": "ec7bfbfca1e6ac23358f44cda3930eac14617e4b",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/ec7bfbfca1e6ac23358f44cda3930eac14617e4b"
+          "sha": "4eda9de95822ef060b79781d5d92925493e4d2a6",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/4eda9de95822ef060b79781d5d92925493e4d2a6"
         },
         {
           "path": "searches/__init__.py",
@@ -14026,9 +14198,9 @@
           "path": "searches/binary_search.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "5125dc6bdb9aeb7e4192dcfb0f66d0a7402159f3",
-          "size": 14597,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/5125dc6bdb9aeb7e4192dcfb0f66d0a7402159f3"
+          "sha": "bec87b3c5aece08ca634474950a2ce73315db312",
+          "size": 14590,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/bec87b3c5aece08ca634474950a2ce73315db312"
         },
         {
           "path": "searches/binary_tree_traversal.py",
@@ -14090,17 +14262,17 @@
           "path": "searches/jump_search.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "e72d85e8a8689dcb210a20f8bffe0592d78bbf58",
-          "size": 1839,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/e72d85e8a8689dcb210a20f8bffe0592d78bbf58"
+          "sha": "437faf306bb2ab109f41f1dba457fe8231d6e253",
+          "size": 1808,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/437faf306bb2ab109f41f1dba457fe8231d6e253"
         },
         {
           "path": "searches/linear_search.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "ba6e81d6bae43feb1af36a12d2dc0baafa1fddd6",
-          "size": 2391,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/ba6e81d6bae43feb1af36a12d2dc0baafa1fddd6"
+          "sha": "8adb4a7015f00f2ef6ef732b27fc2b86a6654158",
+          "size": 2394,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/8adb4a7015f00f2ef6ef732b27fc2b86a6654158"
         },
         {
           "path": "searches/median_of_medians.py",
@@ -14170,8 +14342,8 @@
           "path": "sorts",
           "mode": "040000",
           "type": "tree",
-          "sha": "2036a13fd27c2d88fd1df92ba3c9800c046dcc15",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/2036a13fd27c2d88fd1df92ba3c9800c046dcc15"
+          "sha": "6040157ffc30e38fb680d10b2661cced21a4f549",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/6040157ffc30e38fb680d10b2661cced21a4f549"
         },
         {
           "path": "sorts/README.md",
@@ -14217,17 +14389,17 @@
           "path": "sorts/bogo_sort.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "9c133f0d8a55e42653643a0d354d4fd01b5477c7",
-          "size": 1321,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/9c133f0d8a55e42653643a0d354d4fd01b5477c7"
+          "sha": "70785140ee5c3009070fbd056f3d0cbc1e312065",
+          "size": 1349,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/70785140ee5c3009070fbd056f3d0cbc1e312065"
         },
         {
           "path": "sorts/bubble_sort.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "9ec3d5384f3810229217b25dc254f7feea24b21d",
-          "size": 4873,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/9ec3d5384f3810229217b25dc254f7feea24b21d"
+          "sha": "4d658a4a12e42bf903fca0b390c2d31a27fc41e4",
+          "size": 5046,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/4d658a4a12e42bf903fca0b390c2d31a27fc41e4"
         },
         {
           "path": "sorts/bucket_sort.py",
@@ -14601,8 +14773,8 @@
           "path": "strings",
           "mode": "040000",
           "type": "tree",
-          "sha": "224057c2ae2ff2f67d218276af947d2a05dc5491",
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/224057c2ae2ff2f67d218276af947d2a05dc5491"
+          "sha": "4c3a6bc4bef65f2dc25b0313c72f78459ae794f0",
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/trees/4c3a6bc4bef65f2dc25b0313c72f78459ae794f0"
         },
         {
           "path": "strings/__init__.py",
@@ -14712,9 +14884,9 @@
           "path": "strings/count_vowels.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "8a52b331c81b0b39981fdde7a40fd98976f08d54",
-          "size": 744,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/8a52b331c81b0b39981fdde7a40fd98976f08d54"
+          "sha": "e222d80590ff8cb700470caf0254aa02869ff504",
+          "size": 743,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/e222d80590ff8cb700470caf0254aa02869ff504"
         },
         {
           "path": "strings/credit_card_validator.py",
@@ -14920,9 +15092,9 @@
           "path": "strings/palindrome.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "e765207e59424bd80a2b334cc6dee24cee542eec",
+          "sha": "4df5639b0c49ada3bafcb44859d3eeced1180d94",
           "size": 3013,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/e765207e59424bd80a2b334cc6dee24cee542eec"
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/4df5639b0c49ada3bafcb44859d3eeced1180d94"
         },
         {
           "path": "strings/pig_latin.py",
@@ -14960,9 +15132,9 @@
           "path": "strings/reverse_letters.py",
           "mode": "100644",
           "type": "blob",
-          "sha": "4f73f816b38220882f056fd554173d39583046b4",
-          "size": 729,
-          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/4f73f816b38220882f056fd554173d39583046b4"
+          "sha": "cd1b7832d066b81b8c79552c3d9de3260fa35151",
+          "size": 733,
+          "url": "https://api.github.com/repos/TheAlgorithms/Python/git/blobs/cd1b7832d066b81b8c79552c3d9de3260fa35151"
         },
         {
           "path": "strings/reverse_words.py",
@@ -15468,16 +15640,16 @@
       "releases_url": "https://api.github.com/repos/public-apis/public-apis/releases{/id}",
       "deployments_url": "https://api.github.com/repos/public-apis/public-apis/deployments",
       "created_at": "2016-03-20T23:49:42Z",
-      "updated_at": "2026-03-05T19:18:30Z",
-      "pushed_at": "2026-02-19T15:14:35Z",
+      "updated_at": "2026-03-27T15:43:13Z",
+      "pushed_at": "2026-03-18T16:28:22Z",
       "git_url": "git://github.com/public-apis/public-apis.git",
       "ssh_url": "git@github.com:public-apis/public-apis.git",
       "clone_url": "https://github.com/public-apis/public-apis.git",
       "svn_url": "https://github.com/public-apis/public-apis",
       "homepage": "https://APILayer.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo",
-      "size": 5012,
-      "stargazers_count": 404482,
-      "watchers_count": 404482,
+      "size": 4962,
+      "stargazers_count": 416687,
+      "watchers_count": 416687,
       "language": "Python",
       "has_issues": true,
       "has_projects": false,
@@ -15485,11 +15657,11 @@
       "has_wiki": false,
       "has_pages": false,
       "has_discussions": false,
-      "forks_count": 43649,
+      "forks_count": 45191,
       "mirror_url": null,
       "archived": false,
       "disabled": false,
-      "open_issues_count": 932,
+      "open_issues_count": 1101,
       "license": {
         "key": "mit",
         "name": "MIT License",
@@ -15518,9 +15690,9 @@
         "software"
       ],
       "visibility": "public",
-      "forks": 43649,
-      "open_issues": 932,
-      "watchers": 404482,
+      "forks": 45191,
+      "open_issues": 1101,
+      "watchers": 416687,
       "default_branch": "master",
       "permissions": {
         "admin": false,
@@ -15532,8 +15704,8 @@
       "score": 1.0
     },
     "tree": {
-      "sha": "8605b72880ccf9047d81d491af69e83c4948afbd",
-      "url": "https://api.github.com/repos/public-apis/public-apis/git/trees/8605b72880ccf9047d81d491af69e83c4948afbd",
+      "sha": "e2f5abfbaa3f220e3ec23219f6a989d7546a48e4",
+      "url": "https://api.github.com/repos/public-apis/public-apis/git/trees/e2f5abfbaa3f220e3ec23219f6a989d7546a48e4",
       "tree": [
         {
           "path": ".gitattributes",
@@ -15663,9 +15835,9 @@
           "path": "README.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "91826902ecbfe81cebafbc4ffdd95823af44eaa8",
-          "size": 194087,
-          "url": "https://api.github.com/repos/public-apis/public-apis/git/blobs/91826902ecbfe81cebafbc4ffdd95823af44eaa8"
+          "sha": "22c4ced5589d763953465cd05c97f0e5535d4f2c",
+          "size": 195187,
+          "url": "https://api.github.com/repos/public-apis/public-apis/git/blobs/22c4ced5589d763953465cd05c97f0e5535d4f2c"
         },
         {
           "path": "scripts",
@@ -15833,16 +16005,16 @@
       "releases_url": "https://api.github.com/repos/EbookFoundation/free-programming-books/releases{/id}",
       "deployments_url": "https://api.github.com/repos/EbookFoundation/free-programming-books/deployments",
       "created_at": "2013-10-11T06:50:37Z",
-      "updated_at": "2026-03-05T19:09:45Z",
-      "pushed_at": "2026-02-28T11:02:16Z",
+      "updated_at": "2026-03-27T15:31:07Z",
+      "pushed_at": "2026-03-24T15:26:23Z",
       "git_url": "git://github.com/EbookFoundation/free-programming-books.git",
       "ssh_url": "git@github.com:EbookFoundation/free-programming-books.git",
       "clone_url": "https://github.com/EbookFoundation/free-programming-books.git",
       "svn_url": "https://github.com/EbookFoundation/free-programming-books",
       "homepage": "https://ebookfoundation.github.io/free-programming-books/",
-      "size": 21027,
-      "stargazers_count": 383629,
-      "watchers_count": 383629,
+      "size": 21176,
+      "stargazers_count": 384646,
+      "watchers_count": 384646,
       "language": "Python",
       "has_issues": true,
       "has_projects": false,
@@ -15850,11 +16022,11 @@
       "has_wiki": false,
       "has_pages": true,
       "has_discussions": false,
-      "forks_count": 66009,
+      "forks_count": 66064,
       "mirror_url": null,
       "archived": false,
       "disabled": false,
-      "open_issues_count": 78,
+      "open_issues_count": 81,
       "license": {
         "key": "cc-by-4.0",
         "name": "Creative Commons Attribution 4.0 International",
@@ -15875,9 +16047,9 @@
         "resource"
       ],
       "visibility": "public",
-      "forks": 66009,
-      "open_issues": 78,
-      "watchers": 383629,
+      "forks": 66064,
+      "open_issues": 81,
+      "watchers": 384646,
       "default_branch": "main",
       "permissions": {
         "admin": false,
@@ -15889,8 +16061,8 @@
       "score": 1.0
     },
     "tree": {
-      "sha": "e18a8409be46413dab526ce0327fd2aa48782e2e",
-      "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/e18a8409be46413dab526ce0327fd2aa48782e2e",
+      "sha": "5e0781d135f6b0ebf0f345329c1c1e5e2b3e43b6",
+      "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/5e0781d135f6b0ebf0f345329c1c1e5e2b3e43b6",
       "tree": [
         {
           "path": ".editorconfig",
@@ -15904,8 +16076,8 @@
           "path": ".github",
           "mode": "040000",
           "type": "tree",
-          "sha": "fd7d8b4f829fe265afd3cba515fa8a9bdb114831",
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/fd7d8b4f829fe265afd3cba515fa8a9bdb114831"
+          "sha": "d554fa18ff7ef19fd2a8783d767c2fc81dca35fa",
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/d554fa18ff7ef19fd2a8783d767c2fc81dca35fa"
         },
         {
           "path": ".github/PULL_REQUEST_TEMPLATE.md",
@@ -15949,16 +16121,16 @@
           "path": ".github/workflows",
           "mode": "040000",
           "type": "tree",
-          "sha": "a6834d95ada1308053c604986a53bb68e81a162a",
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/a6834d95ada1308053c604986a53bb68e81a162a"
+          "sha": "958f34492656f4a5585f93fb567217441f5d4c46",
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/958f34492656f4a5585f93fb567217441f5d4c46"
         },
         {
           "path": ".github/workflows/check-urls.yml",
           "mode": "100644",
           "type": "blob",
-          "sha": "e1be2556df55533d6d8e8e438ecda5419eac8af9",
+          "sha": "a3d91cddc0517c57b44773b34da78373b482549b",
           "size": 4830,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/e1be2556df55533d6d8e8e438ecda5419eac8af9"
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/a3d91cddc0517c57b44773b34da78373b482549b"
         },
         {
           "path": ".github/workflows/comment-pr.yml",
@@ -15980,9 +16152,9 @@
           "path": ".github/workflows/fpb-lint.yml",
           "mode": "100644",
           "type": "blob",
-          "sha": "b0aa5f827081b1036a454e81c6ee5e433a5eb48c",
+          "sha": "e7d09fe696243932f681ea1afc06cf21bc328d2f",
           "size": 812,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/b0aa5f827081b1036a454e81c6ee5e433a5eb48c"
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/e7d09fe696243932f681ea1afc06cf21bc328d2f"
         },
         {
           "path": ".github/workflows/issues-pinner.yml",
@@ -15996,9 +16168,9 @@
           "path": ".github/workflows/rtl-ltr-linter.yml",
           "mode": "100644",
           "type": "blob",
-          "sha": "40ac341dffe4e63dc3ab75989fb621f2b37ad04e",
+          "sha": "1ae174650bd99fc6ca739810401d543a3d636144",
           "size": 4060,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/40ac341dffe4e63dc3ab75989fb621f2b37ad04e"
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/1ae174650bd99fc6ca739810401d543a3d636144"
         },
         {
           "path": ".github/workflows/stale.yml",
@@ -16059,8 +16231,8 @@
           "path": "books",
           "mode": "040000",
           "type": "tree",
-          "sha": "b9472ec93a473005cf713839ca91c65950e7c66a",
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/b9472ec93a473005cf713839ca91c65950e7c66a"
+          "sha": "100689b1701530387a8d90bae3cabbc3f9269a30",
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/100689b1701530387a8d90bae3cabbc3f9269a30"
         },
         {
           "path": "books/free-programming-books-ar.md",
@@ -16122,9 +16294,9 @@
           "path": "books/free-programming-books-da.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "13f895cae897bdcdbd15a8831ae509621272f65a",
-          "size": 1178,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/13f895cae897bdcdbd15a8831ae509621272f65a"
+          "sha": "b300947eb6359a55238a53eb4d5d98131ad484b7",
+          "size": 1048,
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/b300947eb6359a55238a53eb4d5d98131ad484b7"
         },
         {
           "path": "books/free-programming-books-de.md",
@@ -16154,9 +16326,9 @@
           "path": "books/free-programming-books-es.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "6ea4f69bf40cdb4a0ea53a3ac9327e201644274e",
-          "size": 28343,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/6ea4f69bf40cdb4a0ea53a3ac9327e201644274e"
+          "sha": "f5024b072ba32ebb0d86b597039c67ede45cf3f6",
+          "size": 28445,
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/f5024b072ba32ebb0d86b597039c67ede45cf3f6"
         },
         {
           "path": "books/free-programming-books-et.md",
@@ -16202,9 +16374,9 @@
           "path": "books/free-programming-books-hi.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "37834e386094f12df3d399f5a6c99091e3552741",
+          "sha": "a98c446a45704016b92baae5690ed17b194da2ea",
           "size": 3630,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/37834e386094f12df3d399f5a6c99091e3552741"
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/a98c446a45704016b92baae5690ed17b194da2ea"
         },
         {
           "path": "books/free-programming-books-hu.md",
@@ -16258,9 +16430,9 @@
           "path": "books/free-programming-books-langs.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "0dbe47ad10d0d1a59a2ea968148f7a9441f975e4",
-          "size": 197243,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/0dbe47ad10d0d1a59a2ea968148f7a9441f975e4"
+          "sha": "588d590d55aa99182b8a47977c42664d4acab9c5",
+          "size": 197492,
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/588d590d55aa99182b8a47977c42664d4acab9c5"
         },
         {
           "path": "books/free-programming-books-lv.md",
@@ -16338,9 +16510,9 @@
           "path": "books/free-programming-books-ru.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "85b56c72ac160bfcba7bacc442f1e0b7aade30e5",
-          "size": 34179,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/85b56c72ac160bfcba7bacc442f1e0b7aade30e5"
+          "sha": "dd3a14f07fb21738cb8223d5b9c37181c8298264",
+          "size": 34177,
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/dd3a14f07fb21738cb8223d5b9c37181c8298264"
         },
         {
           "path": "books/free-programming-books-sk.md",
@@ -16370,9 +16542,9 @@
           "path": "books/free-programming-books-subjects.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "bce310da4ba878e0b6789f53891ed2772b7d22d2",
-          "size": 107405,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/bce310da4ba878e0b6789f53891ed2772b7d22d2"
+          "sha": "979a3dd07c730ca0c1eb7cbaa3a636f0e7ca4137",
+          "size": 107705,
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/979a3dd07c730ca0c1eb7cbaa3a636f0e7ca4137"
         },
         {
           "path": "books/free-programming-books-sv.md",
@@ -16386,9 +16558,9 @@
           "path": "books/free-programming-books-ta.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "677cf785adfa0effadc7856107f650ab554926be",
-          "size": 5108,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/677cf785adfa0effadc7856107f650ab554926be"
+          "sha": "abd2c58b611513d45c769b57ef2f993124d4af3d",
+          "size": 4757,
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/abd2c58b611513d45c769b57ef2f993124d4af3d"
         },
         {
           "path": "books/free-programming-books-te.md",
@@ -16442,9 +16614,9 @@
           "path": "books/free-programming-books-zh.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "f0c0dcf9b81c1f969f9a6c825567596b0f688a10",
-          "size": 36751,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/f0c0dcf9b81c1f969f9a6c825567596b0f688a10"
+          "sha": "e400de4087b3c9317851de4396d7bea81e88dbaf",
+          "size": 37313,
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/e400de4087b3c9317851de4396d7bea81e88dbaf"
         },
         {
           "path": "casts",
@@ -16625,8 +16797,8 @@
           "path": "courses",
           "mode": "040000",
           "type": "tree",
-          "sha": "5db7ae61d29ad0cf03ff5a6fecc092405a4f1e57",
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/5db7ae61d29ad0cf03ff5a6fecc092405a4f1e57"
+          "sha": "8b161668af67454581b2e9da507988cf60c00568",
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/8b161668af67454581b2e9da507988cf60c00568"
         },
         {
           "path": "courses/free-courses-ar.md",
@@ -16672,9 +16844,9 @@
           "path": "courses/free-courses-en.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "d8666606ccfa568b262676db46cb7b2c548736bd",
-          "size": 173437,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/d8666606ccfa568b262676db46cb7b2c548736bd"
+          "sha": "c690138e31afc398a139a7ebd20e2c9057182d85",
+          "size": 173442,
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/c690138e31afc398a139a7ebd20e2c9057182d85"
         },
         {
           "path": "courses/free-courses-es.md",
@@ -16864,9 +17036,9 @@
           "path": "courses/free-courses-ru.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "2856ddb2891ccb202844fb3865ab361830268fc9",
-          "size": 10812,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/2856ddb2891ccb202844fb3865ab361830268fc9"
+          "sha": "be14f759885453f9c0a2ca472fc5c758963573fd",
+          "size": 10705,
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/be14f759885453f9c0a2ca472fc5c758963573fd"
         },
         {
           "path": "courses/free-courses-si.md",
@@ -16960,8 +17132,8 @@
           "path": "docs",
           "mode": "040000",
           "type": "tree",
-          "sha": "21e241c27e4320c34cc1e20dd04d965987278c0b",
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/21e241c27e4320c34cc1e20dd04d965987278c0b"
+          "sha": "b5bb9c89cba5941db77e675ff09d9d6b106cae6a",
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/trees/b5bb9c89cba5941db77e675ff09d9d6b106cae6a"
         },
         {
           "path": "docs/CODE_OF_CONDUCT-bn.md",
@@ -17703,9 +17875,9 @@
           "path": "docs/HOWTO.md",
           "mode": "100644",
           "type": "blob",
-          "sha": "e6f163802c6c67c05ccb43dbb2e6472c50209881",
+          "sha": "a54b21c78c2ffd304452d1dacc7f9ebe164be402",
           "size": 2762,
-          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/e6f163802c6c67c05ccb43dbb2e6472c50209881"
+          "url": "https://api.github.com/repos/EbookFoundation/free-programming-books/git/blobs/a54b21c78c2ffd304452d1dacc7f9ebe164be402"
         },
         {
           "path": "docs/README.md",

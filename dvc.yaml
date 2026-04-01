@@ -46,14 +46,15 @@ stages:
       - data/interim/structure_enriched.json
       - src/config.py
     outs:
-      - data/interim/features.json
+      - data/interim/computed_features.json
 
   build_dataset:
     cmd: python -m src.data.build_dataset
     deps:
       - src/data/build_dataset.py
       - src/data/utils.py
-      - data/interim/features.json
+      - data/interim/computed_features.json
       - src/config.py
     outs:
-      - data/processed/dataset.csv
+      - data/processed/:
+          cache: false

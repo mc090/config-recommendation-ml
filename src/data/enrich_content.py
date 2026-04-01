@@ -182,8 +182,8 @@ def enrich_content(
     logger.info(f"Enriching {len(records)} records...")
 
     enriched: list[dict[str, Any]] = []
-
     skipped = 0
+
     for i, record in enumerate(records, 1):
         repo_url = record["repo_url"]
         if _only_setup_py_deps(record.get("dependency_files", [])):
@@ -198,15 +198,27 @@ def enrich_content(
             enriched.append(result)
             logger.info(f"[{i}/{len(records)}] {repo_url}: OK")
         except Exception as exc:
-            logger.warning(f"[{i}/{len(records)}] {repo_url}: skipped — {exc}")
+            logger.warning(
+                f"[{i}/{len(records)}] {repo_url}: failed — {exc}", exc_info=True
+            )
 
     if skipped:
         logger.info(
             f"Excluded {skipped} record(s) with setup.py as the only dependency file"
         )
 
+    loss_percent = 100 * (len(records) - len(enriched)) / len(records)
+
+    logger.info("=" * 60)
+    logger.info("Enrich_content complete")
+    logger.info(f"  Input: {len(records)} structure records")
+    logger.info(f"  Output: {len(enriched)} enriched records")
+    logger.info(f"  Excluded (setup.py only): {skipped}")
+    logger.info(f"  Loss: {len(records) - len(enriched)} repos ({loss_percent:.1f}%)")
+    logger.info(f"  File: {output_path}")
+    logger.info("=" * 60)
+
     save_json(enriched, output_path)
-    logger.info(f"enrich_content complete: {len(enriched)} records written")
 
 
 if __name__ == "__main__":
