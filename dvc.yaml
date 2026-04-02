@@ -55,6 +55,5 @@ stages:
       - src/data/utils.py
       - data/interim/computed_features.json
       - src/config.py
-    outs:
-      - data/processed/:
-          cache: false
+    # Note: No outs specified - versioned directories are created but not tracked by DVC
+    # This allows multiple dataset versions to coexist without DVC removing old versions

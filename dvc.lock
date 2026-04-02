@@ -25,12 +25,12 @@ stages:
     deps:
     - path: logs/pipeline_init.json
       hash: md5
-      md5: 3257cd0fabfca129f4b977b50d85ec37
+      md5: 1c210df3e9c3b9842cf484b88391db6e
       size: 812
     - path: src/config.py
       hash: md5
-      md5: 8cca089cfa5725c1973ce4893dd525c7
-      size: 5556
+      md5: ecf635b38c23a74036599a49867c2854
+      size: 5533
     - path: src/data/fetch_raw.py
       hash: md5
       md5: af3ff8d3dd2b9e21c3e6e7c1ddbc4882
@@ -42,19 +42,19 @@ stages:
     outs:
     - path: data/raw/raw_metadata.json
       hash: md5
-      md5: 0559912fdcffbf1f43fcf84af46083d1
-      size: 569870074
+      md5: 56d511979d7094e434f6594972ecf58a
+      size: 505445775
   extract_structure:
     cmd: python -m src.data.extract_structure
     deps:
     - path: data/raw/raw_metadata.json
       hash: md5
-      md5: 0559912fdcffbf1f43fcf84af46083d1
-      size: 569870074
+      md5: 56d511979d7094e434f6594972ecf58a
+      size: 505445775
     - path: src/config.py
       hash: md5
-      md5: 8cca089cfa5725c1973ce4893dd525c7
-      size: 5556
+      md5: ecf635b38c23a74036599a49867c2854
+      size: 5533
     - path: src/data/extract_structure.py
       hash: md5
       md5: 5beb26edeb01651f3ffc96a6b213d2cf
@@ -66,19 +66,19 @@ stages:
     outs:
     - path: data/interim/structure.json
       hash: md5
-      md5: fad76d5092914b68200c99deb91a5a45
-      size: 161710058
+      md5: d6e03cd0a45d9c79bc9cf1719c295ecb
+      size: 142991914
   enrich_content:
     cmd: python -m src.data.enrich_content
     deps:
     - path: data/interim/structure.json
       hash: md5
-      md5: fad76d5092914b68200c99deb91a5a45
-      size: 161710058
+      md5: d6e03cd0a45d9c79bc9cf1719c295ecb
+      size: 142991914
     - path: src/config.py
       hash: md5
-      md5: 8cca089cfa5725c1973ce4893dd525c7
-      size: 5556
+      md5: ecf635b38c23a74036599a49867c2854
+      size: 5533
     - path: src/data/enrich_content.py
       hash: md5
       md5: c5f9c0b9de726993474a309982bc8b46
@@ -90,23 +90,23 @@ stages:
     outs:
     - path: data/interim/structure_enriched.json
       hash: md5
-      md5: 3b2d0d0e5f281601ee680d4d60a35f71
-      size: 159832856
+      md5: 2c85648acae1d950198de46914435095
+      size: 141347524
   compute_features:
     cmd: python -m src.data.compute_features
     deps:
     - path: data/interim/structure_enriched.json
       hash: md5
-      md5: 3b2d0d0e5f281601ee680d4d60a35f71
-      size: 159832856
+      md5: 2c85648acae1d950198de46914435095
+      size: 141347524
     - path: src/config.py
       hash: md5
-      md5: 8cca089cfa5725c1973ce4893dd525c7
-      size: 5556
+      md5: ecf635b38c23a74036599a49867c2854
+      size: 5533
     - path: src/data/compute_features.py
       hash: md5
-      md5: e206a354f19b943415f65805041b0822
-      size: 6764
+      md5: a3e450f41500ef2db26d7bed5fc9b010
+      size: 6758
     - path: src/data/utils.py
       hash: md5
       md5: bd29a9ecd2d772a217afe5c6646d5d39
@@ -114,23 +114,23 @@ stages:
     outs:
     - path: data/interim/computed_features.json
       hash: md5
-      md5: 575c6f02083dbe52d681eaba07a9f058
-      size: 1808604
+      md5: 887079c6d44fc11ddfd2aa13a092253a
+      size: 1794825
   build_dataset:
     cmd: python -m src.data.build_dataset
     deps:
     - path: data/interim/computed_features.json
       hash: md5
-      md5: 575c6f02083dbe52d681eaba07a9f058
-      size: 1808604
+      md5: 887079c6d44fc11ddfd2aa13a092253a
+      size: 1794825
     - path: src/config.py
       hash: md5
-      md5: 8cca089cfa5725c1973ce4893dd525c7
-      size: 5556
+      md5: ecf635b38c23a74036599a49867c2854
+      size: 5533
     - path: src/data/build_dataset.py
       hash: md5
-      md5: e9d675f695f2ec6829a32d3873249310
-      size: 4795
+      md5: 50ddfb706e009788c8b2e858b72ca9f0
+      size: 4825
     - path: src/data/utils.py
       hash: md5
       md5: bd29a9ecd2d772a217afe5c6646d5d39
@@ -138,6 +138,6 @@ stages:
     outs:
     - path: data/processed/
       hash: md5
-      md5: e3081807202a80cd6cc975723dd40a76.dir
-      size: 329947
+      md5: debbfebe10995d1944f48d82804e15b1.dir
+      size: 326314
       nfiles: 2

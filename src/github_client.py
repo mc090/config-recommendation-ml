@@ -218,10 +218,10 @@ class GitHubClient:
 
     def _check_for_duplicates(self, repos: list[dict[str, Any]]) -> None:
         """Check for duplicate repositories based on full_name."""
-        seen = set()
-        duplicates = set()
+        seen: set[str] = set()
+        duplicates: set[str] = set()
         for repo in repos:
-            full_name = repo.get("full_name")
+            full_name: str = repo["full_name"]
             if full_name in seen:
                 duplicates.add(full_name)
             else:

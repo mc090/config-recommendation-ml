@@ -216,3 +216,5 @@ data/interim/*.json
 data/raw/*.json
 # Allow manifests to be tracked:
 !data/processed/*/manifest.json
+
+docs/test/
