@@ -1,0 +1,93 @@
+{
+  "variant": "corr_060",
+  "created_at": "2026-04-08T20:34:25.040280+00:00",
+  "source_dataset_version": "1.0.1",
+  "source_dataset_path": "data/processed/v1.0.1/dataset.csv",
+  "source_dataset_checksum": "sha256:0503dd83ccffc9764e869c119129a979cbe226fc3788fd21917a6d1d2a73bd67",
+  "rows": 1465,
+  "total_columns": 38,
+  "feature_count": 27,
+  "label_columns": [
+    "has_pyproject_toml",
+    "has_dockerfile",
+    "has_github_actions",
+    "has_requirements_txt",
+    "has_conda_env_file",
+    "has_docker_compose",
+    "has_precommit_config",
+    "has_setup_py",
+    "has_tox_ini",
+    "has_makefile"
+  ],
+  "id_column": "repo_url",
+  "method": "correlation_pruning",
+  "method_parameters": {
+    "correlation_threshold": 0.6,
+    "p_value_threshold": 0.05
+  },
+  "dropped_features": [
+    "forks",
+    "num_dirs",
+    "num_py_files",
+    "num_test_files",
+    "other_extensions_count"
+  ],
+  "dropped_feature_count": 5,
+  "dropped_feature_details": {
+    "forks": [
+      {
+        "kept_feature": "stars",
+        "dropped_pair_frequency": 1,
+        "kept_pair_frequency": 1,
+        "correlation": 0.874821,
+        "p_value": 0.0,
+        "threshold": 0.6,
+        "drop_reason": "pair_frequency_tie_break"
+      }
+    ],
+    "other_extensions_count": [
+      {
+        "kept_feature": "num_files",
+        "dropped_pair_frequency": 1,
+        "kept_pair_frequency": 3,
+        "correlation": 0.819135,
+        "p_value": 0.0,
+        "threshold": 0.6,
+        "drop_reason": "lower_pair_frequency"
+      }
+    ],
+    "num_dirs": [
+      {
+        "kept_feature": "num_files",
+        "dropped_pair_frequency": 2,
+        "kept_pair_frequency": 3,
+        "correlation": 0.730563,
+        "p_value": 0.0,
+        "threshold": 0.6,
+        "drop_reason": "lower_pair_frequency"
+      }
+    ],
+    "num_test_files": [
+      {
+        "kept_feature": "num_py_files",
+        "dropped_pair_frequency": 1,
+        "kept_pair_frequency": 3,
+        "correlation": 0.6736,
+        "p_value": 0.0,
+        "threshold": 0.6,
+        "drop_reason": "lower_pair_frequency"
+      }
+    ],
+    "num_py_files": [
+      {
+        "kept_feature": "num_files",
+        "dropped_pair_frequency": 3,
+        "kept_pair_frequency": 3,
+        "correlation": 0.619474,
+        "p_value": 0.0,
+        "threshold": 0.6,
+        "drop_reason": "pair_frequency_tie_break"
+      }
+    ]
+  }
+}

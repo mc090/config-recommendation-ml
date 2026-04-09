@@ -212,9 +212,12 @@ __marimo__/
 # Dataset versioning: Ignore large CSV files but track manifests
 # CSV files are too large for git, but manifest.json files are small and important for reproducibility
 data/processed/*/dataset.csv
+data/processed/*/*/*/dataset.csv
 data/interim/*.json
 data/raw/*.json
 # Allow manifests to be tracked:
 !data/processed/*/manifest.json
+!data/processed/*/variant_manifest.json
 
 docs/test/
+notebooks/data/

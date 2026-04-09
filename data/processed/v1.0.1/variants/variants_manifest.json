@@ -1,0 +1,89 @@
+{
+  "created_at": "2026-04-08T20:34:25.080221+00:00",
+  "source_dataset_version": "1.0.1",
+  "source_dataset_path": "data/processed/v1.0.1/dataset.csv",
+  "settings": {
+    "correlation_thresholds": [
+      0.7,
+      0.6
+    ],
+    "correlation_p_value_threshold": 0.05,
+    "dominance_threshold": 0.8,
+    "manually_selected_features": [
+      "avg_files_per_dir",
+      "avg_nb_cell_count",
+      "has_license"
+    ]
+  },
+  "variants": [
+    {
+      "variant": "original",
+      "rows": 1465,
+      "total_columns": 43,
+      "feature_count": 32,
+      "dropped_feature_count": 0,
+      "dropped_features": [],
+      "dataset_path": "data/processed/v1.0.1/variants/original/dataset.csv",
+      "manifest_path": "data/processed/v1.0.1/variants/original/variant_manifest.json"
+    },
+    {
+      "variant": "corr_070",
+      "rows": 1465,
+      "total_columns": 40,
+      "feature_count": 29,
+      "dropped_feature_count": 3,
+      "dropped_features": [
+        "forks",
+        "num_dirs",
+        "other_extensions_count"
+      ],
+      "dataset_path": "data/processed/v1.0.1/variants/corr_070/dataset.csv",
+      "manifest_path": "data/processed/v1.0.1/variants/corr_070/variant_manifest.json"
+    },
+    {
+      "variant": "corr_060",
+      "rows": 1465,
+      "total_columns": 38,
+      "feature_count": 27,
+      "dropped_feature_count": 5,
+      "dropped_features": [
+        "forks",
+        "num_dirs",
+        "num_py_files",
+        "num_test_files",
+        "other_extensions_count"
+      ],
+      "dataset_path": "data/processed/v1.0.1/variants/corr_060/dataset.csv",
+      "manifest_path": "data/processed/v1.0.1/variants/corr_060/variant_manifest.json"
+    },
+    {
+      "variant": "manual_selection",
+      "rows": 1465,
+      "total_columns": 40,
+      "feature_count": 29,
+      "dropped_feature_count": 3,
+      "dropped_features": [
+        "avg_files_per_dir",
+        "avg_nb_cell_count",
+        "has_license"
+      ],
+      "dataset_path": "data/processed/v1.0.1/variants/manual_selection/dataset.csv",
+      "manifest_path": "data/processed/v1.0.1/variants/manual_selection/variant_manifest.json"
+    },
+    {
+      "variant": "dom_080",
+      "rows": 1465,
+      "total_columns": 39,
+      "feature_count": 28,
+      "dropped_feature_count": 4,
+      "dropped_features": [
+        "has_license",
+        "has_src_dir",
+        "num_ts_files",
+        "recent_activity_days"
+      ],
+      "dataset_path": "data/processed/v1.0.1/variants/dom_080/dataset.csv",
+      "manifest_path": "data/processed/v1.0.1/variants/dom_080/variant_manifest.json"
+    }
+  ]
+}

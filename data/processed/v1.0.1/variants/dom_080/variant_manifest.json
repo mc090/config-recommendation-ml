@@ -1,0 +1,64 @@
+{
+  "variant": "dom_080",
+  "created_at": "2026-04-08T20:34:25.079812+00:00",
+  "source_dataset_version": "1.0.1",
+  "source_dataset_path": "data/processed/v1.0.1/dataset.csv",
+  "source_dataset_checksum": "sha256:0503dd83ccffc9764e869c119129a979cbe226fc3788fd21917a6d1d2a73bd67",
+  "rows": 1465,
+  "total_columns": 39,
+  "feature_count": 28,
+  "label_columns": [
+    "has_pyproject_toml",
+    "has_dockerfile",
+    "has_github_actions",
+    "has_requirements_txt",
+    "has_conda_env_file",
+    "has_docker_compose",
+    "has_precommit_config",
+    "has_setup_py",
+    "has_tox_ini",
+    "has_makefile"
+  ],
+  "id_column": "repo_url",
+  "method": "dominance_ratio_pruning",
+  "method_parameters": {
+    "dominance_threshold": 0.8
+  },
+  "dropped_features": [
+    "has_license",
+    "has_src_dir",
+    "num_ts_files",
+    "recent_activity_days"
+  ],
+  "dropped_feature_count": 4,
+  "dropped_feature_details": {
+    "num_ts_files": [
+      {
+        "dominance_ratio": 0.833447,
+        "threshold": 0.8,
+        "drop_reason": "dominance_ratio_above_threshold"
+      }
+    ],
+    "has_license": [
+      {
+        "dominance_ratio": 0.919454,
+        "threshold": 0.8,
+        "drop_reason": "dominance_ratio_above_threshold"
+      }
+    ],
+    "has_src_dir": [
+      {
+        "dominance_ratio": 0.832765,
+        "threshold": 0.8,
+        "drop_reason": "dominance_ratio_above_threshold"
+      }
+    ],
+    "recent_activity_days": [
+      {
+        "dominance_ratio": 0.901706,
+        "threshold": 0.8,
+        "drop_reason": "dominance_ratio_above_threshold"
+      }
+    ]
+  }
+}

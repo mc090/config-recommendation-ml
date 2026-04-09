@@ -1,0 +1,54 @@
+{
+  "variant": "manual_selection",
+  "created_at": "2026-04-08T20:34:25.055970+00:00",
+  "source_dataset_version": "1.0.1",
+  "source_dataset_path": "data/processed/v1.0.1/dataset.csv",
+  "source_dataset_checksum": "sha256:0503dd83ccffc9764e869c119129a979cbe226fc3788fd21917a6d1d2a73bd67",
+  "rows": 1465,
+  "total_columns": 40,
+  "feature_count": 29,
+  "label_columns": [
+    "has_pyproject_toml",
+    "has_dockerfile",
+    "has_github_actions",
+    "has_requirements_txt",
+    "has_conda_env_file",
+    "has_docker_compose",
+    "has_precommit_config",
+    "has_setup_py",
+    "has_tox_ini",
+    "has_makefile"
+  ],
+  "id_column": "repo_url",
+  "method": "expert_selected_pruning",
+  "method_parameters": {
+    "selected_features": [
+      "avg_files_per_dir",
+      "avg_nb_cell_count",
+      "has_license"
+    ]
+  },
+  "dropped_features": [
+    "avg_files_per_dir",
+    "avg_nb_cell_count",
+    "has_license"
+  ],
+  "dropped_feature_count": 3,
+  "dropped_feature_details": {
+    "avg_files_per_dir": [
+      {
+        "drop_reason": "manually_selected_feature"
+      }
+    ],
+    "avg_nb_cell_count": [
+      {
+        "drop_reason": "manually_selected_feature"
+      }
+    ],
+    "has_license": [
+      {
+        "drop_reason": "manually_selected_feature"
+      }
+    ]
+  }
+}

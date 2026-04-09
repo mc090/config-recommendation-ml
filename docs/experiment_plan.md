@@ -3,6 +3,28 @@
 ## Overview
 The main goal of these experiments is to develop the most effective machine learning model for recommending configuration files for programming projects. Various ML models will be compared, and different preprocessing methods may also be explored.
 
+## Current Preparation Milestone (Implemented First)
+
+Before split/CV and model training, generate feature-pruned dataset variants with a CLI-first workflow:
+
+- Run:
+  ```bash
+  python -m src.experiments.build_variants
+  ```
+- Variants are saved under the latest dataset version:
+  - `variants/original`
+  - `variants/corr_070`
+  - `variants/corr_060`
+  - `variants/dist_expert`
+  - `variants/dom_<threshold>` (e.g. `dom_090`)
+- Locked preprocessing rules for this phase:
+  - Correlation pruning significance: `p < 0.05`
+  - Dominance-ratio threshold: `0.90`
+  - Expert removals: `avg_files_per_dir`, `avg_nb_cell_count`, `has_license`
+- Notebook support for reproducibility/statistics:
+  - `notebooks/05_variant_generation_process.ipynb`
+  - `notebooks/06_variant_statistics.ipynb`
+
 ## Baselines
 - Simple heuristic-based recommendations (e.g., based on repository size or structure patterns)
 - Most common configuration files in similar Python repositories

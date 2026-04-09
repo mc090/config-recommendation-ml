@@ -95,6 +95,10 @@ class Settings(BaseSettings):
         default=Path("logs"),
         description="Directory for extraction logs",
     )
+    pipeline_init_snapshot: Path = Field(
+        default=Path("logs/pipeline_init.json"),
+        description="Path to save pipeline initialization snapshot",
+    )
 
     # Sampling parameters
     random_seed: int = Field(
@@ -106,6 +110,43 @@ class Settings(BaseSettings):
     stratify_labels: list[str] = Field(
         default=["has_pyproject_toml", "has_dockerfile", "has_github_actions"],
         description="Label columns to use for multi-label stratification in splits",
+    )
+
+    # Variant generation configuration
+    variant_label_columns: list[str] = Field(
+        default=[
+            "has_pyproject_toml",
+            "has_dockerfile",
+            "has_github_actions",
+            "has_requirements_txt",
+            "has_conda_env_file",
+            "has_docker_compose",
+            "has_precommit_config",
+            "has_setup_py",
+            "has_tox_ini",
+            "has_makefile",
+        ],
+        description="Label columns used by dataset-variant generation scripts",
+    )
+    variant_correlation_thresholds: list[float] = Field(
+        default=[0.70, 0.60],
+        description="Correlation thresholds for generating correlation-pruned variants",
+    )
+    variant_correlation_pvalue_threshold: float = Field(
+        default=0.05,
+        gt=0.0,
+        le=1.0,
+        description="P-value threshold for correlation significance in variant pruning",
+    )
+    variant_dominance_threshold: float = Field(
+        default=0.80,
+        gt=0.0,
+        le=1.0,
+        description="Dominance-ratio threshold for dominance-based variant pruning",
+    )
+    variant_low_variance_selected_features: list[str] = Field(
+        default=["avg_files_per_dir", "avg_nb_cell_count", "has_license"],
+        description="Features with low variance to drop in the low-variance variant",
     )
 
     # Dataset versioning
@@ -134,6 +175,7 @@ class Settings(BaseSettings):
         "structure_enriched_path",
         "computed_features_path",
         "logs_dir",
+        "pipeline_init_snapshot",
     )
     @classmethod
     def create_dir(cls, v: Path) -> Path:
@@ -149,6 +191,19 @@ class Settings(BaseSettings):
             min_size = info.data["min_size_kb"]
             if v < min_size:
                 raise ValueError(f"max_size_kb ({v}) < min_size_kb ({min_size})")
+        return v
+
+    @field_validator("variant_correlation_thresholds")
+    @classmethod
+    def validate_variant_correlation_thresholds(cls, v: list[float]) -> list[float]:
+        """Ensure correlation thresholds are in (0, 1]."""
+        if not v:
+            raise ValueError("variant_correlation_thresholds cannot be empty")
+        for threshold in v:
+            if threshold <= 0.0 or threshold > 1.0:
+                raise ValueError(
+                    "variant_correlation_thresholds values must be in (0, 1]"
+                )
         return v
 
     model_config = SettingsConfigDict(

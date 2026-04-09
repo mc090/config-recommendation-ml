@@ -26,4 +26,4 @@ def save_json(data: Any, path: Path | str, *, indent: int = 2) -> None:
     with open(path, "w") as f:
         json.dump(data, f, indent=indent, default=str)
     n = len(data) if isinstance(data, list) else 1
-    logger.info(f"Saved {n} records → {path}")
+    logger.info(f"Saved {n} records -> {path}")

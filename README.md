@@ -24,6 +24,14 @@ conda env create --name config-recommendation-ml --file environment/environment-
 conda activate config-recommendation-ml
 ```
 
+3) Generate dataset variants (experiment preparation)
+```bash
+python -m src.experiments.build_variants
+```
+This creates `original`, `corr_070`, `corr_060`, `dist_expert`, and
+`dom_<threshold>` under `data/processed/vX.Y.Z/variants/` (e.g. `dom_090`),
+plus summary manifests/statistics.
+
 ## Project Structure (key folders)
 ```
 .devcontainer/        # DevContainer + Dockerfile

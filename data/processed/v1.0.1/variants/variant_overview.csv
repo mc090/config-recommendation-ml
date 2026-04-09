@@ -1,0 +1,6 @@
+variant,rows,total_columns,feature_count,dropped_feature_count,dropped_features,dataset_path,manifest_path
+corr_060,1465,38,27,5,"['forks', 'num_dirs', 'num_py_files', 'num_test_files', 'other_extensions_count']",data/processed/v1.0.1/variants/corr_060/dataset.csv,data/processed/v1.0.1/variants/corr_060/variant_manifest.json
+corr_070,1465,40,29,3,"['forks', 'num_dirs', 'other_extensions_count']",data/processed/v1.0.1/variants/corr_070/dataset.csv,data/processed/v1.0.1/variants/corr_070/variant_manifest.json
+dom_080,1465,39,28,4,"['has_license', 'has_src_dir', 'num_ts_files', 'recent_activity_days']",data/processed/v1.0.1/variants/dom_080/dataset.csv,data/processed/v1.0.1/variants/dom_080/variant_manifest.json
+manual_selection,1465,40,29,3,"['avg_files_per_dir', 'avg_nb_cell_count', 'has_license']",data/processed/v1.0.1/variants/manual_selection/dataset.csv,data/processed/v1.0.1/variants/manual_selection/variant_manifest.json
+original,1465,43,32,0,[],data/processed/v1.0.1/variants/original/dataset.csv,data/processed/v1.0.1/variants/original/variant_manifest.json
