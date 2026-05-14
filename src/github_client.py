@@ -26,20 +26,11 @@ logger = get_logger(__name__)
 # Maximum number of retries for rate limit errors
 MAX_RETRIES = 5
 
+# GitHub Search API has a hard limit of 30 requests/minute
+GITHUB_SEARCH_API_LIMIT: int = 30
 
-def _calculate_retry_wait(response: requests.Response, attempt: int) -> int:
-    """Calculate wait time for retry based on headers or exponential backoff."""
-    retry_after = response.headers.get("Retry-After")
-    x_ratelimit_remaining = response.headers.get("X-RateLimit-Remaining")
-    x_ratelimit_reset = response.headers.get("X-RateLimit-Reset")
-
-    if retry_after:
-        return int(retry_after)
-    elif x_ratelimit_remaining == "0" and x_ratelimit_reset:
-        return max(int(x_ratelimit_reset) - int(time.time()), 0) + 1
-    else:
-        # Exponential backoff: 2s, 4s, 8s, 16s, 32s
-        return (2**attempt) * 2
+# Chunk size for streaming tarball downloads (64 KB)
+TARBALL_CHUNK_SIZE = 64 * 1024
 
 
 class GitHubClient:
@@ -58,7 +49,23 @@ class GitHubClient:
         self._request_times: list[float] = []
         self._last_request_time: float = 0.0
 
-    def _throttle(self, is_search_api: bool = False) -> None:
+    @staticmethod
+    def _calculate_retry_wait(response: requests.Response, attempt: int) -> int:
+        """Calculate wait time for retry based on headers or exponential backoff."""
+        retry_after = response.headers.get("Retry-After")
+        x_ratelimit_remaining = response.headers.get("X-RateLimit-Remaining")
+        x_ratelimit_reset = response.headers.get("X-RateLimit-Reset")
+
+        if retry_after:
+            return int(retry_after)
+        elif x_ratelimit_remaining == "0" and x_ratelimit_reset:
+            # Wait until the rate limit resets, plus a 1 second buffer
+            return max(int(x_ratelimit_reset) - int(time.time()), 0) + 1
+        else:
+            # Exponential backoff: 2s, 4s, 8s, 16s, 32s
+            return (2**attempt) * 2
+
+    def _throttle(self, *, is_search_api: bool = False) -> None:
         """Block until sending another request is within the configured rate.
 
         Args:
@@ -66,10 +73,8 @@ class GitHubClient:
                 If True, use GitHub's hard limit of 30 req/min for Search API
                 If False, use configured requests_per_minute for REST API.
         """
-        rate_limit = (
-            settings.GITHUB_SEARCH_API_LIMIT
-            if is_search_api
-            else settings.requests_per_minute
+        rate_limit: int = (
+            GITHUB_SEARCH_API_LIMIT if is_search_api else settings.requests_per_minute
         )
 
         now = time.monotonic()
@@ -109,7 +114,7 @@ class GitHubClient:
             )
             return False
 
-        wait_time = _calculate_retry_wait(response, attempt)
+        wait_time = self._calculate_retry_wait(response, attempt)
         logger.warning(
             f"Rate limit hit (HTTP {response.status_code}, "
             f"attempt {attempt + 1}/{MAX_RETRIES}). "
@@ -122,6 +127,7 @@ class GitHubClient:
         self,
         url: str,
         params: dict[str, Any] | None = None,
+        *,
         is_search_api: bool = False,
     ) -> dict[str, Any]:
         """Make a GET request to the GitHub API with throttling and retry logic."""
@@ -138,7 +144,7 @@ class GitHubClient:
 
             except requests.exceptions.HTTPError as e:
                 if e.response.status_code in (403, 429) and attempt < MAX_RETRIES - 1:
-                    wait_time = _calculate_retry_wait(e.response, attempt)
+                    wait_time = self._calculate_retry_wait(e.response, attempt)
                     logger.warning(
                         f"HTTP {e.response.status_code} error "
                         f"(attempt {attempt + 1}/{MAX_RETRIES}). "
@@ -150,7 +156,7 @@ class GitHubClient:
         raise RuntimeError(f"Failed to fetch {url} after {MAX_RETRIES} attempts")
 
     def search_repos(
-        self, base_query: str, min_stars: int, limit: int
+        self, base_query: str, min_stars: int, repos_limit: int
     ) -> list[dict[str, Any]]:
         """Search repositories with greedy batching to bypass API's result limit."""
         all_repos: list[dict[str, Any]] = []
@@ -158,11 +164,12 @@ class GitHubClient:
         batch_num = 1
 
         logger.info(
-            f"Starting greedy batching to collect {limit} repos (min_stars={min_stars})"
+            f"Starting greedy batching to collect {repos_limit} repos "
+            f"(min_stars={min_stars})"
         )
 
-        while len(all_repos) < limit:
-            remaining = limit - len(all_repos)
+        while len(all_repos) < repos_limit:
+            remaining = repos_limit - len(all_repos)
 
             if current_max_threshold is None:
                 star_constraint = f"stars:>={min_stars}"
@@ -176,7 +183,7 @@ class GitHubClient:
                 f"(remaining: {remaining})"
             )
 
-            batch_repos, hit_limit = self._fetch_batch_greedy(batch_query, remaining)
+            batch_repos, is_limit_hit = self._fetch_batch_greedy(batch_query, remaining)
 
             if not batch_repos:
                 logger.warning(f"Batch {batch_num} returned no results. Stopping.")
@@ -185,10 +192,10 @@ class GitHubClient:
             all_repos.extend(batch_repos)
             logger.info(
                 f"Batch {batch_num} complete: +{len(batch_repos)} repos "
-                f"(total: {len(all_repos)}/{limit})"
+                f"(total: {len(all_repos)}/{repos_limit})"
             )
 
-            if not hit_limit and len(batch_repos) < remaining:
+            if not is_limit_hit and len(batch_repos) < remaining:
                 logger.info(f"No more repositories available with stars >= {min_stars}")
                 break
 
@@ -214,34 +221,29 @@ class GitHubClient:
 
         self._check_for_duplicates(all_repos)
 
-        return all_repos[:limit]
+        return all_repos[:repos_limit]
 
     def _check_for_duplicates(self, repos: list[dict[str, Any]]) -> None:
         """Check for duplicate repositories based on full_name."""
-        seen: set[str] = set()
-        duplicates: set[str] = set()
-        for repo in repos:
-            full_name: str = repo["full_name"]
-            if full_name in seen:
-                duplicates.add(full_name)
-            else:
-                seen.add(full_name)
+        repos_names = [repo["full_name"] for repo in repos]
+        if len(set(repos_names)) == len(repos):
+            return
 
-        if duplicates:
-            raise RuntimeError(
-                f"Duplicate repositories found in search results: {duplicates}."
-            )
+        duplicates = {name for name in repos_names if repos_names.count(name) > 1}
+        raise RuntimeError(
+            f"Duplicate repositories found in search results: {duplicates}."
+        )
 
     def _fetch_batch_greedy(
-        self, query: str, limit: int
+        self, query: str, repos_limit: int
     ) -> tuple[list[dict[str, Any]], bool]:
         """Fetch repositories using pagination until hitting limit or page cap."""
         repos: list[dict[str, Any]] = []
         page = 1
         per_page = 100
-        hit_limit = False
+        is_limit_hit = False
 
-        while len(repos) < limit and page <= 10:
+        while len(repos) < repos_limit and page <= 10:
             data = self.get(
                 "https://api.github.com/search/repositories",
                 params={
@@ -263,13 +265,13 @@ class GitHubClient:
                 break
 
             if page == 10:
-                hit_limit = True
+                is_limit_hit = True
                 logger.debug("  Hit page 10 limit (1000 results)")
                 break
 
             page += 1
 
-        return repos[:limit], hit_limit
+        return repos[:repos_limit], is_limit_hit
 
     def get_tree(self, owner: str, repo: str, tree_sha: str) -> dict[str, Any]:
         """Fetch the full recursive git tree for a repository."""
@@ -292,22 +294,27 @@ class GitHubClient:
         """Download HEAD tarball, extract to a temp dir, yield the repo root path.
 
         Counts as a single throttled API call; the actual file transfer is served
-        from GitHub's CDN and does not consume additional API rate-limit quota.
+        from GitHub's CDN and does not consume additional API rate-limit.
         """
         url = f"https://api.github.com/repos/{owner}/{repo}/tarball/HEAD"
         self._throttle()
         response = self._session.get(url, stream=True, timeout=120)
         response.raise_for_status()
+
         with tempfile.TemporaryDirectory() as tmpdir:
             tmppath = Path(tmpdir)
             tar_path = tmppath / "repo.tar.gz"
+
             with open(tar_path, "wb") as fh:
-                for chunk in response.iter_content(chunk_size=65_536):
+                for chunk in response.iter_content(chunk_size=TARBALL_CHUNK_SIZE):
                     fh.write(chunk)
+
             with tarfile.open(tar_path, "r:gz") as tf:
                 tf.extractall(tmppath)
-            tar_path.unlink()  # free the compressed archive; only extracted tree needed
+
+            tar_path.unlink()
             subdirs = [d for d in tmppath.iterdir() if d.is_dir()]
+
             if not subdirs:
                 raise RuntimeError(f"Tarball for {owner}/{repo} is empty")
             yield subdirs[0]

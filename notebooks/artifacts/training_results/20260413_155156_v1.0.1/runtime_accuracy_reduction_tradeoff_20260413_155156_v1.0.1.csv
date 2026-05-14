@@ -1,0 +1,6 @@
+variant,best model,total time,best f1-score,best balanced acc,features,dropped features
+corr_060,gradient_boosting,20 min 41 sec,0.4763 ± 0.0284,0.3261 ± 0.0317,27,5
+corr_070,gradient_boosting,21 min 32 sec,0.4783 ± 0.0341,0.3337 ± 0.0335,29,3
+dom_080,gradient_boosting,25 min 8 sec,0.4735 ± 0.0287,0.3257 ± 0.0338,28,4
+manual_selection,gradient_boosting,23 min 54 sec,0.4802 ± 0.0382,0.3248 ± 0.0404,29,3
+original,gradient_boosting,23 min 25 sec,0.4760 ± 0.0367,0.3258 ± 0.0372,32,0

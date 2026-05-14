@@ -1,7 +1,5 @@
 """Generate feature-pruned dataset variants for experiment preparation."""
 
-from __future__ import annotations
-
 from collections import defaultdict
 from datetime import UTC, datetime
 from itertools import combinations
@@ -12,9 +10,9 @@ import pandas as pd
 from scipy.stats import pearsonr
 
 from src.config import settings
-from src.data.utils import save_json
 from src.logger import get_logger
-from src.utils import load_latest_dataset
+from src.utils import cast_bool_features_to_int, load_latest_dataset
+from src.utils.data import save_json
 
 logger = get_logger(__name__)
 
@@ -46,11 +44,7 @@ def _build_correlation_pruning_result(
 ) -> dict[str, Any]:
     """Build drop set based on pairwise correlation and significance."""
     numeric_df = df.loc[:, feature_columns].copy()
-    bool_cols = numeric_df.select_dtypes(include=["bool", "boolean"]).columns
-    if len(bool_cols) > 0:
-        for col in bool_cols:
-            numeric_df[col] = numeric_df[col].astype("Int8")
-    numeric_df = numeric_df.apply(pd.to_numeric, errors="coerce")
+    numeric_df = cast_bool_features_to_int(numeric_df, feature_columns)
 
     correlated_pairs: list[dict[str, Any]] = []
     for feature_a, feature_b in combinations(numeric_df.columns, 2):
@@ -179,7 +173,7 @@ def _build_manual_selected_pruning_result(df: pd.DataFrame) -> dict[str, Any]:
     """Build drop set based on manually selected features."""
     dropped_features = [
         feature
-        for feature in settings.variant_low_variance_selected_features
+        for feature in settings.variant_selected_features_for_pruning
         if feature in df
     ]
     dropped_feature_details = {
@@ -345,7 +339,7 @@ def build_variants(
             method="expert_selected_pruning",
             method_parameters={
                 "selected_features": list(
-                    settings.variant_low_variance_selected_features
+                    settings.variant_selected_features_for_pruning
                 ),
             },
             dropped_feature_details=manual_selected_result["dropped_feature_details"],
@@ -391,7 +385,7 @@ def build_variants(
             ),
             "dominance_threshold": settings.variant_dominance_threshold,
             "manually_selected_features": list(
-                settings.variant_low_variance_selected_features
+                settings.variant_selected_features_for_pruning
             ),
         },
         "variants": variant_summaries,

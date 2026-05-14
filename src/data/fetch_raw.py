@@ -8,9 +8,9 @@ from typing import Any
 import requests
 
 from src.config import Settings, settings
-from src.data.utils import save_json
 from src.github_client import github_client
 from src.logger import get_logger
+from src.utils.data import save_json
 
 logger = get_logger(__name__)
 
@@ -41,7 +41,12 @@ def _build_search_query(cfg: Settings) -> str:
 
 
 def fetch_raw(cfg: Settings | None = None, output_path: Path | None = None) -> None:
-    """Fetch raw repository metadata and git trees from GitHub."""
+    """Fetch raw repository metadata and git trees from GitHub.
+
+    Args:
+        cfg: Optional settings override (defaults to global settings)
+        output_path: Optional output file path (defaults to cfg.raw_data_path)
+    """
     cfg = cfg or settings
     rng = random.Random(cfg.random_seed)
     output_path = output_path or cfg.raw_data_path
@@ -53,7 +58,7 @@ def fetch_raw(cfg: Settings | None = None, output_path: Path | None = None) -> N
         f"target: {cfg.max_repos}"
     )
     all_repos = github_client.search_repos(
-        base_query, min_stars=cfg.min_stars, limit=cfg.max_repos
+        base_query, min_stars=cfg.min_stars, repos_limit=cfg.max_repos
     )
     logger.info(f"collected {len(all_repos)} repos")
 

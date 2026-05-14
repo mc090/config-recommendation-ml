@@ -221,3 +221,13 @@ data/raw/*.json
 
 docs/test/
 notebooks/data/
+
+logs/
+!logs/training
+
+# datasets
+!data/processed/v1.0.1/dataset.csv
+
+# MLFlow
+/mlruns/
+mlflow.db

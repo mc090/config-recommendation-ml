@@ -9,9 +9,9 @@ The primary intended use is to train machine learning models for configuration r
 ## Data Sources and Selection Criteria
 
 - **Sources**: Publicaly available GitHub repositories collected via the GitHub API.
-- **Selection Criteria**: Only repositories whose **primary language is Python** (as reported by the GitHub API `language` field) are included. This decision ensures label coherence (particularly for `has_pyproject_toml`), feature relevance, and a well-defined problem scope. Key criteria:
+- **Selection Criteria**: Only repositories whose **primary language is Python** are included. This decision ensures label coherence (particularly for `has_pyproject_toml`), feature relevance, and a well-defined problem scope. Key criteria:
 
-  - **MIN_STARS=10**: Balances quality (filters toy projects) with diversity (retains emerging tools)
+  - **Minimum number of 10 stars**: Balances quality with diversity
   - **Size 10 KB - 500 MB**: Filters trivial repos, prevents timeouts on monorepos
   - **Activity within 365 days**: Focus on current practices in maintained projects
   - **Excludes forks and archived repos**: Standard practice, avoids duplicates
@@ -42,11 +42,11 @@ The primary intended use is to train machine learning models for configuration r
   **Quality guarantee**: Repositories are always collected in descending star order, ensuring the highest-quality projects are prioritized for dataset quality.
 
 ## Label Collection vs. Modelling Scope
-All configuration file presence labels listed below are collected and stored in the dataset during extraction. However, not all labels are used as targets in ML experiments — the current modelling scope is limited to the three labels marked as primary. Additional collected labels are retained in the dataset as metadata to support future experiments without requiring data re-collection. The subset used for ML training is documented in the [Model Card](./model_card.md).
+All configuration file presence labels listed below are collected and stored in the dataset during extraction. However, not all labels are used directly as targets in ML experiments — the current modelling scope derives one multiclass target (`000`..`111`) from the three primary labels. Additional collected labels are retained in the dataset as metadata to support future experiments without requiring data re-collection. The active setup is documented in the [Model Card](./model_card.md).
 
 ## Schema
 
-The dataset is stored as a CSV file with one row per repository. Each repository has structural features (file counts, directory counts, etc.), derived metrics (averages, ratios), and multi-label targets (configuration file presence).
+The dataset is stored as a CSV file with one row per repository. Each repository has structural features (file counts, directory counts, etc.), derived metrics (averages, ratios), and configuration-file presence labels.
 
 > **Test vs. Source Files**: Test files (`num_test_files`) are counted separately from Python source files (`num_py_files`) because testing practices correlate with configuration needs. This separation preserves testing maturity as an independent predictive signal.
 
@@ -124,7 +124,7 @@ Data is collected via a multi-stage automated pipeline driven by DVC:
 
 6. **build_dataset** (`src/data/build_dataset.py`): Loads computed features and saves as complete CSV with version and manifest. Output: `data/processed/v{version}/dataset.csv` + `manifest.json`.
 
-The pipeline is reproducible: each run is linked to a git commit, a config snapshot in `logs/`, and a dataset version with manifest. Re-running `dvc repro` reproduces the entire pipeline from raw data to final splits.
+The pipeline is reproducible: each run is linked to a git commit, a config snapshot in `logs/`, and a dataset version with manifest. Re-running `dvc repro` reproduces the entire pipeline from raw data to the final dataset snapshot (`dataset.csv` + `manifest.json`).
 
 ## Limitations
 - **Limitations**: The dataset may not represent all types of software projects, as it focuses on repositories with specific characteristics that meets intended selection criteria.

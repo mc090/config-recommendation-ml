@@ -2,7 +2,6 @@
 
 import hashlib
 import re
-import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -10,29 +9,32 @@ from typing import Any
 import pandas as pd
 
 from src.config import settings
-from src.data.utils import load_json, save_json
 from src.logger import get_logger
+from src.utils import get_git_commit
+from src.utils.data import load_json, save_json
 
 logger = get_logger(__name__)
+
+
+_DATASET_VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
 
 
 def _get_next_version(output_dir: Path) -> str:
     """Determine the next dataset version."""
     provided_version = settings.dataset_version
 
-    if provided_version and not re.match(r"^\d+\.\d+\.\d+$", provided_version):
+    if provided_version and not _DATASET_VERSION_RE.match(provided_version):
         raise ValueError(
             f"Invalid version format: '{provided_version}'. "
             "Expected semantic version (e.g., '1.0.0')"
         )
 
-    version_pattern = re.compile(r"^v(\d+)\.(\d+)\.(\d+)$")
     existing_versions: set[tuple[int, int, int]] = set()
 
     if output_dir.exists():
         for item in output_dir.iterdir():
             if item.is_dir():
-                match = version_pattern.match(item.name)
+                match = _DATASET_VERSION_RE.match(item.name)
                 if match:
                     major, minor, patch = map(int, match.groups())
                     existing_versions.add((major, minor, patch))
@@ -54,21 +56,6 @@ def _get_next_version(output_dir: Path) -> str:
         patch += 1
     next_version = f"{major}.{minor}.{patch}"
     return next_version
-
-
-def _get_git_commit() -> str:
-    """Get current git commit hash."""
-    try:
-        result = subprocess.run(
-            ["git", "rev-parse", "HEAD"],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-        return result.stdout.strip()
-    except subprocess.CalledProcessError:
-        logger.warning("Could not retrieve git commit hash")
-        return "unknown"
 
 
 def _compute_checksum(file_path: Path) -> str:
@@ -130,7 +117,7 @@ def build_dataset(
         "version": version,
         "created_at": datetime.now(UTC).isoformat(),
         "script": "src/data/build_dataset.py",
-        "git_commit": _get_git_commit(),
+        "git_commit": get_git_commit(),
         "input_source": str(input_path),
         "pipeline_stats": pipeline_stats,
         "schema": {

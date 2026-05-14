@@ -7,9 +7,9 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 from src.config import settings
-from src.data.utils import load_json, save_json
 from src.github_client import github_client
 from src.logger import get_logger
+from src.utils.data import load_json, save_json
 
 logger = get_logger(__name__)
 

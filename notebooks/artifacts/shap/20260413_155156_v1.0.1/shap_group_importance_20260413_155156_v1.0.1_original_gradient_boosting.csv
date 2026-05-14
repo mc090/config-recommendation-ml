@@ -1,0 +1,4 @@
+Model family,Feature group,Share of total importance (%),Top features
+gradient_boosting,Structural/content,50.94,"test_file_ratio (0.0288), avg_test_file_len (0.0169), num_test_files (0.0145)"
+gradient_boosting,Configuration-oriented,31.12,"num_yaml_files (0.0582), num_dependencies (0.0269), num_sh_files (0.0160)"
+gradient_boosting,Repository metadata,17.94,"repo_age_days (0.0152), forks (0.0124), open_issues_count (0.0122)"

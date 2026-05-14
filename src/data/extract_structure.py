@@ -5,8 +5,8 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 from src.config import settings
-from src.data.utils import load_json, save_json
 from src.logger import get_logger
+from src.utils.data import load_json, save_json
 
 logger = get_logger(__name__)
 
@@ -18,17 +18,15 @@ _TEST_FILE_RE = re.compile(
 )
 
 # Filenames (case-insensitive) that declare Python project dependencies.
-_DEPENDENCY_FILENAMES = frozenset(
-    {
-        "requirements.txt",
-        "requirements-dev.txt",
-        "requirements_dev.txt",
-        "pyproject.toml",
-        "setup.py",
-        "setup.cfg",
-        "pipfile",
-    }
-)
+_DEPENDENCY_FILENAMES = {
+    "requirements.txt",
+    "requirements-dev.txt",
+    "requirements_dev.txt",
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "pipfile",
+}
 
 
 def _is_test_file(path: str) -> bool:
@@ -36,15 +34,15 @@ def _is_test_file(path: str) -> bool:
     return bool(_TEST_FILE_RE.search(path))
 
 
-def _is_dependency_file(p: PurePosixPath) -> bool:
+def _is_dependency_file(path: PurePosixPath) -> bool:
     """Return True when the file is a known Python dependency declaration file."""
-    if p.name.lower() in _DEPENDENCY_FILENAMES:
+    if path.name.lower() in _DEPENDENCY_FILENAMES:
         return True
 
     is_directly_inside_requirements_dir = (
-        len(p.parts) == 2 and p.parts[0].lower() == "requirements"
+        len(path.parts) == 2 and path.parts[0].lower() == "requirements"
     )
-    is_txt_file = p.suffix.lower() == ".txt"
+    is_txt_file = path.suffix.lower() == ".txt"
 
     return is_directly_inside_requirements_dir and is_txt_file
 

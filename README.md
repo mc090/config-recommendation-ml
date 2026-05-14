@@ -1,7 +1,5 @@
 # Effectiveness Analysis of Selected Machine Learning Models in Recommending Configuration Files Based on the Structure of Software Projects
 
-> 🚧 Work in Progress
-
 ## 📖 About
 This project serves as the practical component of my Master's thesis in the Computer Science program at the University of Silesia in Katowice.
 
@@ -24,23 +22,38 @@ conda env create --name config-recommendation-ml --file environment/environment-
 conda activate config-recommendation-ml
 ```
 
-3) Generate dataset variants (experiment preparation)
+3) Build the dataset snapshot
+```bash
+dvc repro
+```
+
+4) Generate dataset variants (experiment preparation)
 ```bash
 python -m src.experiments.build_variants
 ```
-This creates `original`, `corr_070`, `corr_060`, `dist_expert`, and
-`dom_<threshold>` under `data/processed/vX.Y.Z/variants/` (e.g. `dom_090`),
-plus summary manifests/statistics.
+This creates `original`, `corr_<threshold>` (for every given threshold), `manual_selection`, and
+`dom_<threshold>` under `data/processed/vX.Y.Z/variants/`. Thresholds are passed throught `.env` file, additionaly:
+- per-variant `dataset.csv` and `variant_manifest.json`
+- root-level `variants_manifest.json` and `variant_overview.csv`
+
+5) Train models
+```bash
+python -m src.experiments.training.run_training
+```
+Training configuration (model families, GridSearch ranges, CV folds, tracking) is
+loaded from `.env` via `src/config.py`.
+
 
 ## Project Structure (key folders)
 ```
-.devcontainer/        # DevContainer + Dockerfile
-data/                 # raw, interim, processed dataset snapshots
-docs/                 # dataset_card, experiment_plan, model_card, reproducibility checklist
-environment/          # Conda environment YAMLs
-notebooks/            # EDA and experiment notebooks
-src/                  # pipeline scripts (pipeline_init, config, logger, utils, github_client)
-src/data/             # data pipeline stages (fetch_raw, extract_structure, enrich_content, compute_features, build_dataset)
+.devcontainer/              # DevContainer + Dockerfile
+data/                       # raw, interim, processed dataset snapshots
+docs/                       # dataset_card, experiment_plan, model_card, reproducibility checklist
+environment/                # Conda environment YAMLs
+notebooks/                  # EDA and experiment notebooks
+src/                        # source code of the project
+src/data/                   # data pipeline stages
+src/experiments/training    # training pipeline
 ```
 
 ## Reproducibility snapshot (how to reference an experiment)

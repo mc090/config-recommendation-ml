@@ -1,0 +1,6 @@
+variant,gradient_boosting,random_forest,decision_tree,neural_network,svm
+corr_060,11 min 25 sec,1 min 23 sec,0 min 5 sec,7 min 31 sec,0 min 19 sec
+corr_070,12 min 10 sec,1 min 24 sec,0 min 5 sec,7 min 34 sec,0 min 19 sec
+dom_080,15 min 22 sec,1 min 36 sec,0 min 6 sec,7 min 40 sec,0 min 23 sec
+manual_selection,13 min 13 sec,1 min 26 sec,0 min 5 sec,8 min 50 sec,0 min 20 sec
+original,13 min 53 sec,1 min 32 sec,0 min 8 sec,7 min 32 sec,0 min 21 sec
